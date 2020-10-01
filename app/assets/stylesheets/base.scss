@@ -1,8 +1,20 @@
+body {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 120px;/*←footerの高さ*/
+  box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+
+
 /* footer */
 footer {
   background: #343a40;
   color: #fff;
   text-align: center;
+  width: 100%;
+
+ position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
   p {
     font-size: 0.9rem;
     padding: 0.6rem;
