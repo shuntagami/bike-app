@@ -3,12 +3,18 @@ body {
   min-height: 100vh;
   padding-bottom: 120px;/*←footerの高さ*/
   box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+  background: #fafafa;
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  margin-right: 0;
 }
+
 
 
 /* footer */
 footer {
-  background: #343a40;
+  background: #ffffff;
   color: #fff;
   text-align: center;
   width: 100%;
