@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 2020_10_02_092047) do
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
-    t.string "image", null: false
     t.integer "cc_id", null: false
     t.integer "maker_id", null: false
     t.integer "type_id", null: false
