@@ -7,6 +7,7 @@ class Type < ActiveHash::Base
     { id: 4, name: 'スーパースポーツ' },
     { id: 5, name: 'ツアラー' },
     { id: 6, name: 'アメリカン' },
-    { id: 7,  name: 'その他' },
+    { id: 7, name: 'オフロード' },
+    { id: 8,  name: 'その他' },
   ]
 end
