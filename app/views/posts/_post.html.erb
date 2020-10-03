@@ -1,0 +1,48 @@
+<div class="card mt-4" >
+  <div class="card-header p-2" >
+    <div class="post-user float-left">
+      <%= link_to image_tag('no-avatar.png', class: 'user_avatar', alt: 'avatar image'), "#" %>
+      <%= link_to @post.user.name, "#", class: "text-black-50 text-decoration-none" %>
+    </div>
+    <div class="post-time float-right">
+      <small><%= time_ago_in_words(l @post.created_at) + "前" %></small>
+    </div>
+  </div>
+
+  <div class = "card-body">
+    <%= image_tag(@post.image, class: 'bike_image_show', alt: 'avatar image') %> 
+    <% if user_signed_in? %>
+      <ul class="list-inline" style="margin: 1.25rem auto 0 auto;">
+      <li class="list-inline-item">
+       <%= render 'like_area', post: @post %> 
+      </li>
+      <% if current_user.id == @post.user.id %>
+        <li class="list-inline-item float-right">
+          <%= link_to '削除', "#", method: :delete, data: { confirm: '投稿を削除してもよろしいですか？' }, class:'btn btn-outline-dark' %>
+        </li>
+        <li class="list-inline-item float-right mr-2">
+          <%= link_to '編集', "#", class:'btn btn-outline-dark' %>
+        </li>
+      <% end %> 
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="card-footer">
+    <%= @post.description%>
+    <table class="post-table">
+      <tr>
+        <th>車種</th>
+        <td><%= @post.name %></td>
+      </tr>
+      <tr>
+        <th>メーカー</th>
+        <td><%= @post.maker.name %></td>
+      </tr>
+      <tr>
+        <th>排気量</th>
+        <td><%= @post.cc.name %></td>
+      </tr>
+    </table>
+  </div>
+</div>
