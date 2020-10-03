@@ -2,13 +2,16 @@
   <% @posts.each do |post|%>
     <div class="col-lg-4 col-md-12">
       <div class="card mt-4" >
-        <div class="card-header" >
-          <div class="post-user">
-            <%= link_to image_tag('no-avatar.png', class: 'user_avatar', alt: 'avatar image'), "#", class: 'mr-2' %>
+        <div class="card-header p-2" >
+          <div class="post-user float-left">
+            <%= link_to image_tag('no-avatar.png', class: 'user_avatar', alt: 'avatar image'), "#" %>
             <%= link_to post.user.name, "#", class: "text-black-50 text-decoration-none" %>
           </div>
+          <div class="post-time float-right">
+            <small><%= post.created_at %></small>
+          </div>
         </div>
-        <%= link_to image_tag(post.image, class: 'bike_image_index', alt: 'avatar image') %> 
+          <%= link_to image_tag(post.image, class: 'bike_image_index', alt: 'avatar image') %> 
         <div class="card-footer">
           <div>
             <span><%= "コメント0件" %></span>
