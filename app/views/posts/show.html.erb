@@ -3,5 +3,8 @@
     <div class="col-md-6">
       <%= render @post %>
     </div>
+    <div class="col-md-6">
+      <%= render partial: 'show_comments_likes', locals: { post: @post, comment: @comment } %>
+    </div>
   </div>
 </div>
