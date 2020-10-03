@@ -1,7 +1,7 @@
 <div class="row">
   <% @posts.each do |post|%>
     <div class="col-lg-4 col-md-12">
-      <div class="card mt-4" >
+      <div class="card cards mt-4" >
         <div class="card-header p-2" >
           <div class="post-user float-left">
             <%= link_to image_tag('no-avatar.png', class: 'user_avatar', alt: 'avatar image'), "#" %>
@@ -11,7 +11,7 @@
             <small><%= time_ago_in_words(l post.created_at) + "前" %></small>
           </div>
         </div>
-          <%= link_to image_tag(post.image, class: 'bike_image_index', alt: 'avatar image') %> 
+          <%= link_to image_tag(post.image, class: 'bike_image_index', alt: 'avatar image'), post_path(post.id) %> 
         <div class="card-footer">
           <div>
             <span><%= "コメント0件" %></span>

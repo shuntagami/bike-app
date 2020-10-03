@@ -1,5 +1,5 @@
 window.addEventListener('load', function(){
-  const posts = document.querySelectorAll(".card");
+  const posts = document.querySelectorAll(".cards");
   posts.forEach(function (post) {
     post.addEventListener('mouseover', function(){
       post.style.backgroundColor = '#F2F2F2'; 
