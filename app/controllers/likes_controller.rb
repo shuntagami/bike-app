@@ -2,14 +2,14 @@ class LikesController < ApplicationController
   before_action :find_post
 
   def create
-    @proposal = Proposal.find(params[:proposal_id])
-    @like = Like.new(user_id: current_user.id, proposal_id: params[:proposal_id])
+    @post = Post.find(params[:post_id])
+    @like = Like.new(user_id: current_user.id, post_id: params[:post_id])
     @like.save
   end
 
   def destroy
-    @proposal = Proposal.find(params[:proposal_id])
-    @like = Like.find_by(user_id: current_user.id, proposal_id: params[:proposal_id])
+    @post = Post.find(params[:post_id])
+    @like = Like.find_by(user_id: current_user.id, post_id: params[:post_id])
     @like.destroy
   end
 

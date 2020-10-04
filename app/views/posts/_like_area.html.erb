@@ -1,5 +1,5 @@
-<div id="likes_buttons_<%= proposal.id %>">
-  <% if post.liked_by?(current_user) %>
+<div id="likes_buttons_<%= @post.id %>">
+  <% if @post.liked_by?(current_user) %>
     <%= link_to(post_like_path(@post.id, @like.id), method: :delete, remote: true) do%>
       <span class="fa fa-thumbs-up btn-success"><%= @post.likes.count%></span>
     <% end %>
