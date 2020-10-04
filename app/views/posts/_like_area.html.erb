@@ -1,1 +1,9 @@
-<span class="fa fa-thumbs-up btn-success">1</span>
+<% if post.liked_by?(current_user) %>
+  <%= link_to(post_like_path(post.id, @like.id), method: :delete, remote: true) do%>
+    <span class="fa fa-thumbs-up btn-success"><%= post.likes.count%></span>
+  <% end %>
+  <% else%>
+    <%= link_to(post_likes_path(post.id), method: :post, remote: true) do%>
+    <span class="fa fa-thumbs-up btn-secondary"><%= post.likes.count%></span>
+  <% end %>
+<% end%>
