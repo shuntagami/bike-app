@@ -14,7 +14,7 @@
     <% if user_signed_in? %>
       <ul class="list-inline" style="margin: 1.25rem auto 0 auto;">
       <li class="list-inline-item">
-       <%= render 'like_area', post: @post %> 
+       <%= render 'like_area' %> 
       </li>
       <% if current_user.id == @post.user.id %>
         <li class="list-inline-item float-right">
