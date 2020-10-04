@@ -1,0 +1,11 @@
+<div class="p-comment__item">
+  <%= comment.text %>
+  <div class="p-comment__bottomLine">
+  <%= link_to image_tag('no-avatar.png', class: 'user_avatar', alt: 'avatar image'), "#" %>
+  <span><%= link_to comment.user.name, "#" %></span>
+  <span><%= l comment.created_at %></span>
+  <% if user_signed_in? && (current_user.id == comment.user.id ) %>
+    <span><%= link_to '削除', "#", method: :delete, data: { confirm: 'コメントを削除してもよろしいですか？' } %></span>
+  <% end %>
+  </div>
+</div>
