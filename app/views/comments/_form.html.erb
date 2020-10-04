@@ -1,0 +1,5 @@
+<%= render "shared/error_messages" %>
+<%= form_with(model: [@post, @comment], local: true) do |f| %>
+  <%= f.text_area :text, class: "form-control mr-sm-2 mt-4",  placeholder: "コメントを入力", rows: "3" %>
+  <%= f.submit "送信", class: "btn btn-outline-success my-5 my-sm-2" %>
+<% end%>
