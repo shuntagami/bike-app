@@ -20,6 +20,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.order(id: "DESC").includes(:user)
+    @like = Like.find_by(post_id: @post.id)
   end
 
   private
