@@ -9,7 +9,7 @@
   <li class="nav-item">
     <a class="nav-link" id="likes-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="true">
       <div class="user-status">
-        <span><%= "いいね！#{post.likes.count}件" %></span>
+        <div id="likes_<%= post.id %>"><%= "いいね#{post.likes.count} 件" %></div>
       </div>
     </a>
   </li>
