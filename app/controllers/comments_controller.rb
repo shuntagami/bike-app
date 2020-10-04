@@ -1,11 +1,14 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new(comment_params)
-    if @comment.save
-      redirect_to post_path(@comment.post_id)
+    comment = Comment.new(comment_params)
+    if comment.save
+      redirect_to comment.post
+    else
+      redirect_to comment.post, flash: {
+        notice: comment,
+        error_messages: comment.errors.full_messages
+      }
     end
-    # comment = Comment.create(comment_params)
-    # redirect_to post_path(comment.post_id) 
   end
 
   private
