@@ -1,0 +1,27 @@
+.p-comment__list {
+  margin: 0 auto 30px auto;
+  padding: 20px;
+}
+
+.p-comment__item {
+  padding: 18px;
+  border-bottom: 2px dotted #dfdfdf;
+}
+
+.p-comment__nonitem {
+  padding: 40px;
+  color: #999;
+}
+
+.p-comment__bottomLine {
+  font-size: 15px;
+  text-align: right;
+
+  > span {
+    font-size: 14px;
+    margin: 0 5px;
+    > a {
+      color: #777;
+    }
+  }
+}
