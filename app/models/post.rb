@@ -21,5 +21,9 @@ class Post < ApplicationRecord
     unless image.attached?
       errors.add(:image, "can't be blank" )
     end
-  end           
+  end
+  
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
 end
