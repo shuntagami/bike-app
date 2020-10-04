@@ -23,10 +23,8 @@
     <div class="p-comment__list">
       <div class="p-comment__listTitle py-2 border-bottom" >コメント一覧</div>
       <% if @comments %>
-        <%# <%= render post.comments.includes(:user) %>  
-        <% @comments.each do |comment|%>
-          <%= comment.text%>
-        <% end%>
+        <%= render @comments %>   
+        
       <% else %>
         <div class="p-comment__nonitem">まだコメントがありません</div>
       <% end %>
