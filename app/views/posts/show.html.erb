@@ -1,7 +1,7 @@
 <div class="container pt-4 pb-3">   
   <div class="row">
     <div class="col-md-6">
-      <%= render @post %>
+      <%= render @post %>    <%# _post.html.erbの呼び出し%>
     </div>
     <div class="col-md-6">
       <%= render partial: 'show_comments_likes', locals: { post: @post, comment: @comment } %>

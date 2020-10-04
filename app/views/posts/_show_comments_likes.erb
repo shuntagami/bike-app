@@ -20,6 +20,17 @@
     <% if user_signed_in? %>
       <%= render 'comments/form' %>
     <% end %>
+    <div class="p-comment__list">
+      <div class="p-comment__listTitle py-2 border-bottom" >コメント一覧</div>
+      <% if @comments %>
+        <%# <%= render post.comments.includes(:user) %>  
+        <% @comments.each do |comment|%>
+          <%= comment.text%>
+        <% end%>
+      <% else %>
+        <div class="p-comment__nonitem">まだコメントがありません</div>
+      <% end %>
+    </div>
   </div>
   <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="likes-tab">
     0件のいいね    
