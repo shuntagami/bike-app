@@ -30,6 +30,18 @@ class PostsController < ApplicationController
     @like = Like.find_by(post_id: @post.id)
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to @post
+    else
+      render :edit
+    end
+  end
+
   private
   def post_params
     params.require(:post).permit(:image, :name, :description, :cc_id, :maker_id, :type_id).merge(user_id: current_user.id)
