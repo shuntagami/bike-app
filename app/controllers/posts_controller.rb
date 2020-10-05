@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :find_post, only: [:show, :edit, :update, :destroy]
   def new
     @post = Post.new
   end
@@ -13,7 +14,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     flash[:success] = '投稿が削除されました'
     redirect_to root_path
@@ -24,14 +24,12 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.order(id: "DESC").includes(:user)
     @like = Like.find_by(post_id: @post.id)
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
@@ -45,5 +43,9 @@ class PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:image, :name, :description, :cc_id, :maker_id, :type_id).merge(user_id: current_user.id)
+  end
+
+  def find_post
+    @post = Post.find(params[:id])
   end
 end
