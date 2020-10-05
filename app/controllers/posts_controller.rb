@@ -15,6 +15,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    flash[:success] = '投稿が削除されました'
     redirect_to root_path
   end
 
