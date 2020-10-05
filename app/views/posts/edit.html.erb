@@ -1,64 +1,7 @@
-<div class="container my-4">
-<%= render "shared/error_messages" %>
-  <div class="bike-contents">
-    <h2 class="title ">新規バイク投稿</h2>
-    <%= form_with model: @post, local: true do |f| %>
-
-      <%# 画像 %>
-      <div class="img-upload">
-        <div class="weight-bold-text">
-          バイク画像
-          <span class="indispensable">必須</span>
-        </div>
-        <div class="click-upload">
-          <p>
-            クリックしてファイルをアップロード
-          </p>
-          <%= f.file_field :image, id:"item-image" %>
-          <div id="image-list"></div>
-        </div>
-      </div>
-      <%# /画像 %>
-
-      <%# バイク名と説明 %>
-        <div class="weight-bold-text">
-          バイク名
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.text_field :name, class:"bikes-text mb-4", id:"bike-name", placeholder:"(例)CB400sf", maxlength:"40" %>
-        <div class="items-explain mt-2">
-          <div class="weight-bold-text">
-            説明
-          </div>
-          <%= f.text_area :description, class:"bikes-text mb-4", id:"bike-info", placeholder:"こだわりや年式、改造パーツなどご自由にご記入ください！" ,rows:"7" ,maxlength:"300" %>
-        </div>
-      <%# /バイク名と説明 %>
-
-      <%# 詳細 %>
-      <div class="bikes-detail mb-4">
-        <div class="weight-bold-text">詳細</div>
-        <div class="form">
-          <div class="weight-bold-text">
-            排気量
-            <span class="indispensable">必須</span>
-          </div>
-          <%= f.collection_select(:cc_id, Cc.all, :id, :name, {}, {class:"select-box", id:"bike-cc"}) %>
-          <div class="weight-bold-text">
-            メーカー
-            <span class="indispensable">必須</span>
-          </div>
-          <%= f.collection_select(:maker_id, Maker.all, :id, :name, {}, {class:"select-box", id:"bike-maker"}) %>
-          <div class="weight-bold-text">
-            種類
-            <span class="indispensable">必須</span>
-          </div>
-          <%= f.collection_select(:type_id, Type.all, :id, :name, {}, {class:"select-box", id:"bike-type"}) %>
-        </div>
-      </div>
-      <%# /詳細 %>
-
-      <%= f.submit "投稿する" ,class:"post-btn" %>
-
-    <% end %>
+<div class="container post_form">
+  <%= render "shared/error_messages" %>
+  <div class="d-flex align-items-center">
+    <%= link_to '戻る', :back, class:'btn btn-outline-dark ml-auto' %>
   </div>
+  <%= render partial: "form" %>
 </div>

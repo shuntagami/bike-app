@@ -119,4 +119,49 @@
   }
 }
 
+.add_image {
+  border: black 4px dashed;
+  width: 100%;
+  margin-top: 10px;
+  height: 100%;
+  line-height: 460px;
+  border-radius: 10px;
+  height: 500px;
+  line-height: 550px;
+  i {
+    font-size: 120px;
+  }
+  p {
+    font-size: 12px;
+  }
+}
+
+.custom-file-input {
+  height: 0;
+}
+
+#img_field {
+  color: #666;
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  &:hover {
+    background-color: #cccccc;
+    & i{
+      color: #fff;
+    }
+  }
+  img {
+    vertical-align: initial;
+    width: inherit;
+    height: inherit;
+  }
+}
+
 
