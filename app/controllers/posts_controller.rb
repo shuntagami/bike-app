@@ -7,9 +7,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to root_path
+      redirect_to root_path, flash: { success: "新規投稿が完了しました！" }
     else
-      render :new
+      puts_error_message
     end
   end
 
@@ -36,10 +36,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to @post, flash: { success: "投稿を更新しました！" }
     else
-      redirect_back fallback_location: @post, flash: {
-        post: @post,
-        error_messages: @post.errors.full_messages
-      }
+      puts_error_message
     end
   end
 
@@ -50,5 +47,12 @@ class PostsController < ApplicationController
 
   def find_post
     @post = Post.find(params[:id])
+  end
+
+  def puts_error_message
+    redirect_back fallback_location: @post, flash: {
+      post: @post,
+      error_messages: @post.errors.full_messages
+    }
   end
 end
