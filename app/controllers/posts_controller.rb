@@ -34,9 +34,12 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to @post
+      redirect_to @post, flash: { success: "投稿を更新しました！" }
     else
-      render :edit
+      redirect_back fallback_location: @post, flash: {
+        post: @post,
+        error_messages: @post.errors.full_messages
+      }
     end
   end
 

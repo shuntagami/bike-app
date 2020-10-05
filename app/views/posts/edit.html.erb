@@ -1,4 +1,5 @@
 <div class="container my-4">
+<%= render "shared/error_messages" %>
   <div class="bike-contents">
     <h2 class="title ">新規バイク投稿</h2>
     <%= form_with model: @post, local: true do |f| %>
