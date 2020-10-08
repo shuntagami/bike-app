@@ -1,8 +1,11 @@
 class CommentsController < ApplicationController
   def create
+    post = Post.find(params[:post_id])
     comment = Comment.new(comment_params)
     if comment.save
-      redirect_to comment.post
+      ActionCable.server.broadcast 'post_channel', 
+      comment: comment, user: comment.user, time: I18n.l(comment.created_at), post: post
+      # redirect_to comment.post
     else
       redirect_to comment.post, flash: {
         notice: comment,
