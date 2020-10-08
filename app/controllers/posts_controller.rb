@@ -20,12 +20,12 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.order(id: "DESC")
+    @posts = Post.includes(:user).order(id: "DESC")
   end
 
   def show
     @comment = Comment.new
-    @comments = @post.comments.order(id: "DESC").includes(:user)
+    @comments = @post.comments.includes(:user).order(id: "DESC")
     @like = Like.find_by(post_id: @post.id)
   end
 
