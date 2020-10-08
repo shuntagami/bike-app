@@ -10,6 +10,23 @@ consumer.subscriptions.create("PostChannel", {
   },
 
   received(data) {
-    // Called when there's incoming data on the websocket for this channel
+    console.log(data)
+    const html = 
+    `<div class="p-comment__item">
+      ${data.comment.text}
+      <div class="p-comment__bottomLine">
+        <span> <a href = "/users/${data.comment.user_id}">${data.user.name}</a> </span>
+        <span>${data.time}</span>
+        <span> <a data-confirm="コメントを削除してもよろしいですか？" rel="nofollow" data-method="delete" href="/tweets/${data.comment.post_id}/comments/${data.comment.id}">削除</a> </span>
+      </div>
+     </div>`;
+    const comments = document.getElementById('comments');
+    const newComment = document.getElementById('comment_text');
+    comments.insertAdjacentHTML('afterbegin', html);
+    newComment.value='';
   }
 });
+
+
+
+
