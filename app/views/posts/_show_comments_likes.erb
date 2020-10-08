@@ -18,8 +18,10 @@
     <% end %>
     <div class="p-comment__list">
       <div class="p-comment__listTitle py-2 border-bottom" >コメント一覧</div>
+      <div id="comments">
       <% if post.comments.any? %>
-        <%= render @comments %>   
+        <%= render @comments %> 
+      </div>  
       <% else %>
         <div class="p-comment__nonitem">まだコメントがありません</div>
       <% end %>
