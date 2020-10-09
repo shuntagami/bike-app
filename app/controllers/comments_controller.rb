@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
     if comment.save
       ActionCable.server.broadcast 'post_channel', 
       comment: comment, user: comment.user, time: I18n.l(comment.created_at), post: post
-      # redirect_to comment.post
     else
       redirect_to comment.post, flash: {
         notice: comment,
