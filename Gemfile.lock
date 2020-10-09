@@ -321,7 +321,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 6.0.0)
   rails-i18n
-  redis
+  redis (~> 4.0)
   rename
   rubocop
   sass-rails (~> 5)
