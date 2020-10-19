@@ -1,5 +1,8 @@
 development:
   adapter: async
+  # adapter: redis
+  # port: 6379
+  # url: redis://localhost
 
 test:
   adapter: test

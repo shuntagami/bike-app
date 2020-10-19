@@ -40,9 +40,11 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   config.action_cable.disable_request_forgery_protection = true
+  # config.session_store :redis_store, servers: 'redis://localhost:6379/0', expire_in: 1.day
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
+  
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
