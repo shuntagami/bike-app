@@ -3,5 +3,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts
     @likes = Like.where(user_id: @user.id)
+    @like_posts = @user.like_posts
   end
 end

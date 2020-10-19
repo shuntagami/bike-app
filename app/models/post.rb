@@ -1,7 +1,9 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
+  # いいね機能用中間テーブル
   has_many :likes, dependent: :destroy
+  has_many :like_users, through: :likes, source: :user
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :cc
@@ -19,6 +21,8 @@ class Post < ApplicationRecord
 
   #ジャンルの選択が「--」の時は保存できないようにする
   validates :cc_id, :maker_id, :type_id, numericality: { other_than: 0 } 
+
+  
 
   def image_presence
     unless image.attached?

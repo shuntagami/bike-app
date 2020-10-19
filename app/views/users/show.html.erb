@@ -75,7 +75,13 @@
     </div>
     
     <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="likes-tab">
-      
+      <% if @user.like_posts.any?%>
+        <%= render 'show_posts', objects: @like_posts %>
+        <% else%>
+          <div class="no-contents d-flex justify-content-center align-items-center">
+          いいねした投稿がありません
+          </div>
+      <% end%>
     </div>
   </div>
 </div>
