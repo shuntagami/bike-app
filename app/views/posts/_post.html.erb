@@ -1,8 +1,8 @@
 <div class="card mt-4" >
   <div class="card-header p-2" >
     <div class="post-user float-left">
-      <%= link_to image_tag('no-avatar.png', class: 'user_avatar', alt: 'avatar image'), "#" %>
-      <%= link_to @post.user.name, "#", class: "text-black-50 text-decoration-none" %>
+      <%= link_to image_tag('no-avatar.png', class: 'user_avatar', alt: 'avatar image'), user_path(@post.user.id) %>
+      <%= link_to @post.user.name, user_path(@post.user.id), class: "text-black-50 text-decoration-none" %>
     </div>
     <div class="post-time float-right">
       <small><%= time_ago_in_words(l @post.created_at) + "前" %></small>
