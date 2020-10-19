@@ -12,7 +12,7 @@
           <% if current_user.id == @user.id %>
             <%= link_to 'プロフィール編集', edit_user_path(current_user), class:'btn btn-outline-dark' %>
           <% else %>
-            <%= render 'follow_area', user: @user %>
+            プロフィール
           <% end %>
         <% end %>
       </div>

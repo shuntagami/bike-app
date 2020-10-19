@@ -15,7 +15,7 @@ consumer.subscriptions.create("PostChannel", {
     `<div class="p-comment__item">
       ${data.comment.text}
       <div class="p-comment__bottomLine">
-        <a href="#"><img src="/assets/no-avatar.png" alt="avatar image" class="user_avatar"></a>
+        <a href = "/users/${data.comment.user_id}"><img src="/assets/no-avatar.png" alt="avatar image" class="user_avatar"></a>
         <span> <a href = "/users/${data.comment.user_id}">${data.user.name}</a> </span>
         <span>${data.time}</span>
         <span> <a data-confirm="コメントを削除してもよろしいですか？" rel="nofollow" data-method="delete" href="/posts/${data.comment.post_id}/comments/${data.comment.id}">削除</a> </span>
