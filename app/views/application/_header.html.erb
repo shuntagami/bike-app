@@ -11,7 +11,7 @@
           <li class="nav-item dropdown">
             <%= link_to " #{current_user.name}さん", '#', class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <%= link_to  'マイページ', root_path, class: 'dropdown-item' %>
+              <%= link_to  'マイページ', user_path(current_user.id), class: 'dropdown-item' %>
               <%= link_to  'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
             </div>
           </li>
