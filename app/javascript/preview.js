@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     var file = e.target.files[0];
     var reader = new FileReader();  
     reader.readAsDataURL(file)
+    
+    // 読み込み成功後即時に実行されるイベント
     reader.onload = ((file) => {
       return (e) => {
         // すでに存在している画像を消去

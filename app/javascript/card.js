@@ -9,16 +9,3 @@ window.addEventListener('load', function(){
     })
   })
 })
-
-// jQueryで書いたとき
-// $(function() {
-//   $('.cards').each(function(index, element) {
-//     $(element).hover(
-//       function(){
-//         $(element).css('backgroundColor', '#F2F2F2');            
-//       },
-//       function(){
-//         $(element).css('backgroundColor', '');
-//       });
-//   })
-// });

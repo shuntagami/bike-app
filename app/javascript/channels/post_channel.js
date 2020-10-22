@@ -10,7 +10,6 @@ consumer.subscriptions.create("PostChannel", {
   },
 
   received(data) {
-    console.log(data)
     const html = 
     `<div class="p-comment__item">
       ${data.comment.text}
