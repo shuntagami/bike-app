@@ -6,3 +6,28 @@
   display: inline;
   cursor: pointer;
 }
+
+.user-status {
+  text-align: center;
+  line-height: 18px;
+  white-space: nowrap;
+  margin-right: auto;
+  margin-left: auto;
+
+  .status-name {
+    white-space: nowrap;
+    font-size: 0.7rem;
+    font-weight: 400;
+    display: block;
+    @include md {
+      display: inline;
+      font-size: 0.95rem
+    }
+  }
+
+  .status-value {
+    display: inline;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+}

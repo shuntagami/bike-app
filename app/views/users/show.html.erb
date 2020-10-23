@@ -25,29 +25,36 @@
     <li class="nav-item">
       <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">
         <div class="user-status">
-          <span><%= "投稿#{@user.posts.count}" %></span>
-          
+          <span class="status-name">投稿</span>
+          <div class="status-value"><%= "#{@user.posts.count}件" %></div>
         </div>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="followings-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="true">
         <div class="user-status">
-          <span><%= "フォロー#{0}" %></span>
+          <span class="status-name">フォロー</span>
+          <div class="status-value" id="followings_<%= @user.id %>">
+            <%= "#{@user.following.count}人" %>
+          </div>
         </div>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="followers-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="true">
         <div class="user-status">
-          <span><%= "フォロワー#{0}" %></span>
+          <span class="status-name">フォロワー</span>
+          <div class="status-value" id="followers_<%= @user.id %>">
+            <%= "#{@user.followers.count}人" %>
+          </div>
         </div>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="likes-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">
         <div class="user-status">
-          <span><%= "いいね#{@likes.count}" %></span>
+          <span class="status-name">いいね</span>
+          <div class="status-value"><%= "#{@likes.count}件" %></div>
         </div>
       </a>
     </li>
