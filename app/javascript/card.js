@@ -1,11 +1,13 @@
-window.addEventListener('load', function(){
-  const posts = document.querySelectorAll(".cards");
-  posts.forEach(function (post) {
-    post.addEventListener('mouseover', function(){
-      post.style.backgroundColor = '#F2F2F2'; 
+if (!document.URL.match( /posts/ )) {  
+  document.addEventListener('DOMContentLoaded', () => {
+    const posts = document.querySelectorAll(".card");
+    posts.forEach(function (post) {
+      post.addEventListener('mouseover', () => {
+        post.style.backgroundColor = '#F2F2F2'; 
+      });
+      post.addEventListener('mouseout', () => {
+        post.style.backgroundColor = '';
+      });
     });
-    post.addEventListener('mouseout', function(){
-      post.style.backgroundColor = '';
-    })
-  })
-})
+  });
+}
