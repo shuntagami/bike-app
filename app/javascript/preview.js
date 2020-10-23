@@ -1,10 +1,10 @@
 if (document.URL.match( /posts\/new/ ) || document.URL.match( /posts\/(\d+)\/edit/ )) {
   document.addEventListener('DOMContentLoaded', () => {
-    var fileField = document.getElementById("post_image");
+    const fileField = document.getElementById("post_image");
     fileField.addEventListener('change', (e) => {
-      var preview = document.getElementById('img_field');
-      var file = e.target.files[0];
-      var reader = new FileReader();  
+      const preview = document.getElementById('img_field');
+      const file = e.target.files[0];
+      const reader = new FileReader();  
       reader.readAsDataURL(file)
 
       // 読み込み成功後即時に実行されるイベント
@@ -14,7 +14,7 @@ if (document.URL.match( /posts\/new/ ) || document.URL.match( /posts\/(\d+)\/edi
           preview.innerHTML = null;
 
           // imgタグを作成し、属性を追加
-          var img = document.createElement('img');
+          const img = document.createElement('img');
           img.className = 'preview';
           img.src = e.target.result;
 

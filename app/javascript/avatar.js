@@ -1,5 +1,5 @@
 if (document.URL.match( /users\/(\d+)\/edit/ )) {
-  document.addEventListener('DOMContentLoaded', function(){
+  document.addEventListener('DOMContentLoaded', () => {
     const ImageList = document.getElementById('avatar_field');
 
     const createImageHTML = (blob) => {
@@ -17,7 +17,7 @@ if (document.URL.match( /users\/(\d+)\/edit/ )) {
       ImageList.appendChild(imageElement);
     };
 
-    document.getElementById('user_avatar').addEventListener('change', function(e){
+    document.getElementById('user_avatar').addEventListener('change', (e) => {
       // すでに存在している画像を削除
       ImageList.innerHTML = null;
 
