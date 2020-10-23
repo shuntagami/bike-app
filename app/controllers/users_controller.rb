@@ -4,6 +4,8 @@ class UsersController < ApplicationController
     @posts = @user.posts
     @likes = Like.where(user_id: @user.id)
     @like_posts = @user.like_posts
+    @followings = @user.following
+    @followers = @user.followers
   end
 
   def edit; end

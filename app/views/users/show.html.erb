@@ -34,7 +34,7 @@
       <a class="nav-link" id="followings-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="true">
         <div class="user-status">
           <span class="status-name">フォロー</span>
-          <div class="status-value" id="followings_<%= @user.id %>">
+          <div class="status-value" id="following_<%= @user.id %>">
             <%= "#{@user.following.count}人" %>
           </div>
         </div>
@@ -73,14 +73,22 @@
       <% end %>
     </div>
     <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="followings-tab">
-      <div class="no-contents d-flex justify-content-center align-items-center">
-        誰もフォローしていません
-      </div>
+      <% if @user.following.any? %>
+        <%= render 'show_follows', objects: @followings %>
+      <% else %>
+        <div class="no-contents d-flex justify-content-center align-items-center">
+          誰もフォローしていません
+        </div>
+      <% end %>
     </div>
     <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="followers-tab">
-      <div class="no-contents d-flex justify-content-center align-items-center">  
-        フォローされていません
-      </div>
+      <% if @user.followers.any? %>
+        <%= render 'show_follows', objects: @followers %>
+      <% else %>
+        <div class="no-contents d-flex justify-content-center align-items-center">
+          フォローされていません
+        </div>
+      <% end %>
     </div>
     
     <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="likes-tab">
