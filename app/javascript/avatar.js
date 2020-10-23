@@ -1,31 +1,30 @@
 if (document.URL.match( /users\/(\d+)\/edit/ )) {
-  document.addEventListener('DOMContentLoaded', () => {
-    var fileField = document.getElementById("user_avatar");
-    fileField.addEventListener('change', (e) => {
-      var preview = document.getElementById('avatar_field');
-      var file = e.target.files[0];
-      var reader = new FileReader();  
-      reader.readAsDataURL(file)
+  document.addEventListener('DOMContentLoaded', function(){
+    const ImageList = document.getElementById('avatar_field');
 
-      // 読み込み成功後即時に実行されるイベント
-      reader.onload = ((file) => {
-        return (e) => {
-          // すでに存在している画像を消去
-          preview.innerHTML = null;
+    const createImageHTML = (blob) => {
+       // 画像を表示するためのdiv要素を生成
+      const imageElement = document.createElement('div');
 
-          // imgタグを作成し、属性を追加
-          var img = document.createElement('img');
-          img.className = 'preview';
-          img.src = e.target.result;
-          console.log(e.target.result);
+      // 表示する画像を生成
+      const blobImage = document.createElement('img');
+      blobImage.setAttribute('src', blob);
+      blobImage.width = 250;
+      blobImage.height = 250;
 
-          // 新しいimg要素を追加
-          preview.appendChild(img);
-        };
-      })(file);
-      reader.readAsDataURL(file);
+      // 生成したHTMLの要素をブラウザに表示させる
+      imageElement.appendChild(blobImage);
+      ImageList.appendChild(imageElement);
+    };
+
+    document.getElementById('user_avatar').addEventListener('change', function(e){
+      // すでに存在している画像を削除
+      ImageList.innerHTML = null;
+
+      const file = e.target.files[0];
+      const blob = window.URL.createObjectURL(file);
+
+      createImageHTML(blob);
     });
   });
 }
-
-
