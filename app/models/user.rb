@@ -35,4 +35,9 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+
+  # フォローされているか判定
+  def followed_by?(user)
+    passive_relationships.find_by(following_id: user.id).present?
+  end
 end
