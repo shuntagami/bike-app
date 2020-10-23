@@ -1,9 +1,12 @@
 class User < ApplicationRecord
   has_many :posts,    dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :likes
+  has_one_attached :avatar
+  # いいね機能用中間テーブル
+  has_many :likes, dependent: :destroy
+  has_many :like_posts, through: :likes, source: :post
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 10 }
 end
