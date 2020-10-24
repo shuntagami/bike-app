@@ -8,6 +8,9 @@
           <%= link_to image_tag("no-avatar.png", size: "150x150", class: "rounded-circle", alt: "avatar image"), user %>
         <% end %>
         <%= link_to user.name, user, class: 'user-name' %>
+        <% if user_signed_in?  %>
+          <%= render 'follow_area', user: user %>
+        <% end %>
       </div>
     </div>
   <% end %>
