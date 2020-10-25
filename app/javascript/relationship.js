@@ -1,10 +1,19 @@
 function relationship() {
-  const button = document.getElementById(`follow_button_${gon.user_id}`);
-  button.addEventListener("click", () => {
-    const XHR = new XMLHttpRequest();
-    XHR.open("POST", `/users/${gon.user_id}/relationships`, true);
-    XHR.responseType = "json";
-    XHR.send();
+  const buttons = document.querySelectorAll(".follow_btn");
+  buttons.forEach(function (button) {
+    button.addEventListener("click", () => {
+      const userId = button.getAttribute("data-id");
+      const XHR = new XMLHttpRequest();
+      XHR.open("POST", `/users/${userId}/relationships`, true);
+      XHR.responseType = "json";
+      XHR.send();
+      XHR.onload = () => {
+       if (XHR.status != 200) {
+         alert(`Error ${XHR.status}: ${XHR.statusText}`);
+         return null;
+       }
+      };
+    });
   });
 }
 document.addEventListener("DOMContentLoaded", relationship);
