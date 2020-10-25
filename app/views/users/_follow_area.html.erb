@@ -1,7 +1,7 @@
-<div class="follow_btn">
+<div class="follow_btn" data-id = <%= user.id %> >
   <% if user.followed_by?(current_user) %>
-    <%= link_to "Following", user_relationships_path(user.id), method: :delete, remote: true, class:'btn btn-unfollow', id: "follow_button_#{user.id}" %>
+    <%= link_to "Following", user_relationships_path(user.id), method: :delete, remote: true, class:'btn btn-unfollow' %>
   <% else %>
-    <%= link_to "Follow", user_relationships_path(user.id), method: :post, remote: true, class:'btn btn-follow ', id: "follow_button_#{user.id}" %>
+    <%= link_to "Follow", user_relationships_path(user.id), method: :post, remote: true, class:'btn btn-follow ' %>
   <% end %>
 </div>
