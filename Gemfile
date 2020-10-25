@@ -67,7 +67,6 @@ gem 'jquery-rails'
 gem 'rails-i18n'
 gem 'active_hash'
 gem 'jquery-rails'
-gem 'gon'
 gem 'rename'
 gem 'image_processing', '~> 1.2'
 gem "aws-sdk-s3", require: false

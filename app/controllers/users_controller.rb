@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user
   def show
-    gon.user_id = @user.id
     @posts = @user.posts
     @likes = Like.where(user_id: @user.id)
     @like_posts = @user.like_posts
