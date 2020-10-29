@@ -1,7 +1,10 @@
 <%= button_to "", user_relationships_path(user.id), class: "hidden", remote: true %>
 <div id = "button-field">
   <% if user.followed_by?(current_user) %>
-    <button class="unfollow_button" onClick="$('.hidden').click()"><span>Unfollow</span>Following</button>
+    <button class = "unfollow_button" onClick="$('.hidden').click()">
+      <span class="nomal">Following</span>
+      <span class="hover">Unfollow</span>
+    </button>
   <% else %>
     <button class="follow_button" onClick="$('.hidden').click()">Follow</button>
   <% end %>
