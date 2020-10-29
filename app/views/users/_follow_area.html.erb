@@ -1,7 +1,8 @@
-<div class="follow_btn_<%= user.id %>">
+<%= button_to "", user_relationships_path(user.id), class: "hidden", remote: true %>
+<div id = "button-field">
   <% if user.followed_by?(current_user) %>
-    <%= link_to "Following", user_relationships_path(user.id), method: :delete, remote: true, class:'btn btn-unfollow' %>
+    <button class="unfollow_button" onClick="$('.hidden').click()"><span>Unfollow</span>Following</button>
   <% else %>
-    <%= link_to "Follow", user_relationships_path(user.id), method: :post, remote: true, class:'btn btn-follow ' %>
+    <button class="follow_button" onClick="$('.hidden').click()">Follow</button>
   <% end %>
 </div>

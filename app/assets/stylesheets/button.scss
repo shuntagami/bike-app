@@ -1,0 +1,51 @@
+$cWhite: white;
+$cBlue: #1DA1F2;
+$cRed: #990000;
+
+.follow_button {
+  position: relative;
+  display: inline-block;
+  background-color: $cWhite;
+  border: 1px solid $cBlue;
+  padding: 10px 40px;
+  margin: 10px auto;
+  cursor: pointer;
+  color: $cBlue;
+
+  &:hover {
+    background-color: $cBlue;
+    color: $cWhite;
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+  }
+}
+
+.unfollow_button {
+  position: relative;
+  display: inline-block;
+  background-color: $cBlue;
+  border: 1px solid $cBlue;
+  padding: 10px 40px;
+  margin: 10px auto;
+  cursor: pointer;
+  color: $cWhite;
+    
+  & span {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-color: $cRed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  &:hover {
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+    & span{
+      z-index: 1;
+    }
+  }
+}
+
+
+
