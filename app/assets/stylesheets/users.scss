@@ -6,3 +6,42 @@
   display: inline;
   cursor: pointer;
 }
+
+.user-status {
+  text-align: center;
+  line-height: 18px;
+  white-space: nowrap;
+  margin-right: auto;
+  margin-left: auto;
+
+  .status-name {
+    white-space: nowrap;
+    font-size: 0.7rem;
+    font-weight: 400;
+    display: block;
+    @include md {
+      display: inline;
+      font-size: 0.95rem
+    }
+  }
+
+  .status-value {
+    display: inline;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+}
+
+.user-card {
+  // background-color: rgba(0,0,0,0);
+  padding: 20px;
+  margin: 14px 0;
+  min-height: 280px;
+  .user-name {
+    margin: 15px auto 10px auto;
+    text-decoration: none;
+    color: #666;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}

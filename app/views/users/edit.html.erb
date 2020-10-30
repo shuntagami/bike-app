@@ -5,7 +5,7 @@
 
   <%= form_for @user do |f| %>
     <div class="text-center mb-3">
-      <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png', class: 'custom-file-input' %>
+      <%= f.file_field :avatar, accept: 'image/jpg,image/jpeg,image/png,image/gif', class: 'custom-file-input' %>
       <div id="avatar_field" onClick="$('#user_avatar').click()">
         <% if @user.avatar.attached? %>
           <%= image_tag @user.avatar.variant(resize_to_fill: [250, 250])%>

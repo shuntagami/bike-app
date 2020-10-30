@@ -14,7 +14,7 @@ gem 'sass-rails', '~> 5'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-# gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -36,6 +36,7 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'rspec-rails', '~> 4.0.0'
 end
 
 group :development do
@@ -60,9 +61,13 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pry-rails'
 gem 'devise'
+gem 'faker'
+gem 'factory_bot_rails'
+gem 'jquery-rails'
 gem 'rails-i18n'
 gem 'active_hash'
 gem 'jquery-rails'
+gem 'gon'
 gem 'rename'
 gem 'image_processing', '~> 1.2'
 gem "aws-sdk-s3", require: false

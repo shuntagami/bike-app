@@ -1,0 +1,59 @@
+$cWhite: white;
+$cBlue: #1DA1F2;
+$cRed: #b22222;
+
+.follow_button {
+  color: $cBlue;
+  background-color: $cWhite;
+  border: 1px solid $cBlue;
+  border-radius: 50rem;
+  padding: 10px 40px;
+  margin: 10px auto;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:focus {
+    outline:0;
+  }
+  
+  &:hover {
+    color: $cWhite;
+    background-color: $cBlue;
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+  }
+}
+
+.unfollow_button {
+  color: $cWhite;
+  background-color: $cBlue;
+  border: 1px solid $cBlue;
+  border-radius: 50rem;
+  padding: 10px 40px;
+  margin: 10px auto;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:focus {
+    outline:0;
+  }
+  
+  &:hover {
+    color: $cWhite;
+    background-color: $cRed;
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+  }
+  .hover {
+    display: none;
+  }
+}
+
+.unfollow_button:hover .nomal{
+  display: none;
+}
+
+.unfollow_button:hover .hover{
+  display: inline;
+}
+
+
+
