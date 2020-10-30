@@ -36,7 +36,7 @@
       <a class="nav-link" id="followings-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="true">
         <div class="user-status">
           <span class="status-name">フォロー</span>
-          <div class="status-value" id="following_<%= @user.id %>">
+          <div class="status-value" id="follow_area_<%= @user.id %>">
             <%= "#{@user.following.count}人" %>
           </div>
         </div>
@@ -46,7 +46,7 @@
       <a class="nav-link" id="followers-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="true">
         <div class="user-status">
           <span class="status-name">フォロワー</span>
-          <div class="status-value" id="followers_<%= @user.id %>">
+          <div class="status-value" id="followers_area_<%= @user.id %>">
             <%= "#{@user.followers.count}人" %>
           </div>
         </div>

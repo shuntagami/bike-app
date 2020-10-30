@@ -1,22 +1,30 @@
 function follow() {
-  // const followingCountArea = document.getElementById(`following_${gon.user_id}`)
-  // const followersCountArea = document.getElementById(`followers_${gon.user_id}`)
   const buttons = document.querySelectorAll("a[data-remote]");
   buttons.forEach((button) => {
     // ajax通信に成功したときの処理
     button.addEventListener('ajax:success', (e) => {
+      const receivedData = e.detail[0];
+      const followingCountArea = document.getElementById(`follow_area_${gon.user_id}`)
+      const followersCountArea = document.getElementById(`followers_area_${gon.user_id}`)
       // follow => following
-      if (e.detail[0].follower_judgment) {
+      if (receivedData.current_user_in_followers) {
         insertHTML = prepareHtml("plus");
       }
       // following => unfollow
       else {
         insertHTML = prepareHtml("minus");
       }
-      button.innerHTML = "";
+      button.innerHTML = null;
       button.insertAdjacentHTML('afterbegin', insertHTML);
-      // followersCountArea.innerHTML = "";
-      // followersCountArea.insertAdjacentHTML('afterbegin', `${e.detail[0].followers_count}人`);
+
+      if (document.URL.includes(`users/${gon.current_user_id}`)) {
+        followingCountArea.innerHTML = null;
+        followingCountArea.insertAdjacentHTML('afterbegin', `${receivedData.following_count}人`);
+      }
+      else {
+        followersCountArea.innerHTML = null;
+        followersCountArea.insertAdjacentHTML('afterbegin', `${receivedData.followers_count}人`);
+      }
     });
 
     // ajax通信に失敗したときの処理
@@ -35,29 +43,12 @@ prepareHtml = (plus_or_minus) => {
                               <span class="hover">Unfollow</span>
                             </button>`;
 
-  const FOLLOW_BUTTON = `<button class="follow_button">Follow</button>`
+  const FOLLOW_BUTTON = `<button class="follow_button">Follow</button>`;
 
   if (plus_or_minus === "plus") {
     return FOLLOWING_BUTTON;
-  } else if (plus_or_minus === "minus") {
+  } 
+  else if (plus_or_minus === "minus") {
     return FOLLOW_BUTTON;
   }
 };
-
-
-    // <div class="status-value" id="following_1">
-    //         7人
-    //       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-

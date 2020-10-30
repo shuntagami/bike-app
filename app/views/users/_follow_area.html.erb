@@ -1,12 +1,10 @@
-<% if user.followed_by?(current_user) %>
-  <%= link_to user_relationships_path(user.id), method: :delete, data: { confirm: "#{user.name}さんのフォローを解除しますか？" }, remote: true do%>
+<%= link_to user_relationships_path(user.id), method: :post, remote: true do%>
+  <% if user.followed_by?(current_user) %>
     <button class = "unfollow_button">
       <span class="nomal">Following</span>
       <span class="hover">Unfollow</span>
     </button>
-  <% end%>
-<% else %>
-  <%= link_to user_relationships_path(user.id), method: :post, remote: true do%>
+  <% else %>
     <button class="follow_button">Follow</button>
   <% end%>
 <% end %>
