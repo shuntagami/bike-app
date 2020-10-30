@@ -11,6 +11,10 @@ $cRed: #b22222;
   margin: 10px auto;
   cursor: pointer;
   transition: all 0.3s;
+
+  &:focus {
+    outline:0;
+  }
   
   &:hover {
     color: $cWhite;
@@ -28,6 +32,10 @@ $cRed: #b22222;
   margin: 10px auto;
   cursor: pointer;
   transition: all 0.3s;
+
+  &:focus {
+    outline:0;
+  }
   
   &:hover {
     color: $cWhite;
