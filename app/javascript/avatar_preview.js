@@ -9,6 +9,7 @@ if (document.URL.match( /users\/(\d+)\/edit/ )) {
       // 表示する画像を生成
       const blobImage = document.createElement('img');
       blobImage.setAttribute('src', blob);
+      blobImage.classList.add("rounded-circle");
       blobImage.width = 250;
       blobImage.height = 250;
 
