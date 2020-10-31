@@ -28,6 +28,12 @@
     </div>
   </div>
   <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="likes-tab">
-    0件のいいね    
+    <% if post.like_users.any? %>
+      <div id="show-likes">
+        <%= render 'show_like_users', objects: post.like_users %>
+      </div>
+    <% else %>
+      <div class="no-contents d-flex justify-content-center align-items-center">まだいいね！がありません</div>
+    <% end %>
   </div>
 </div>
