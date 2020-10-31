@@ -1,11 +1,11 @@
-<div id="likes_buttons_<%= @post.id %>">
+<%= link_to like_posts_path(@post.id), class: "like_button", method: :post, remote: true do%>
   <% if @post.liked_by?(current_user) %>
-    <%= link_to(post_like_path(@post.id, @like.id), method: :delete, remote: true) do%>
-      <span class="fa fa-thumbs-up btn-success"><%= @post.likes.count%></span>
-    <% end %>
-    <% else%>
-      <%= link_to(post_likes_path(@post.id), method: :post, remote: true) do%>
-      <span class="fa fa-thumbs-up btn-secondary"><%= @post.likes.count%></span>
-    <% end %>
-  <% end%>
-</div>
+    <i class="fa-heart fas fa-lg"></i>
+  <% else %>
+    <i class="fa-heart far fa-lg"></i>
+  <% end %>
+  <span><%= @post.likes.count%></span>
+<% end%>
+
+
+

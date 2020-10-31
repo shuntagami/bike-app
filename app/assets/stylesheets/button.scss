@@ -56,4 +56,30 @@ $cRed: #b22222;
 }
 
 
+.like_button {
+  color: #777777;
+  text-decoration: none;
+  &:hover {
+    color: #777777;
+    text-decoration: none;
+  }
+  &:focus {
+    outline:0;
+  }
+}
+
+.far {
+  
+  color: #777777;
+  &:hover {
+    color:red;
+  }
+}
+
+.fas {
+  color: red;
+}
+
+
+
 

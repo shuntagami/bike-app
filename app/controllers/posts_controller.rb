@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:show, :edit, :update, :destroy]
+  before_action :find_post, only: [:show, :edit, :update, :destroy, :like]
   def new
     @post = Post.new
   end
@@ -38,6 +38,19 @@ class PostsController < ApplicationController
     else
       puts_error_message
     end
+  end
+
+  def like
+    if @post.liked_by?(current_user)
+      @like = current_user.likes.find_by(post_id: @post.id)
+      @like.destroy
+      json = { post_id: @post.id, count: @post.likes.count }
+    else
+      @like = current_user.likes.new(post_id: @post.id)
+      @like.save
+      json = { post_id: @post.id, count: @post.likes.count, like: @like }
+    end
+    render json: json
   end
 
   private
