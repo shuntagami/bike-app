@@ -9,6 +9,7 @@
       </div>
       <div class="modal-body">    
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= f.hidden_field :url, value: request.fullpath %>
           <div class="form-group">
             <%= f.label :email, 'Email' %>
             <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control', required: 'required' %>
