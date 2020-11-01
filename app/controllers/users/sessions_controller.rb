@@ -15,6 +15,7 @@ class Users::SessionsController < Devise::SessionsController
     sign_in(resource_name, resource)
     yield resource if block_given?
     respond_with resource, location: after_sign_in_path_for(resource)
+    flash[:success] = "#{resource.name}さんおかえりなさい"
   end
 
   # ログイン失敗の時は直前のURLにリダイレクトする
