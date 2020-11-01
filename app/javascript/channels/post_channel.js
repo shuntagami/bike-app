@@ -20,6 +20,8 @@ consumer.subscriptions.create("PostChannel", {
         <span> <a data-confirm="コメントを削除してもよろしいですか？" rel="nofollow" data-method="delete" href="/posts/${data.comment.post_id}/comments/${data.comment.id}">削除</a> </span>
       </div>
      </div>`;
+    const noCommentItem = document.getElementById("p-comment__nonitem")
+    noCommentItem.innerHTML = null;
     const comments = document.getElementById('comments');
     const newComment = document.getElementById('comment_text');
     comments.insertAdjacentHTML('afterbegin', html);

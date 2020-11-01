@@ -32,3 +32,21 @@ footer {
 .hidden {
   display: none;
 }
+
+.no-contents {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 1.15rem;
+  width: 100%;
+  margin-top: 80px;
+  @include sm {
+    height: 320px;
+  }
+  .no-contents-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+  .no-contents-explanation {
+    max-width: 440px;
+    padding: 0 30px;
+  }
+}
