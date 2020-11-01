@@ -1,7 +1,7 @@
 <% provide :title, 'ログイン' %>
 <div class="container user_form">
   <h2 class="form_title">ログイン</h2>
-  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+  
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
     <div class="form-group">
@@ -23,6 +23,14 @@
 
     <div class="mb-3">
       <%= f.submit 'ログイン', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+  <%# <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %> 
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |g| %>
+    <%= g.hidden_field :email, value: 'guest@example.com' %>
+    <%= g.hidden_field :password, value: '12345678' %>
+    <div class="mb-3">
+      <%= g.submit 'かんたんログイン', class: 'btn btn-warning' %>
     </div>
   <% end %>
 </div>
