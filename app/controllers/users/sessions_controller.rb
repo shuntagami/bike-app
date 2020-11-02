@@ -11,7 +11,6 @@ class Users::SessionsController < Devise::SessionsController
   def create
     auth_options = { scope: resource_name, recall: "#{controller_path}#failed" }
     self.resource = warden.authenticate!(auth_options)
-    set_flash_message!(:notice, :signed_in)
     sign_in(resource_name, resource)
     yield resource if block_given?
     respond_with resource, location: after_sign_in_path_for(resource)
@@ -21,6 +20,13 @@ class Users::SessionsController < Devise::SessionsController
   # ログイン失敗の時は直前のURLにリダイレクトする
   def failed
     redirect_to params[:user][:url]
+  end
+
+  def destroy
+    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+    yield if block_given?
+    respond_with resource, location: after_sign_out_path_for(resource)
+    flash[:success] = "ログアウトしました"
   end
 
   # before_action :configure_sign_in_params, only: [:create]
