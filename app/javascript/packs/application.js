@@ -21,12 +21,3 @@ require("../flash_message.js")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-
-// Flashメッセージを時間経過で無くす
-// $(function(){
-//   setTimeout("$('.time-limit').fadeOut('slow')", 100) 
-// })
-
-// $(function(){
-//   setTimeout("$('.alert').fadeOut('slow')", 1000);
-// });
