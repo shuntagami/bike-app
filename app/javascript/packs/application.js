@@ -11,8 +11,8 @@ require("channels")
 require("../post_preview")
 require("../avatar_preview")
 require("../relationship")
-require("../like.js")
-require("../flash_message.js")
+require("../like")
+require("../flash_message")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
