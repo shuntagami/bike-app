@@ -12,6 +12,7 @@ require("../post_preview")
 require("../avatar_preview")
 require("../relationship")
 require("../like.js")
+require("../flash_message.js")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -20,3 +21,12 @@ require("../like.js")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+// Flashメッセージを時間経過で無くす
+// $(function(){
+//   setTimeout("$('.time-limit').fadeOut('slow')", 100) 
+// })
+
+// $(function(){
+//   setTimeout("$('.alert').fadeOut('slow')", 1000);
+// });
