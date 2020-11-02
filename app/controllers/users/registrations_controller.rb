@@ -10,7 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     respond_with resource, location: after_sign_in_path_for(resource)
     flash[:success] = "ようこそ！#{@user.name}さん"
     else
-      redirect_to root_path
+      redirect_to root_path, flash: {
+        user: @user,
+        error_messages: @user.errors.full_messages
+      }
     end
   end
   # GET /resource/sign_up
