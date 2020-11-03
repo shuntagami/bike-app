@@ -9,6 +9,7 @@
       </div>
       <div class="modal-body"> %>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
           <%= f.hidden_field :url, value: request.fullpath %>
           <div class="form-group">
             <%= f.label :name, 'name（maxium 10）' %>

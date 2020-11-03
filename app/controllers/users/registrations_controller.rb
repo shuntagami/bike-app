@@ -5,22 +5,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
   def new
     @user = User.new
-    @bike = @user.build_bike
+    @user.build_bike
   end
 
-  # def create
-  #   @user = User.new(sign_up_params)
-  #   @user.build_bike
-  #   if @user.save
-  #   sign_in @user
-  #   respond_with resource, location: after_sign_in_path_for(resource)
-  #   flash[:success] = "ようこそ！#{@user.name}さん"
-  #   else
-  #     redirect_to params[:user][:url], flash: {
-  #       user: @user,
-  #       error_messages: @user.errors.full_messages
-  #     }
-  #   end
+  def create
+    super
+    user = User.new(configure_sign_up_params)
+    user.save
+  end
   # end
   # GET /resource/sign_up
   # def new
@@ -56,7 +48,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, 
+      keys: [:name, bike_attributes: [:bike_name, :maker_id, :cc_id, :type_id]])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
