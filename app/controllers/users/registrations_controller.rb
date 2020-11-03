@@ -4,17 +4,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   def new
-    # @user = User.new
-    # @user.build_bike
-    super
+    @user = User.new
+    @user.build_bike
   end
 
   def create
     super
-    @user = User.new(configure_sign_up_params)
-    @user.build_bike
-    binding.pry
-    @user.save
+    user = User.new(configure_sign_up_params)
+    user.save
   end
   # end
   # GET /resource/sign_up
