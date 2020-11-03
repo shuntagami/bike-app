@@ -20,6 +20,7 @@ class Users::SessionsController < Devise::SessionsController
   # ログイン失敗の時は直前のURLにリダイレクトする
   def failed
     redirect_to params[:user][:url]
+    flash[:notice] = "emailアドレスまたはパスワードが違います"
   end
 
   def destroy

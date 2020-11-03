@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
       comment: comment, user: comment.user, time: I18n.l(comment.created_at), post: post
     else
       redirect_to comment.post, flash: {
-        notice: comment,
+        comment: comment,
         error_messages: comment.errors.full_messages
       }
     end
