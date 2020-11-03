@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :find_user
   def show
     gon.user_id = @user.id
-    gon.current_user_id = current_user.id
+    gon.current_user_id = current_user.id if user_signed_in? 
     @posts = @user.posts
     @likes = Like.where(user_id: @user.id)
     @like_posts = @user.like_posts

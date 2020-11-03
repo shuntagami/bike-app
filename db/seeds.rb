@@ -1,5 +1,4 @@
 Faker::Config.locale = :ja
-
 # ユーザー作成
 10.times do |n|
   name  = "テスト太郎#{n + 1}"
@@ -28,3 +27,12 @@ following = users[2..10]
 followers = users[6..10]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+# ゲストユーザー作成
+User.create!(name: 'Guest User',
+             email: 'guest@example.com',
+             password: '12345678',
+             password_confirmation: '12345678',
+             created_at: Time.zone.now,
+             updated_at: Time.zone.now,
+             guest: true)

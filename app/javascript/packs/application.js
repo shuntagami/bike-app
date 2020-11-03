@@ -8,11 +8,11 @@ require("@rails/ujs").start()
 // require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("../card")
 require("../post_preview")
 require("../avatar_preview")
 require("../relationship")
-require("../like.js")
+require("../like")
+require("../flash_message")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
