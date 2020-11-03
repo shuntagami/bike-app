@@ -3,20 +3,25 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  def create
-    @user = User.new(sign_up_params)
-    @user.build_bike
-    if @user.save
-    sign_in @user
-    respond_with resource, location: after_sign_in_path_for(resource)
-    flash[:success] = "ようこそ！#{@user.name}さん"
-    else
-      redirect_to params[:user][:url], flash: {
-        user: @user,
-        error_messages: @user.errors.full_messages
-      }
-    end
+  def new
+    @user = User.new
+    @bike = @user.build_bike
   end
+
+  # def create
+  #   @user = User.new(sign_up_params)
+  #   @user.build_bike
+  #   if @user.save
+  #   sign_in @user
+  #   respond_with resource, location: after_sign_in_path_for(resource)
+  #   flash[:success] = "ようこそ！#{@user.name}さん"
+  #   else
+  #     redirect_to params[:user][:url], flash: {
+  #       user: @user,
+  #       error_messages: @user.errors.full_messages
+  #     }
+  #   end
+  # end
   # GET /resource/sign_up
   # def new
   #   super
