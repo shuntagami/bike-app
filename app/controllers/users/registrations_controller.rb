@@ -5,6 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
   def create
     @user = User.new(sign_up_params)
+    @user.build_bike
     if @user.save
     sign_in @user
     respond_with resource, location: after_sign_in_path_for(resource)
