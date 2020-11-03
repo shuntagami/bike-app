@@ -5,11 +5,6 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: :user
 
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :cc
-  belongs_to_active_hash :maker
-  belongs_to_active_hash :type
-  
   has_one_attached :image
 
   #空の投稿を保存できないようにする

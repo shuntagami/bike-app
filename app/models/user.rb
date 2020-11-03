@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_one :bike
+  accepts_nested_attributes_for :bike
   has_many :posts,    dependent: :destroy
   # 自分がフォローしているユーザーとの関連
   has_many :active_relationships, class_name:  "Relationship",
