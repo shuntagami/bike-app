@@ -3,15 +3,10 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  def new
-    super
-  end
-
   def create
     super
-    @user = User.new(configure_sign_up_params)
+    @user = User.new
     @user.build_bike
-    binding.pry
     @user.save
   end
   # end
@@ -48,12 +43,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
-
-  protected
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, 
-      keys: [:name, bike_attributes: [:bike_name, :maker_id, :cc_id, :type_id]])
-  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
