@@ -11,6 +11,13 @@ Faker::Config.locale = :ja
                password_confirmation: password,
                created_at: Time.zone.now,
                updated_at: Time.zone.now)
+  Bike.create!(bike_name: "CB400sf",
+               cc_id: 1,
+               maker_id: 1,
+               type_id: 1,
+               user_id: n+1,
+               created_at: Time.zone.now,
+               updated_at: Time.zone.now)
 end
 
 # ユーザーAvatar生成
@@ -36,3 +43,10 @@ User.create!(name: 'Guest User',
              created_at: Time.zone.now,
              updated_at: Time.zone.now,
              guest: true)
+Bike.create!(bike_name: "CB400sf",
+               cc_id: 1,
+               maker_id: 1,
+               type_id: 1,
+               user_id: 11,
+               created_at: Time.zone.now,
+               updated_at: Time.zone.now)
