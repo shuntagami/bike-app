@@ -23,7 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       set_minimum_password_length 
       redirect_to root_path, flash: {
         user: resource,
-        error_messages: user.errors.full_messages
+        error_messages: resource.errors.full_messages
       }
     end
   end
