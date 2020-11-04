@@ -24,7 +24,7 @@
             <%= f.label :password_confirmation, 'Confirm Password' %>
             <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control', required: 'required' %>
           </div>
-          <%= f.fields_for :bike, Bike.new do |bike| %>
+          <%= f.fields_for :bike, resource.build_bike do |bike| %>
             <%= f.label :bike_name, 'バイクの車種' %>
             <%= bike.text_field :bike_name, autofocus: true, autocomplete: 'name', class: 'form-control', required: 'required' %>
             <%= f.label :cc_id, '排気量' %>
