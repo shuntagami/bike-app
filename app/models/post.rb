@@ -8,16 +8,11 @@ class Post < ApplicationRecord
   has_one_attached :image
 
   #空の投稿を保存できないようにする
-  validates :name, :description, presence: true
-  validate :image_presence
+  validates :description, presence: true
+  validate  :image_presence
 
   #説明の文字数制限
   validates :description, length: { maximum: 300 }
-
-  #ジャンルの選択が「--」の時は保存できないようにする
-  validates :cc_id, :maker_id, :type_id, numericality: { other_than: 0 } 
-
-  
 
   def image_presence
     unless image.attached?

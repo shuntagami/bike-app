@@ -37,15 +37,15 @@
     <table class="post-table">
       <tr>
         <th>車種</th>
-        <td><%= @post.name %></td>
+        <td><%= @post.user.bike.bike_name %></td>
       </tr>
       <tr>
         <th>メーカー</th>
-        <td><%= @post.maker.name %></td>
+        <td><%= @post.user.bike.maker.name %></td>
       </tr>
       <tr>
         <th>排気量</th>
-        <td><%= @post.cc.name %></td>
+        <td><%= @post.user.bike.cc.name %></td>
       </tr>
     </table>
   </div>
