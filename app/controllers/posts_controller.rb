@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:show, :edit, :update, :destroy, :like]
+  before_action :find_post, only: [:show, :update, :destroy, :like]
 
   def create
     @post = Post.new(post_params)
@@ -24,9 +24,6 @@ class PostsController < ApplicationController
     @comment = Comment.new
     @comments = @post.comments.includes(:user).order(id: "DESC")
     @like = Like.find_by(post_id: @post.id)
-  end
-
-  def edit
   end
 
   def update

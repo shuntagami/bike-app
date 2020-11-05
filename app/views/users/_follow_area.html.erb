@@ -1,3 +1,4 @@
+<% if !current_user?(user) %>
 <%= link_to user_relationships_path(user.id), method: :post, remote: true do%>
   <% if user.followed_by?(current_user) %>
     <button class = "unfollow_button">
@@ -7,4 +8,5 @@
   <% else %>
     <button class="follow_button">Follow</button>
   <% end%>
+<% end %>
 <% end %>
