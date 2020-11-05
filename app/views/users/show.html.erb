@@ -14,7 +14,7 @@
       <div class="user-menu pb-2">
         <% if user_signed_in?%>
         <% if current_user?(@user) %>
-          <%= link_to 'プロフィール編集', edit_user_registration_path(current_user), class:'btn btn-outline-dark' %>
+          <%= link_to 'プロフィール編集', edit_user_path(current_user), class:'btn btn-outline-dark' %>
         <% else %>
           <%= render 'follow_area', user: @user %>
         <% end %>
