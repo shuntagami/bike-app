@@ -17,19 +17,19 @@
         <%= simple_format("#{@user.bike.maker.name} | #{@user.bike.bike_name}") %>
       </div>
       <% if user_signed_in? %>
-        <%# <% if current_user.admin? %> 
-          <% if @user.guest? %>
+        <% if current_user.admin? %> 
+          <% if @user.admin? || @user.guest? %>
             <!-- なにも表示しない -->
           <% else %>
-            <%= link_to 'このユーザーを削除する', @user, method: :delete, data: { confirm: 'このユーザーを削除しますか？' }, class:'btn btn-outline-dark' %>
-          <% end %>
-        <%# <% else %>
-          <% if current_user.id == @user.id %>
+            <%= link_to 'このユーザーを削除する', @user, method: :delete, data: { confirm: 'このユーザーを削除しますか？' }, class:'btn btn-danger' %>
+          <% end %>  
+        <% else %>
+          <% if current_user?(@user) %>
             <%= link_to 'Edit profile', edit_user_path(current_user), class: "btn follow_button", "data-toggle": "modal", "data-target": "#userEdit"%>
           <% else %>
             <%= render 'follow_area', user: @user %>
           <% end %>
-        <%# <% end %>
+        <% end %>
       <% end %>
       </div>
     </div>

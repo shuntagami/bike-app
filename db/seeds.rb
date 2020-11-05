@@ -50,3 +50,19 @@ Bike.create!(bike_name: "CB400sf",
                user_id: 11,
                created_at: Time.zone.now,
                updated_at: Time.zone.now)
+
+# 管理ユーザー作成
+User.create!(name: 'Admin User',
+             email: 'admin@example.com',
+             password: '12345678',
+             password_confirmation: '12345678',
+             created_at: Time.zone.now,
+             updated_at: Time.zone.now,
+             admin: true)
+Bike.create!(bike_name: "管理人のバイク",
+               cc_id: 1,
+               maker_id: 1,
+               type_id: 1,
+               user_id: 12,
+               created_at: Time.zone.now,
+               updated_at: Time.zone.now)
