@@ -1,8 +1,5 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy, :like]
-  def new
-    @post = Post.new
-  end
 
   def create
     @post = Post.new(post_params)
