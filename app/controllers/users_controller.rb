@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
-  before_action :find_user
+  # before_action :find_user
+  before_action :find_user, only: %i[show edit update destroy]
+
+  def index
+    @users = User.order(id: "DESC")
+  end
+
   def show
     gon.user_id = @user.id
     gon.current_user_id = current_user.id if user_signed_in? 
@@ -21,6 +27,12 @@ class UsersController < ApplicationController
         error_messages: @user.errors.full_messages
       }
     end
+  end
+
+  def destroy
+    @user.destroy
+    flash[:success] = "ユーザー「#{@user.name}」は正常に削除されました"
+    redirect_to users_path
   end
 
   private
