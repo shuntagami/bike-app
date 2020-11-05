@@ -12,6 +12,10 @@
         <%= @user.name %>
       </div>
       <div class="user-menu pb-2">
+      <div class="user-profile" style="max-width: 400px; max-height: 140px; overflow: hidden;">
+        【 愛車情報 】
+        <%= simple_format("#{@user.bike.maker.name} | #{@user.bike.bike_name}") %>
+      </div>
       <% if user_signed_in? %>
         <%# <% if current_user.admin? %> 
           <% if @user.guest? %>
