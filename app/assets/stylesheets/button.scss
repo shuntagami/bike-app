@@ -5,12 +5,14 @@ $cRed: #b22222;
 .follow_button {
   color: $cBlue;
   background-color: $cWhite;
-  border: 1px solid $cBlue;
+  font-weight: bold;
+  border: 2px solid $cBlue;
   border-radius: 50rem;
   padding: 10px 40px;
   margin: 10px auto;
   cursor: pointer;
   transition: all 0.3s;
+  
 
   &:focus {
     outline:0;
@@ -26,7 +28,8 @@ $cRed: #b22222;
 .unfollow_button {
   color: $cWhite;
   background-color: $cBlue;
-  border: 1px solid $cBlue;
+  font-weight: bold;
+  border: 2px solid $cBlue;
   border-radius: 50rem;
   padding: 10px 40px;
   margin: 10px auto;

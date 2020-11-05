@@ -1,10 +1,12 @@
-<%= link_to user_relationships_path(user.id), method: :post, remote: true do%>
-  <% if user.followed_by?(current_user) %>
-    <button class = "unfollow_button">
-      <span class="nomal">Following</span>
-      <span class="hover">Unfollow</span>
-    </button>
-  <% else %>
-    <button class="follow_button">Follow</button>
-  <% end%>
+<% unless current_user?(user) %>
+  <%= link_to user_relationships_path(user.id), method: :post, remote: true do%>
+    <% if user.followed_by?(current_user) %>
+      <button class = "unfollow_button">
+        <span class="nomal">Following</span>
+        <span class="hover">Unfollow</span>
+      </button>
+    <% else %>
+      <button class="follow_button">Follow</button>
+    <% end%>
+  <% end %>
 <% end %>

@@ -1,0 +1,60 @@
+<div class="modal fade" id="userEdit">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">プロフィール編集</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container user_form">
+          <%= form_for @user do |f| %>
+            <div class="text-center mb-3">
+              <%= f.file_field :avatar, accept: 'image/jpg,image/jpeg,image/png,image/gif', class: 'custom-file-input' %>
+              <div id="avatar_field" onClick="$('#user_avatar').click()">
+                <% if @user.avatar.attached? %>
+                  <%= image_tag(@user.avatar.variant(resize_to_fill: [250, 250]), class: 'rounded-circle')%>
+                  <% else %>
+                  <%= image_tag('no-avatar.png', size: [250, 250], alt: 'avatar image', class: 'rounded-circle') %>
+                <% end %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :name, 'ユーザー名（１０文字以内）' %>
+              <% if current_user.guest? %>
+                <%= f.text_field :name, autofocus: true, autocomplete: 'name', class: 'form-control', required: 'required', disabled: true %>
+              <% else %>
+                <%= f.text_field :name, autofocus: true, autocomplete: 'name', class: 'form-control', required: 'required' %>
+              <% end %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :email, 'メールアドレス' %>
+              <% if current_user.guest? %>
+                <%= f.email_field :email, autocomplete: 'email', class: 'form-control', required: 'required', disabled: true %>
+              <% else %>
+                <%= f.email_field :email, autocomplete: 'email', class: 'form-control', required: 'required' %>
+              <% end %>
+            </div>
+
+            <%= f.fields_for :bike do |bike| %>
+              <%= f.label :bike_name, 'バイクの車種' %>
+              <%= bike.text_field :bike_name, autofocus: true, autocomplete: 'name', class: 'form-control', required: 'required' %>
+              <%= f.label :cc_id, '排気量' %>
+              <%= bike.collection_select(:cc_id, Cc.all, :id, :name, {}, {class:"select-box", id:"bike-cc"}) %>
+              <%= f.label :maker_id, 'メーカー' %>
+              <%= bike.collection_select(:maker_id, Maker.all, :id, :name, {}, {class:"select-box", id:"bike-maker"}) %>
+              <%= f.label :type_id, 'タイプ' %>
+              <%= bike.collection_select(:type_id, Type.all, :id, :name, {}, {class:"select-box", id:"bike-type"}) %>
+            <% end %>
+
+            <div class="text-right">
+              <%= f.submit '変更を保存する', class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+        </div>
+       </div>
+    </div>
+  </div>
+</div>
