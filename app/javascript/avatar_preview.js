@@ -1,4 +1,4 @@
-if (document.URL.match( /users\/(\d+)\/edit/ )) {
+if (document.URL.match( /users\/(\d+)/ )) {
   document.addEventListener('DOMContentLoaded', () => {
     const ImageList = document.getElementById('avatar_field');
 

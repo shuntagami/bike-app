@@ -21,8 +21,9 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       redirect_to @user
+      flash[:success] = "プロフィールを更新しました！"
     else
-      redirect_to edit_user_path(@user), flash: {
+      redirect_to @user, flash: {
         user: @user,
         error_messages: @user.errors.full_messages
       }
