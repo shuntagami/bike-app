@@ -17,8 +17,8 @@
             <%= f.label :email, 'Email' %>
             <%= f.email_field :email, autocomplete: 'email', class: 'form-control', required: 'required' %>
   
-            <%= f.label :password, 'Password（minimum 8）' %>
-            <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control', required: 'required', minlength: '8' %>
+            <%= f.label :password, 'Password（minimum 6）' %>
+            <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control', required: 'required', minlength: '6' %>
   
             <%= f.label :password_confirmation, 'Confirm Password' %>
             <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control', required: 'required' %>
