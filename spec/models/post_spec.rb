@@ -18,12 +18,12 @@ describe Post do
     end
 
     context "投稿が無効である場合" do
-      it "画像がないと投稿は無効" do
+      it "画像がないと投稿は無効であること" do
         @post.image = nil
         @post.valid?
         expect(@post).to_not be_valid
       end     
-      it "ユーザーが紐付いていないと投稿は無効" do
+      it "ユーザーが紐付いていないと投稿は無効であること" do
         @post.user = nil
         @post.valid?
         expect(@post).to_not be_valid

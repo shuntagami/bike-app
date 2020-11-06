@@ -26,7 +26,7 @@ class User < ApplicationRecord
   before_validation { email.downcase! }
   validates :email,
             presence: true,
-            uniqueness: true,
+            uniqueness: { case_sensitive: true },
             length: { maximum: 255 },
             format: {
               with: VALID_EMAIL_REGEX
