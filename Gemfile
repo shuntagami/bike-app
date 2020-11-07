@@ -37,6 +37,8 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'rspec-rails', '~> 4.0.0'
+  gem 'faker'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -47,6 +49,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', require: false
+  gem 'spring-commands-rspec'
 end
 
 group :test do
@@ -61,8 +64,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pry-rails'
 gem 'devise'
-gem 'faker'
-gem 'factory_bot_rails'
 gem 'jquery-rails'
 gem 'rails-i18n'
 gem 'active_hash'

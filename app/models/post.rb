@@ -7,8 +7,7 @@ class Post < ApplicationRecord
 
   has_one_attached :image
 
-  #空の投稿を保存できないようにする
-  validates :description, presence: true
+  #画像なしの投稿を保存できないようにする
   validate  :image_presence
 
   #説明の文字数制限

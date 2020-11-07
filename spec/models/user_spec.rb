@@ -60,7 +60,8 @@ describe User do
     it '重複したメールアドレスの場合、無効であること' do
       user1 = create(:user, name: 'taro', email: 'taro@example.com')
       user2 = build(:user, name: 'ziro', email: user1.email)
-      expect(user2).to_not be_valid
+      user2.valid?
+      expect(user2.errors[:email]).to include("はすでに存在します")
     end
     it 'メールアドレスは大文字小文字を区別せず扱うこと' do
       create(:user, email: 'sample@example.com')
