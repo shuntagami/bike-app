@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
   has_one :bike,    dependent: :destroy
   accepts_nested_attributes_for :bike
   has_many :posts,    dependent: :destroy
