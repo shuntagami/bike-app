@@ -14,13 +14,9 @@
               <%= f.file_field :avatar, accept: 'image/jpg,image/jpeg,image/png,image/gif', class: 'custom-file-input' %>
               <div id="avatar_field" onClick="$('#user_avatar').click()">
                 <% if @user.avatar? %>
-                  <%= f.label :avatar do %>
-                    <%= image_tag(@user.avatar.url, size: "250x250", class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
-                  <% end %>
-                  <% else %>
-                  <%= f.label :avatar do %>
-                    <%= image_tag("no-avatar.png", size: "250x250", class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
-                  <% end %>
+                  <%= image_tag(@user.avatar.url, size: "250x250", class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
+                <% else %>
+                  <%= image_tag("no-avatar.png", size: "250x250", class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
                 <% end %>
               </div>
             </div>
