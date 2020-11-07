@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
+  def redirect_to_root
+    redirect_to root_path unless user_signed_in?
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, 
       keys: [:name, bike_attributes: %i[bike_name maker_id cc_id type_id]])

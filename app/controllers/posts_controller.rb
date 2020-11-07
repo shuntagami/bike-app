@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create update destroy like]
+  before_action :redirect_to_root, only: %i[create update destroy like]
   before_action :find_post, only: %i[show update  destroy like]
 
   def create

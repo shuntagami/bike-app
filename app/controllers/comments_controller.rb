@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :redirect_to_root
 
   def create
     post = Post.find(params[:post_id])
