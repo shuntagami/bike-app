@@ -67,10 +67,11 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'rails-i18n'
 gem 'active_hash'
-gem 'jquery-rails'
 gem 'gon'
 gem 'rename'
 gem 'image_processing', '~> 1.2'
+gem 'carrierwave'
+gem 'fog-aws'
 gem "aws-sdk-s3", require: false
 gem 'font-awesome-sass', '~> 5.4.1'
 
