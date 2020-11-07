@@ -122,23 +122,23 @@ describe User do
       expect(@user.reload.email).to eq 'test@example.com'
     end
 
-    # it 'ユーザーを削除すると、関連する投稿も削除されること' do
-    #   user = FactoryBot.create(:user, :with_posts, posts_count: 1)
-    #   expect { user.destroy }.to change { Post.count }.by(-1)
-    # end
+    it 'ユーザーを削除すると、関連する投稿も削除されること' do
+      user = create(:user, :with_posts, posts_count: 1)
+      expect { user.destroy }.to change { Post.count }.by(-1)
+    end
 
-    # it 'ユーザーを削除すると、関連するコメントも削除されること' do
-    #   user = FactoryBot.create(:user, :with_comments, comments_count: 1)
-    #   expect { user.destroy }.to change { Comment.count }.by(-1)
-    # end
+    it 'ユーザーを削除すると、関連するコメントも削除されること' do
+      user = create(:user, :with_comments, comments_count: 1)
+      expect { user.destroy }.to change { Comment.count }.by(-1)
+    end
 
-    # it 'ユーザーを削除すると、関連するいいねも削除されること' do
-    #   user = FactoryBot.create(:user)
-    #   post = FactoryBot.create(:post)
-    #   user.like(post)
-    #   expect(post.liked_by?(user)).to eq true
-    #   expect { user.destroy }.to change { user.like_posts.count }.by(-1)
-    # end
+    it 'ユーザーを削除すると、関連するいいねも削除されること' do
+      user = create(:user)
+      post = create(:post)
+      user.like(post)
+      expect(post.liked_by?(user)).to eq true
+      expect { user.destroy }.to change { user.like_posts.count }.by(-1)
+    end
 
     it 'ユーザーを削除すると、フォローしているユーザーとの関係も削除されること' do
       user = create(:user)

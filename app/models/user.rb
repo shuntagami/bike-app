@@ -53,6 +53,21 @@ class User < ApplicationRecord
     passive_relationships.find_by(follower_id: user.id).present?
   end
 
+  # お気に入り追加
+  def like(post)
+    likes.find_or_create_by(post_id: post.id)
+  end
+
+  # お気に入り削除
+  def unlike(post)
+    likes.find_by(post_id: post.id).destroy
+  end
+
+  # お気に入り登録判定
+  def like?(post)
+    like_posts.include?(post)
+  end
+
   # def self.guest
   #   find_or_create_by!(email: 'guest@example.com') do |user|
   #     user.password = SecureRandom.urlsafe_base64
