@@ -23,7 +23,7 @@ end
 # ユーザーAvatar生成
 users = User.order(:id).take(10)
 users.each_with_index do |user, i|
-user.avatar.attach(io: File.open("./db/fixtures/avatar/avatar-#{i + 1}.jpg"), filename: "avatar-#{i + 1}.jpg")
+user.avatar = open("#{Rails.root}/db/fixtures/avatar/avatar-#{i + 1}.jpg")
 user.save
 end
 
