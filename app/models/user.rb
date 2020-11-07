@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
   has_one :bike,    dependent: :destroy
   accepts_nested_attributes_for :bike
   has_many :posts,    dependent: :destroy
@@ -14,7 +15,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
   has_many :comments, dependent: :destroy
-  has_one_attached :avatar
+  # has_one_attached :avatar
   # いいね機能用中間テーブル
   has_many :likes, dependent: :destroy
   has_many :like_posts, through: :likes, source: :post

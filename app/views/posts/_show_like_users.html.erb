@@ -2,8 +2,8 @@
   <% objects.each do |user| %>
     <div class="col-md-6">
       <div class="user-card card card-index align-items-center">
-        <% if user.avatar.attached? %>
-          <%= link_to image_tag(user.avatar, size: "120x120", class: "rounded-circle", alt: "avatar image"), user %>
+        <% if user.avatar? %>
+          <%= link_to image_tag(user.avatar.to_s, size: "120x120", class: "rounded-circle", alt: "avatar image"), user %>
         <% else %>
           <%= link_to image_tag("no-avatar.png", size: "120x120", class: "rounded-circle", alt: "avatar image"), user %>
         <% end %>

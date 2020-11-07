@@ -13,8 +13,8 @@
             <div class="form-group row">
               <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'custom-file-input' %>
               <div class="col-md-12 add_image text-center" id="img_field" onClick="$('#post_image').click()">
-                <% if @post.image.attached? %>
-                  <%= image_tag(@post.image) %>
+                <% if @post.image.url.present? %>
+                  <%= image_tag(@post.image.url) %>
                 <% else %>
                   <i class="fas fa-camera"></i>
                 <% end %>
