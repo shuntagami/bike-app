@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe User do
-
   let!(:user) { create(:user) }
 
   it '有効なファクトリを持つこと' do
@@ -60,7 +59,7 @@ describe User do
       user1 = create(:user, name: 'taro', email: 'taro@example.com')
       user2 = build(:user, name: 'ziro', email: user1.email)
       user2.valid?
-      expect(user2.errors[:email]).to include("はすでに存在します")
+      expect(user2.errors[:email]).to include('はすでに存在します')
     end
     it 'メールアドレスは大文字小文字を区別せず扱うこと' do
       create(:user, email: 'sample@example.com')

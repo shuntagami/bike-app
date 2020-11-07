@@ -1,15 +1,15 @@
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
-  has_one :bike,    dependent: :destroy
+  has_one :bike, dependent: :destroy
   accepts_nested_attributes_for :bike
-  has_many :posts,    dependent: :destroy
+  has_many :posts, dependent: :destroy
   # 自分がフォローしているユーザーとの関連
-  has_many :active_relationships, class_name: "Relationship",
-                                  foreign_key: "follower_id",
+  has_many :active_relationships, class_name: 'Relationship',
+                                  foreign_key: 'follower_id',
                                   dependent: :destroy
   # 自分がフォローされるユーザーとの関連
-  has_many :passive_relationships, class_name: "Relationship",
-                                   foreign_key: "followed_id",
+  has_many :passive_relationships, class_name: 'Relationship',
+                                   foreign_key: 'followed_id',
                                    dependent: :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower

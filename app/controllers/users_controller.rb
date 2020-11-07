@@ -4,12 +4,12 @@ class UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update destroy]
 
   def index
-    @users = User.order(id: "DESC")
+    @users = User.order(id: 'DESC')
   end
 
   def show
     gon.user_id = @user.id
-    gon.current_user_id = current_user.id if user_signed_in? 
+    gon.current_user_id = current_user.id if user_signed_in?
     @posts = @user.posts
     @likes = Like.where(user_id: @user.id)
     @like_posts = @user.like_posts
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       redirect_to @user
-      flash[:success] = "プロフィールを更新しました！"
+      flash[:success] = 'プロフィールを更新しました！'
     else
       redirect_to @user, flash: {
         user: @user,

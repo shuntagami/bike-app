@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
+RSpec.describe 'Users', type: :request do
   let!(:user) { create(:user) }
   let!(:another_user) { create(:user) }
   let!(:admin) { create(:user, :admin) }
@@ -44,7 +44,7 @@ RSpec.describe "Users", type: :request do
       it 'ユーザーを削除できず、記事一覧ページにリダイレクトされること' do
         sign_in another_user
         expect { delete user_path(user) }.to change { User.count }.by(0)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to '/'
       end
     end
   end

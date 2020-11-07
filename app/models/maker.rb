@@ -8,6 +8,6 @@ class Maker < ActiveHash::Base
     { id: 5, name: 'ハーレーダビッドソン' },
     { id: 6, name: 'BMW' },
     { id: 7,  name: 'KTM' },
-    { id: 8,  name: 'その他' },
+    { id: 8,  name: 'その他' }
   ]
 end

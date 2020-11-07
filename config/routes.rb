@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   # devise_scope :user do
   #   post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   # end
-  resources :users  do
-    resource :relationships,       only: [:create]
+  resources :users do
+    resource :relationships, only: [:create]
     member do
       get :following, :followers
     end
@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: %i[create destroy]
   end
-  post 'posts/like/:id' => 'posts#like', as: "like_posts"
+  post 'posts/like/:id' => 'posts#like', as: 'like_posts'
 end

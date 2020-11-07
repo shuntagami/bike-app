@@ -6,11 +6,10 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: :user
 
-
-  #画像なしの投稿を保存できないようにする
+  # 画像なしの投稿を保存できないようにする
   validates :image, presence: true
 
-  #説明の文字数制限
+  # 説明の文字数制限
   validates :description, length: { maximum: 300 }
 
   def liked_by?(user)

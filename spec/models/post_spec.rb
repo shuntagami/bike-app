@@ -4,23 +4,23 @@ describe Post do
   let(:post) { create(:post) }
 
   describe '存在性の検証' do
-    context "投稿が有効である場合" do
-      it "画像と説明があれば有効であること" do
+    context '投稿が有効である場合' do
+      it '画像と説明があれば有効であること' do
         expect(post).to be_valid
       end
-      it "画像のみあれば有効であること" do
+      it '画像のみあれば有効であること' do
         post.description = ''
         expect(post).to be_valid
       end
     end
 
-    context "投稿が無効である場合" do
-      it "画像がないと投稿は無効であること" do
+    context '投稿が無効である場合' do
+      it '画像がないと投稿は無効であること' do
         post.image = ''
         post.valid?
         expect(post).to_not be_valid
-      end     
-      it "ユーザーが紐付いていないと投稿は無効であること" do
+      end
+      it 'ユーザーが紐付いていないと投稿は無効であること' do
         post.user = nil
         post.valid?
         expect(post).to_not be_valid

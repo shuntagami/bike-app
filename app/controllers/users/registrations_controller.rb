@@ -2,7 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     super
   end
-  
+
   def create
     build_resource(sign_up_params)
 
@@ -20,7 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     else
       clean_up_passwords resource
-      set_minimum_password_length 
+      set_minimum_password_length
       redirect_to root_path, flash: {
         user: resource,
         error_messages: resource.errors.full_messages

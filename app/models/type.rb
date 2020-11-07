@@ -8,6 +8,6 @@ class Type < ActiveHash::Base
     { id: 5, name: 'ツアラー' },
     { id: 6, name: 'アメリカン' },
     { id: 7, name: 'オフロード' },
-    { id: 8,  name: 'その他' },
+    { id: 8, name: 'その他' }
   ]
 end

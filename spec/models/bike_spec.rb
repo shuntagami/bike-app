@@ -10,8 +10,8 @@ RSpec.describe Bike, type: :model do
       type_id: 1
     )
   end
-  
-  describe '有効性の検証' do 
+
+  describe '有効性の検証' do
     it 'バイク名、排気量、種類がある場合、有効であること' do
       expect(@bike).to be_valid
     end
