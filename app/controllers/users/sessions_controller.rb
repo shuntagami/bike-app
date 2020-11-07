@@ -18,13 +18,13 @@ class Users::SessionsController < Devise::SessionsController
   # ログイン失敗の時は直前のURLにリダイレクトする
   def failed
     redirect_to params[:user][:url]
-    flash[:notice] = "emailアドレスまたはパスワードが違います"
+    flash[:notice] = 'emailアドレスまたはパスワードが違います'
   end
 
   def destroy
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
     yield if block_given?
     respond_with resource, location: after_sign_out_path_for(resource)
-    flash[:success] = "ログアウトしました"
+    flash[:success] = 'ログアウトしました'
   end
 end

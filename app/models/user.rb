@@ -1,16 +1,16 @@
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
-  has_one :bike,    dependent: :destroy
+  has_one :bike, dependent: :destroy
   accepts_nested_attributes_for :bike
-  has_many :posts,    dependent: :destroy
+  has_many :posts, dependent: :destroy
   # 自分がフォローしているユーザーとの関連
-  has_many :active_relationships, class_name:  "Relationship",
-                                  foreign_key: "follower_id",
-                                  dependent:   :destroy
+  has_many :active_relationships, class_name: 'Relationship',
+                                  foreign_key: 'follower_id',
+                                  dependent: :destroy
   # 自分がフォローされるユーザーとの関連
-  has_many :passive_relationships, class_name:  "Relationship",
-                                   foreign_key: "followed_id",
-                                   dependent:   :destroy
+  has_many :passive_relationships, class_name: 'Relationship',
+                                   foreign_key: 'followed_id',
+                                   dependent: :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
@@ -51,6 +51,21 @@ class User < ApplicationRecord
   # フォローされているか判定
   def followed_by?(user)
     passive_relationships.find_by(follower_id: user.id).present?
+  end
+
+  # お気に入り追加
+  def like(post)
+    likes.find_or_create_by(post_id: post.id)
+  end
+
+  # お気に入り削除
+  def unlike(post)
+    likes.find_by(post_id: post.id).destroy
+  end
+
+  # お気に入り登録判定
+  def like?(post)
+    like_posts.include?(post)
   end
 
   # def self.guest

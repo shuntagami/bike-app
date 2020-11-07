@@ -18,7 +18,7 @@ gem 'webpacker', '~> 4.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
- gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -32,24 +32,27 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capistrano'
-  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
-  gem 'capistrano3-unicorn'
-  gem 'rspec-rails', '~> 4.0.0'
-  gem 'faker'
+  gem 'capistrano-rbenv'
   gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rspec-rails', '~> 4.0.0'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec'
+  gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
@@ -61,21 +64,21 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'pry-rails'
-gem 'devise'
-gem 'jquery-rails'
-gem 'rails-i18n'
 gem 'active_hash'
-gem 'gon'
-gem 'rename'
-gem 'image_processing', '~> 1.2'
-gem 'mini_magick'
+gem 'aws-sdk-s3', require: false
 gem 'carrierwave'
-gem 'fog-aws'
+gem 'devise'
 gem 'dotenv-rails'
-gem "aws-sdk-s3", require: false
+gem 'fog-aws'
 gem 'font-awesome-sass', '~> 5.4.1'
+gem 'gon'
+gem 'image_processing', '~> 1.2'
+gem 'jquery-rails'
+gem 'mini_magick'
+gem 'pry-rails'
+gem 'rails-i18n'
+gem 'rename'
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do
   gem 'unicorn', '5.4.1'

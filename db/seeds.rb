@@ -2,19 +2,19 @@
 10.times do |n|
   name  = "テスト太郎#{n + 1}"
   email = "sample-#{n + 1}@example.com"
-  password = "password"
+  password = 'password'
 
-  User.create!(name:  name,
+  User.create!(name: name,
                email: email,
-               password:              password,
+               password: password,
                password_confirmation: password,
                created_at: Time.zone.now,
                updated_at: Time.zone.now)
-  Bike.create!(bike_name: "CB400sf",
+  Bike.create!(bike_name: 'CB400sf',
                cc_id: 1,
                maker_id: 1,
                type_id: 1,
-               user_id: n+1,
+               user_id: n + 1,
                created_at: Time.zone.now,
                updated_at: Time.zone.now)
 end
@@ -22,8 +22,8 @@ end
 # ユーザーAvatar生成
 users = User.order(:id).take(10)
 users.each_with_index do |user, i|
-user.avatar = open("#{Rails.root}/db/fixtures/avatar/avatar-#{i + 1}.jpg")
-user.save
+  user.avatar = open("#{Rails.root}/db/fixtures/avatar/avatar-#{i + 1}.jpg")
+  user.save
 end
 
 # リレーションシップ
@@ -42,13 +42,13 @@ User.create!(name: 'Guest User',
              created_at: Time.zone.now,
              updated_at: Time.zone.now,
              guest: true)
-Bike.create!(bike_name: "CB400sf",
-               cc_id: 1,
-               maker_id: 1,
-               type_id: 1,
-               user_id: 11,
-               created_at: Time.zone.now,
-               updated_at: Time.zone.now)
+Bike.create!(bike_name: 'CB400sf',
+             cc_id: 1,
+             maker_id: 1,
+             type_id: 1,
+             user_id: 11,
+             created_at: Time.zone.now,
+             updated_at: Time.zone.now)
 
 # 管理ユーザー作成
 User.create!(name: 'Admin User',
@@ -58,10 +58,10 @@ User.create!(name: 'Admin User',
              created_at: Time.zone.now,
              updated_at: Time.zone.now,
              admin: true)
-Bike.create!(bike_name: "管理人のバイク",
-               cc_id: 1,
-               maker_id: 1,
-               type_id: 1,
-               user_id: 12,
-               created_at: Time.zone.now,
-               updated_at: Time.zone.now)
+Bike.create!(bike_name: '管理人のバイク',
+             cc_id: 1,
+             maker_id: 1,
+             type_id: 1,
+             user_id: 12,
+             created_at: Time.zone.now,
+             updated_at: Time.zone.now)
