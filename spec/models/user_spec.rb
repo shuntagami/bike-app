@@ -122,6 +122,11 @@ describe User do
       expect(@user.reload.email).to eq 'test@example.com'
     end
 
+    it 'ユーザーを削除すると、関連するバイクも削除されること' do
+      user = create(:user, :with_bike, bike_count: 1)
+      expect { user.destroy }.to change { Bike.count }.by(-1)
+    end
+
     it 'ユーザーを削除すると、関連する投稿も削除されること' do
       user = create(:user, :with_posts, posts_count: 1)
       expect { user.destroy }.to change { Post.count }.by(-1)
