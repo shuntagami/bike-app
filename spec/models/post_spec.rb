@@ -38,4 +38,28 @@ describe Post do
       expect(post).to_not be_valid
     end
   end
+
+  describe 'メソッド' do
+    it '投稿をいいね/いいね解除できること' do
+      alice = create(:user)
+      bob = create(:user, :with_posts, posts_count: 1)
+      expect(bob.posts.first.liked_by?(alice)).to eq false
+      alice.like(bob.posts.first)
+      expect(bob.posts.first.liked_by?(alice)).to eq true
+      alice.unlike(bob.posts.first)
+      expect(bob.posts.first.liked_by?(alice)).to eq false
+    end
+  end
+
+  describe 'その他' do
+    it '記事を削除すると、関連するコメントも削除されること' do
+      post = create(:post, :with_comments, comments_count: 1)
+      expect { post.destroy }.to change { Comment.count }.by(-1)
+    end
+
+    it '記事を削除すると、関連するいいねも削除されること' do
+      post = create(:post, :with_likes, likes_count: 1)
+      expect { post.destroy }.to change { Post.count }.by(-1)
+    end
+  end
 end
