@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:show, :update, :destroy, :like]
+  before_action :authenticate_user!, only: %i[create update destroy like]
+  before_action :find_post, only: %i[show update  destroy like]
 
   def create
     @post = Post.new(post_params)
