@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_042716) do
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "description", null: false
+    t.string "image", null: false
     t.bigint "user_id"
     t.integer "likes_count"
     t.datetime "created_at", precision: 6, null: false
@@ -66,6 +67,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_042716) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "name", null: false
+    t.string "avatar"
     t.boolean "guest", default: false
     t.boolean "admin", default: false
     t.string "reset_password_token"
