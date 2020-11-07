@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   private
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, 
-      keys: [:name, bike_attributes: [:bike_name, :maker_id, :cc_id, :type_id]])
+      keys: [:name, bike_attributes: %i[bike_name maker_id cc_id type_id]])
   end
   
   def storable_location?

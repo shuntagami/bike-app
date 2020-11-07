@@ -4,9 +4,9 @@
   email = "sample-#{n + 1}@example.com"
   password = "password"
 
-  User.create!(name:  name,
+  User.create!(name: name,
                email: email,
-               password:              password,
+               password: password,
                password_confirmation: password,
                created_at: Time.zone.now,
                updated_at: Time.zone.now)
@@ -43,12 +43,12 @@ User.create!(name: 'Guest User',
              updated_at: Time.zone.now,
              guest: true)
 Bike.create!(bike_name: "CB400sf",
-               cc_id: 1,
-               maker_id: 1,
-               type_id: 1,
-               user_id: 11,
-               created_at: Time.zone.now,
-               updated_at: Time.zone.now)
+             cc_id: 1,
+             maker_id: 1,
+             type_id: 1,
+             user_id: 11,
+             created_at: Time.zone.now,
+             updated_at: Time.zone.now)
 
 # 管理ユーザー作成
 User.create!(name: 'Admin User',
@@ -59,9 +59,9 @@ User.create!(name: 'Admin User',
              updated_at: Time.zone.now,
              admin: true)
 Bike.create!(bike_name: "管理人のバイク",
-               cc_id: 1,
-               maker_id: 1,
-               type_id: 1,
-               user_id: 12,
-               created_at: Time.zone.now,
-               updated_at: Time.zone.now)
+             cc_id: 1,
+             maker_id: 1,
+             type_id: 1,
+             user_id: 12,
+             created_at: Time.zone.now,
+             updated_at: Time.zone.now)

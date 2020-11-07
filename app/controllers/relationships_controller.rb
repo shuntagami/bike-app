@@ -8,7 +8,7 @@ class RelationshipsController < ApplicationController
      else
       current_user.follow(@user)
     end
-    json = { followers_count: @user.followers.count, following_count: current_user.following.count, current_user_in_followers: @user.followers.include?(current_user)}
+    json = { followers_count: @user.followers.count, following_count: current_user.following.count, current_user_in_followers: @user.followers.include?(current_user) }
     render json: json
   end
 end
