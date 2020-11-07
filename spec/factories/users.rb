@@ -5,6 +5,26 @@ FactoryBot.define do
     password { 'password' }
   end
 
+  trait :invalid do
+    name { '' }
+    email { 'test@invalid' }
+    password { 'foo' }
+  end
+
+  trait :admin do
+    name { 'AdminUser' }
+    email { 'admin@example.com' }
+    password { '12345678' }
+    admin { true }
+  end
+
+  trait :guest do
+    name { 'GuestUser' }
+    email { 'guest@example.com' }
+    password { '12345678' }
+    guest { true }
+  end
+
   trait :with_posts do
     transient do
       posts_count { 5 }
