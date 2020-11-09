@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Post do
-  let(:post) { create(:post) }
+  let(:post) { build(:post) }
 
   describe '存在性の検証' do
     context '投稿が有効である場合' do
@@ -42,7 +42,7 @@ describe Post do
   describe 'メソッド' do
     it '投稿をいいね/いいね解除できること' do
       alice = create(:user)
-      bob = create(:user, :with_posts, posts_count: 1)
+      bob = create(:user, :with_posts)
       expect(bob.posts.first.liked_by?(alice)).to eq false
       alice.like(bob.posts.first)
       expect(bob.posts.first.liked_by?(alice)).to eq true
@@ -53,12 +53,12 @@ describe Post do
 
   describe 'その他' do
     it '記事を削除すると、関連するコメントも削除されること' do
-      post = create(:post, :with_comments, comments_count: 1)
+      post = create(:post, :with_comments)
       expect { post.destroy }.to change { Comment.count }.by(-1)
     end
 
     it '記事を削除すると、関連するいいねも削除されること' do
-      post = create(:post, :with_likes, likes_count: 1)
+      post = create(:post, :with_likes)
       expect { post.destroy }.to change { Post.count }.by(-1)
     end
   end

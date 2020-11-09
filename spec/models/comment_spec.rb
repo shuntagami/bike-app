@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  let(:comment) { create(:comment) }
+  let(:comment) { build(:comment) }
 
   it '有効なファクトリを持つこと' do
     expect(comment).to be_valid

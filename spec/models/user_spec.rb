@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe User do
-  let!(:user) { create(:user) }
+  let(:user) { build(:user) }
 
   it '有効なファクトリを持つこと' do
     expect(user).to be_valid
@@ -35,11 +35,11 @@ describe User do
       expect(user).to_not be_valid
     end
     it 'メールアドレスが255文字以内の場合、有効であること' do
-      user.email = 'a' * 243 + '@example.com'
+      user.email = "#{'a' * 243}@example.com"
       expect(user).to be_valid
     end
     it 'メールアドレスが255文字を越える場合、無効であること' do
-      user.email = 'a' * 244 + '@example.com'
+      user.email = "#{'a' * 244}@example.com"
       user.valid?
       expect(user.errors).to be_added(:email, :too_long, count: 255)
     end
@@ -121,17 +121,17 @@ describe User do
     end
 
     it 'ユーザーを削除すると、関連するバイクも削除されること' do
-      user = create(:user, :with_bike, bike_count: 1)
+      user = create(:user, :with_bike)
       expect { user.destroy }.to change { Bike.count }.by(-1)
     end
 
     it 'ユーザーを削除すると、関連する投稿も削除されること' do
-      user = create(:user, :with_posts, posts_count: 1)
+      user = create(:user, :with_posts)
       expect { user.destroy }.to change { Post.count }.by(-1)
     end
 
     it 'ユーザーを削除すると、関連するコメントも削除されること' do
-      user = create(:user, :with_comments, comments_count: 1)
+      user = create(:user, :with_comments)
       expect { user.destroy }.to change { Comment.count }.by(-1)
     end
 

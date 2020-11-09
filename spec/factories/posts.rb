@@ -5,22 +5,14 @@ FactoryBot.define do
     association :user
 
     trait :with_comments do
-      transient do
-        comments_count { 5 }
-      end
-
-      after(:create) do |post, evaluator|
-        create_list(:comment, evaluator.comments_count, post: post)
+      after(:create) do |post|
+        create_list(:comment, 1, post: post)
       end
     end
 
     trait :with_likes do
-      transient do
-        likes_count { 5 }
-      end
-
-      after(:create) do |post, evaluator|
-        create_list(:like, evaluator.likes_count, post: post)
+      after(:create) do |post, _evaluator|
+        create_list(:like, 1, post: post)
       end
     end
   end

@@ -26,32 +26,20 @@ FactoryBot.define do
   end
 
   trait :with_bike do
-    transient do
-      bike_count { 1 }
-    end
-
-    after(:create) do |user, evaluator|
-      create_list(:bike, evaluator.bike_count, user: user)
+    after(:create) do |user|
+      create_list(:bike, 1, user: user)
     end
   end
 
   trait :with_posts do
-    transient do
-      posts_count { 5 }
-    end
-
-    after(:create) do |user, evaluator|
-      create_list(:post, evaluator.posts_count, user: user)
+    after(:create) do |user|
+      create_list(:post, 1, user: user)
     end
   end
 
   trait :with_comments do
-    transient do
-      comments_count { 5 }
-    end
-
-    after(:create) do |user, evaluator|
-      create_list(:comment, evaluator.comments_count, user: user)
+    after(:create) do |user|
+      create_list(:comment, 1, user: user)
     end
   end
 end
