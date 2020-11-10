@@ -11,7 +11,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   # Choose what kind of storagif Rails.env.production?
-  storage :fog
+  storage :file
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
