@@ -15,7 +15,7 @@ services:
         build: .
         command: bundle exec rails s -p 3000 -b '0.0.0.0'
         volumes:
-            - .:/bike-app
+            - .:/bike-app:delegated
             - gem_data:/usr/local/bundle
         ports:
             - 3000:3000
@@ -26,3 +26,5 @@ services:
 
 volumes:
   gem_data:
+
+
