@@ -3,14 +3,13 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: 
-  # host: db
-  socket: /tmp/mysql.sock
+  password: password
+  host: db
 
 development:
   <<: *default
-  password: password
-  host: db
+  # password: password
+  # host: db
   database: bike_app_development
 
 test:
