@@ -262,10 +262,6 @@ GEM
       ffi (~> 1.0)
     redis (4.2.2)
     regexp_parser (1.8.2)
-    rename (1.0.6)
-      activesupport
-      rails (>= 3.0.0)
-      thor (>= 0.19.1)
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.1)
@@ -411,7 +407,6 @@ DEPENDENCIES
   rails (~> 6.0.0)
   rails-i18n
   redis (~> 4.0)
-  rename
   rspec-rails (~> 4.0.0)
   rubocop
   rubocop-performance
