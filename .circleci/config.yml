@@ -33,6 +33,8 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
+      - run: yarn install --check-files
+
       # database.ymlとdatabase.yml.ciを入れ替える
       - run: mv config/database.yml.ci config/database.yml 
 

@@ -4,7 +4,7 @@ describe User do
   let(:user) { build(:user) }
 
   it '有効なファクトリを持つこと' do
-    expect(user).to_not be_valid
+    expect(user).to be_valid
   end
 
   describe '存在性の検証' do
