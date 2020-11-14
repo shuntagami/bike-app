@@ -5,24 +5,8 @@ inherit_from:
 AsciiComments:
   Enabled: false
 
-# 複数行での「lambda」で「->」による省略記法を許可
-Lambda:
-  Enabled: false
-
-# モジュール名::クラス名の定義を許可
-ClassAndModuleChildren:
-  Enabled: false
-
-# メソッド名のprefixに「set_」「get_」を許可
-AccessorMethodName:
-  Enabled: false
-
 # クラスにコメントを残さないを無効
 Documentation:
-  Enabled: false
-
-# 「and」「or」の使用を許可
-AndOr:
   Enabled: false
 
 # "Line is too long"を無効
@@ -43,7 +27,7 @@ Layout/HashAlignment:
 # Offense count: 3
 # Configuration parameters: IgnoredMethods.
 Metrics/AbcSize:
-  Max: 18
+  Max: 50
 
 # Offense count: 29
 # Configuration parameters: CountComments, ExcludedMethods.
@@ -59,7 +43,7 @@ Metrics/ClassLength:
 # Offense count: 1
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/MethodLength:
-  Max: 11
+  Max: 21
 
 # Offense count: 3
 Security/Open:
@@ -92,13 +76,8 @@ Style/SymbolArray:
   Exclude:
     - 'Gemfile'
 
-AllCops:
-  TargetRubyVersion: 2.6.5
-  Exclude:
-    - db/schema.rb
-    - config/unicorn.rb
-    - config/unicorn_staging.rb
-    - tmp/**/*
-    - bin/*
-    - db/migrate/*
-    - vendor/**/*
+CyclomaticComplexity:
+  Max: 9
+
+PerceivedComplexity:
+   Max: 9

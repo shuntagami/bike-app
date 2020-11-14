@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :redirect_to_root, only: %i[create update destroy like]
   before_action :find_post, only: %i[show update destroy like]
@@ -51,7 +53,9 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :description).merge(user_id: current_user.id)
+    params.require(:post).permit(
+      :image, :description
+    ).merge(user_id: current_user.id)
   end
 
   def find_post

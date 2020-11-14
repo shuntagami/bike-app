@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   has_one :bike, dependent: :destroy

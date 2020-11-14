@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :redirect_to_root
 
@@ -25,6 +27,8 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:text).merge(user_id: current_user.id, post_id: params[:post_id])
+    params.require(:comment).permit(
+      :text
+    ).merge(user_id: current_user.id, post_id: params[:post_id])
   end
 end

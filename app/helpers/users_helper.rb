@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UsersHelper
   # @userがcurrent_userかどうか
   def current_user?(user)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :redirect_to_root, only: %i[index destroy]
   before_action :admin_user, only: %i[index destroy]
@@ -40,7 +42,9 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :avatar, bike_attributes: %i[id bike_name cc_id maker_id type_id])
+    params.require(:user).permit(
+      :name, :email, :avatar, bike_attributes: %i[id bike_name cc_id maker_id type_id]
+    )
   end
 
   def find_user

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -9,8 +11,10 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up,
-                                      keys: [:name, { bike_attributes: %i[bike_name maker_id cc_id type_id] }])
+    devise_parameter_sanitizer.permit(
+      :sign_up, keys:
+      [:name, { bike_attributes: %i[bike_name maker_id cc_id type_id] }]
+    )
   end
 
   def storable_location?
