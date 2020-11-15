@@ -16,6 +16,5 @@ RUN bundle install -j4
 
 ADD . /app
 
-
 EXPOSE 3000
 
