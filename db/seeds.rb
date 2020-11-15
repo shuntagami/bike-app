@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ユーザー作成
 10.times do |n|
   name  = "テスト太郎#{n + 1}"
