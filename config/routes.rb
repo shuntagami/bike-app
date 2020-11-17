@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'static_pages#home'
+  root to: 'posts#index'
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
   # devise_scope :user do
   #   post 'users/guest_sign_in', to: 'users/sessions#new_guest'

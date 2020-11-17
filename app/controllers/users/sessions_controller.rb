@@ -25,6 +25,9 @@ module Users
     end
 
     def destroy
+      # rubocop:disable all
+      signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+      # rubocop:enable all
       yield if block_given?
       respond_with resource, location: after_sign_out_path_for(resource)
       flash[:success] = 'ログアウトしました'
