@@ -1,0 +1,36 @@
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@6.7.0
+  aws-ecs: circleci/aws-ecs@1.1.0
+workflows:
+  # Nginxのデプロイ
+  nginx-deploy:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: ./docker/nginx/Dockerfile
+          repo: nginx
+          tag: "${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only: master
+
+  # Railsのデプロイ
+  rails-deploy:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: ./docker/rails/Dockerfile
+          repo: rails
+          tag: "${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only: master
