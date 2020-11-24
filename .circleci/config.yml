@@ -29,7 +29,7 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
           dockerfile: ./docker/rails/Dockerfile
-          repo: rails_api
+          repo: rails
           tag: "${CIRCLE_SHA1}"
           filters:
             branches:
