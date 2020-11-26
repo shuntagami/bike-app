@@ -4,7 +4,9 @@ RUN apt-get update -qq && \
   apt-get install -y apt-utils \
   build-essential \
   libpq-dev \
-  nodejs
+  nodejs \
+  vim \
+  default-mysql-client 
 
 WORKDIR /app
 
@@ -12,7 +14,6 @@ ADD Gemfile .
 ADD Gemfile.lock .
 RUN bundle install -j4
 ADD . /app
-RUN RAILS_ENV=production bundle exec rails assets:precompile
 
 EXPOSE 3000
 
