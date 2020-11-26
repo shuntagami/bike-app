@@ -24,7 +24,7 @@ workflows:
           family: 'webapp-service' # ECSのタスク定義名
           cluster-name: '${ECS_ARN}'  #ECSのクラスターのARN
           service-name: 'webapp-service'  #サービス名
-          container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=nginx,tag=latest"
 
   # Railsのデプロイ
   rails-deploy:
@@ -47,4 +47,4 @@ workflows:
           family: 'webapp-service' # ECSのタスク定義名
           cluster-name: '${ECS_ARN}' #ECSのクラスターのARN
           service-name: 'webapp-service' #サービス名
-          container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=rails,tag=latest"
