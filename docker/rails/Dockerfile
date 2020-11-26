@@ -13,7 +13,7 @@ WORKDIR /app
 ADD Gemfile .
 ADD Gemfile.lock .
 RUN bundle install -j4
-
+RUN RAILS_ENV=production bundle exec rake assets:precompile
 ADD . /app
 
 EXPOSE 3000
