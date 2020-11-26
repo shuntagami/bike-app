@@ -14,7 +14,7 @@ workflows:
           create-repo: true
           dockerfile: ./docker/nginx/Dockerfile
           repo: nginx
-          tag: latest
+          tag: "${CIRCLE_SHA1}"
           filters:
             branches:
               only: master
@@ -37,7 +37,7 @@ workflows:
           create-repo: true
           dockerfile: ./docker/rails/Dockerfile
           repo: rails
-          tag: latest
+          tag: "${CIRCLE_SHA1}"
           filters:
             branches:
               only: master
