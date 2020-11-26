@@ -19,6 +19,8 @@ RUN apk add --no-cache -t .build-dependencies \
   libxml2 \
   libxslt \
   nodejs \
+  mysql-client \
+  mysql-dev \
   tini \
   tzdata \
   yarn \
