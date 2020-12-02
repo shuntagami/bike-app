@@ -4,6 +4,7 @@
   "dependencies": {
     "@babel/preset-react": "^7.12.7",
     "@material-ui/core": "^4.11.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@rails/actioncable": "^6.0.0-alpha",
     "@rails/activestorage": "^6.0.0-alpha",
     "@rails/ujs": "^6.0.0-alpha",
