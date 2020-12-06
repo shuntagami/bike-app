@@ -30,4 +30,16 @@ module ApplicationHelper
 
     link_to name, path, class: class_name
   end
+
+  def date_range_link_active(name, path, range)
+    class_name = 'btn '
+    class_name << if params[:date_range].nil? && range == 'all'
+                    'btn-danger'
+                  elsif range == params[:date_range]
+                    'btn-danger'
+                  else
+                    'btn-outline-secondary'
+                  end
+    link_to name, "#{path}?date_range=#{range}", class: class_name
+  end
 end
