@@ -19,6 +19,8 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.includes(:user).order(id: 'DESC')
+    @posts = Post.page(params[:page]).per(PER)
+    @posts = set_posts_date_range(@posts, params[:date_range])
   end
 
   def show

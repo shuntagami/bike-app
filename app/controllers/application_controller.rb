@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # ページネーション[1ページ表示数]
-  PER = 12
+  PER = 6
 
   private
 
