@@ -1,50 +1,50 @@
-version: 2.1
-orbs:
-  aws-ecr: circleci/aws-ecr@6.7.0
-  aws-ecs: circleci/aws-ecs@1.1.0
-workflows:
-  # Nginxのデプロイ
-  nginx-deploy:
-    jobs:
-      - aws-ecr/build-and-push-image:
-          account-url: AWS_ECR_ACCOUNT_URL
-          region: AWS_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
-          dockerfile: ./docker/nginx/Dockerfile
-          repo: nginx
-          tag: latest
-          filters:
-            branches:
-              only: master
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build-and-push-image
-          family: 'webapp-service' # ECSのタスク定義名
-          cluster-name: '${ECS_ARN}'  #ECSのクラスターのARN
-          service-name: 'webapp-service'  #サービス名
-          container-image-name-updates: "container=nginx,tag=latest"
+# version: 2.1
+# orbs:
+#   aws-ecr: circleci/aws-ecr@6.7.0
+#   aws-ecs: circleci/aws-ecs@1.1.0
+# workflows:
+#   # Nginxのデプロイ
+#   nginx-deploy:
+#     jobs:
+#       - aws-ecr/build-and-push-image:
+#           account-url: AWS_ECR_ACCOUNT_URL
+#           region: AWS_REGION
+#           aws-access-key-id: AWS_ACCESS_KEY_ID
+#           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+#           create-repo: true
+#           dockerfile: ./docker/nginx/Dockerfile
+#           repo: nginx
+#           tag: latest
+#           filters:
+#             branches:
+#               only: master
+#       - aws-ecs/deploy-service-update:
+#           requires:
+#             - aws-ecr/build-and-push-image
+#           family: 'webapp-service' # ECSのタスク定義名
+#           cluster-name: '${ECS_ARN}'  #ECSのクラスターのARN
+#           service-name: 'webapp-service'  #サービス名
+#           container-image-name-updates: "container=nginx,tag=latest"
 
-  # Railsのデプロイ
-  rails-deploy:
-    jobs:
-      - aws-ecr/build-and-push-image:
-          account-url: AWS_ECR_ACCOUNT_URL
-          region: AWS_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
-          dockerfile: ./docker/rails/Dockerfile
-          repo: rails
-          tag: latest
-          filters:
-            branches:
-              only: master
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build-and-push-image
-          family: 'webapp-service' # ECSのタスク定義名
-          cluster-name: '${ECS_ARN}' #ECSのクラスターのARN
-          service-name: 'webapp-service' #サービス名
-          container-image-name-updates: "container=rails,tag=latest"
+#   # Railsのデプロイ
+#   rails-deploy:
+#     jobs:
+#       - aws-ecr/build-and-push-image:
+#           account-url: AWS_ECR_ACCOUNT_URL
+#           region: AWS_REGION
+#           aws-access-key-id: AWS_ACCESS_KEY_ID
+#           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+#           create-repo: true
+#           dockerfile: ./docker/rails/Dockerfile
+#           repo: rails
+#           tag: latest
+#           filters:
+#             branches:
+#               only: master
+#       - aws-ecs/deploy-service-update:
+#           requires:
+#             - aws-ecr/build-and-push-image
+#           family: 'webapp-service' # ECSのタスク定義名
+#           cluster-name: '${ECS_ARN}' #ECSのクラスターのARN
+#           service-name: 'webapp-service' #サービス名
+#           container-image-name-updates: "container=rails,tag=latest"
