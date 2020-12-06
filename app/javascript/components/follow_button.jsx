@@ -11,13 +11,68 @@ export default class FollowButton extends Component {
     }
   }
 
+  follow = () => {
+    this.setState({
+      loading: false
+    })
+
+    $.ajax({
+      url: `/relationships`,
+      dataType: 'json',
+      contentType: 'application/json',
+      type: 'POST',
+      data: JSON.stringify({
+        followed_id: this.props.user.id
+      }),
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
+      cache: false
+    }).then((response) => {
+      this.setState({
+        loading: false,
+        relationship: response
+      })
+    })
+  }
+
+  unfollow = () => {
+    this.setState({
+      loading: true
+    })
+
+    $.ajax({
+      url: `/relationships/${this.state.relationship.id}`,
+      dataType: 'json',
+      contentType: 'application/json',
+      type: 'DELETE',
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
+      cache: false
+    }).then((response) => {
+      this.setState({
+        loading: false,
+        relationship: null
+      })
+    })
+  }
+
   render() {
+    const isFollowing = this.state.relationship !== null
     return (
-      <div>
-        <button>
-          { this.state.relationship !== null ? 'Unfollow' : 'Follow' }
+      <>
+        {isFollowing ? (
+        <button onClick={this.unfollow} class = "unfollow_button">
+        <span class="nomal">Following</span>
+        <span class="hover">Unfollow</span>
         </button>
-      </div>
+        ) : (
+        <button onClick={this.follow} class = "follow_button">
+          Follow
+        </button>
+        )}
+      </>
     )
   }
 }
