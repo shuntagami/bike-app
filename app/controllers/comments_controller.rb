@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CommentsController < ApplicationController
   before_action :redirect_to_root
 

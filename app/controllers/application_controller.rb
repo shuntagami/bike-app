@@ -1,8 +1,9 @@
-# frozen_string_literal: true
-
 class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  # ページネーション[1ページ表示数]
+  PER = 12
 
   private
 

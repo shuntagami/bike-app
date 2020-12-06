@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UsersController < ApplicationController
   before_action :redirect_to_root, only: %i[index destroy]
   before_action :admin_user, only: %i[index destroy]

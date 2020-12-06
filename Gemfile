@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -72,12 +70,12 @@ gem 'font-awesome-sass', '~> 5.4.1'
 gem 'gon'
 gem 'image_processing', '~> 1.2'
 gem 'jquery-rails'
+gem 'kaminari'
 gem 'mini_magick'
 gem 'pry-rails'
 gem 'rails-i18n'
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'react-rails'
-
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 group :production do
   gem 'unicorn', '5.4.1'
 end

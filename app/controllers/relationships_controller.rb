@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # class RelationshipsController < ApplicationController
 #   before_action :redirect_to_root
 
@@ -31,7 +29,7 @@ class RelationshipsController < ApplicationController
       format.json { render json: current_user.active_relationships.find_by(followed_id: @user.id) }
     end
   end
-  
+
   # DELETE /relationships/:id
   def destroy
     # @user = User.find(params[:user_id])

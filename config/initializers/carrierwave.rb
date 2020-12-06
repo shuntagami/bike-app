@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'carrierwave/storage/abstract'
 require 'carrierwave/storage/file'
 require 'carrierwave/storage/fog'
