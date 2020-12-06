@@ -68,6 +68,14 @@ class User < ApplicationRecord
     like_posts.include?(post)
   end
 
+  # フィードを返す
+  def feed
+    following_ids = "SELECT follower_id FROM relationships
+                     WHERE followed_id = :user_id"
+    Post.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
+  end
+
   # def self.guest
   #   find_or_create_by!(email: 'guest@example.com') do |user|
   #     user.password = SecureRandom.urlsafe_base64
