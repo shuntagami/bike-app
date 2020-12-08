@@ -13,7 +13,7 @@ require("../avatar_preview")
 require("../relationship")
 require("../like")
 require("../flash_message")
-require("../posts")
+// require("../posts")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
