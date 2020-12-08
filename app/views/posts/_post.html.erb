@@ -30,8 +30,7 @@
               <%= link_to '削除', @post, method: :delete, data: { confirm: '投稿を削除してもよろしいですか？' }, class:'btn btn-outline-dark' %>
             </li>
             <li class="list-inline-item float-right mr-2">
-              <%= link_to '編集', edit_post_path(@post), class:"btn btn-outline-dark", "data-toggle": "modal", "data-target": "#editPost" %>
-              <%= render partial: 'posts/edit' %>
+              <%= link_to '編集', edit_post_path(@post), class:'btn btn-outline-dark' %>
             </li>
           <% end %>
         <% end %>

@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   before_action :redirect_to_root, only: %i[create update destroy like]
-  before_action :find_post, only: %i[show update destroy like]
+  before_action :find_post, only: %i[show edit update destroy like]
+
+  def new
+    @post = Post.new
+  end
 
   def create
     @post = Post.new(post_params)
@@ -9,6 +13,9 @@ class PostsController < ApplicationController
     else
       puts_error_message
     end
+  end
+
+  def edit
   end
 
   def destroy
@@ -59,6 +66,18 @@ class PostsController < ApplicationController
 
     @feed_posts = current_user.feed.page(params[:page]).per(PER)
     @feed_posts = @feed_posts.includes(:user)
+  end
+
+  def set_weathers
+    @weathers = WEATHERS
+  end
+
+  def set_feelings
+    @feelings = FEELINGS
+  end
+
+  def set_expectations
+    @expectations = EXPECTATIONS
   end
 
   private
