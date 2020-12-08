@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :redirect_to_root, only: %i[create update destroy like]
   before_action :find_post, only: %i[show edit update destroy like]
+  before_action :set_weathers, :set_feelings, :set_expectations, only: %i[new edit search]
 
   def new
     @post = Post.new
@@ -68,24 +69,26 @@ class PostsController < ApplicationController
     @feed_posts = @feed_posts.includes(:user)
   end
 
+  def cities_select
+    render partial: 'cities', locals: { prefecture_id: params[:prefecture_id] } if request.xhr?
+  end
+
   def set_weathers
-    @weathers = WEATHERS
+    @weathers = %w[快晴 晴れ 薄曇り 曇り 小雨 雨 豪雨 雷 みぞれ 雪].freeze
   end
 
   def set_feelings
-    @feelings = FEELINGS
+    @feelings = %w[うだる暑さ 暑い 暖かい ちょうどいい 肌寒い 凍えるほど寒い あてはまらない].freeze
   end
 
   def set_expectations
-    @expectations = EXPECTATIONS
+    @road_condition = %w[問題なし 一部凍っている ほとんど凍結している].freeze
   end
 
   private
 
   def post_params
-    params.require(:post).permit(
-      :image, :description
-    ).merge(user_id: current_user.id)
+    params.require(:post).permit(:description, :image, :user_id, :prefecture_id, :city_id, :weather, :feeling, :road_condition)
   end
 
   def find_post

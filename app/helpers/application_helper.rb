@@ -1,4 +1,9 @@
 module ApplicationHelper
+  # PostのSelectBoxを定義
+  WEATHERS = %w[快晴 晴れ 薄曇り 曇り 小雨 雨 豪雨 雷 みぞれ 雪 大雪 あられ ひょう 霧 霧雨 砂あらし].freeze
+  FEELINGS = %w[うだる暑さ 暑い 暖かい ちょうどいい 肌寒い 凍えるほど寒い あてはまらない].freeze
+  ROAD_CONDITION = %w[変化なさそう 晴れそう 曇りそう 悪くなりそう].freeze
+
   def resource_name
     :user
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_08_044908) do
+ActiveRecord::Schema.define(version: 2020_12_08_082657) do
 
   create_table "bikes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "bike_name", null: false
@@ -56,11 +56,15 @@ ActiveRecord::Schema.define(version: 2020_12_08_044908) do
     t.string "image", null: false
     t.bigint "user_id"
     t.integer "likes_count"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "weather", null: false
     t.string "feeling", null: false
     t.string "road_condition", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "prefecture_id", null: false
+    t.bigint "city_id", null: false
+    t.index ["city_id"], name: "index_posts_on_city_id"
+    t.index ["prefecture_id"], name: "index_posts_on_prefecture_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -102,5 +106,7 @@ ActiveRecord::Schema.define(version: 2020_12_08_044908) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "posts", "cities"
+  add_foreign_key "posts", "prefectures"
   add_foreign_key "posts", "users"
 end
