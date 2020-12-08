@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Cc < ActiveHash::Base
   self.data = [
     { id: 0, name: '--' },

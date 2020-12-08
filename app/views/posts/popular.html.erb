@@ -1,0 +1,7 @@
+<% provide :title, '人気投稿' %>
+
+<div class="container pt-4">
+  <%= render 'index_nav' %>
+  <%= render 'index_date_range', transition_path: popular_posts_path %>
+  <%= render 'index_posts', posts: @popular_posts %>
+</div>

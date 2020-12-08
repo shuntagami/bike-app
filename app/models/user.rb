@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   has_one :bike, dependent: :destroy
@@ -68,6 +66,14 @@ class User < ApplicationRecord
   # お気に入り登録判定
   def like?(post)
     like_posts.include?(post)
+  end
+
+  # フィードを返す
+  def feed
+    following_ids = "SELECT follower_id FROM relationships
+                     WHERE followed_id = :user_id"
+    Post.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
   end
 
   # def self.guest
