@@ -74,15 +74,15 @@ class PostsController < ApplicationController
   end
 
   def set_weathers
-    @weathers = %w[快晴 晴れ 薄曇り 曇り 小雨 雨 豪雨 雷 みぞれ 雪].freeze
+    @weathers = WEATHERS
   end
 
   def set_feelings
-    @feelings = %w[うだる暑さ 暑い 暖かい ちょうどいい 肌寒い 凍えるほど寒い あてはまらない].freeze
+    @feelings = FEELINGS
   end
 
   def set_expectations
-    @road_condition = %w[問題なし 一部凍っている ほとんど凍結している].freeze
+    @road_condition = ROAD_CONDITION
   end
 
   private
