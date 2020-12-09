@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
   before_action :redirect_to_root, only: %i[create update destroy like]
-  before_action :find_post, only: %i[show update destroy like]
+  before_action :find_post, only: %i[show edit update destroy like]
+  before_action :set_weathers, :set_feelings, :set_expectations, only: %i[new edit search]
+
+  def new
+    @post = Post.new
+  end
 
   def create
     @post = Post.new(post_params)
@@ -11,6 +16,8 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit; end
+
   def destroy
     @post.destroy
     flash[:success] = '投稿が削除されました'
@@ -18,7 +25,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.includes(:user).order(id: 'DESC')
+    @posts = Post.includes(:user, :prefecture, :city).order(id: 'DESC')
     @posts = Post.page(params[:page]).per(PER)
     @posts = set_posts_date_range(@posts, params[:date_range])
   end
@@ -51,7 +58,10 @@ class PostsController < ApplicationController
   end
 
   def popular
-    @popular_posts = Post.unscoped.joins(:likes).group(:post_id).order(Arel.sql('count(likes.user_id) desc')).page(params[:page]).per(PER)
+    @popular_posts = Post.unscoped.joins(:likes)
+                         .group(:post_id)
+                         .order(Arel.sql('count(likes.user_id) desc'))
+                         .page(params[:page]).per(PER)
   end
 
   def feed
@@ -61,16 +71,42 @@ class PostsController < ApplicationController
     @feed_posts = @feed_posts.includes(:user)
   end
 
+  def cities_select
+    render partial: 'cities', locals: { prefecture_id: params[:prefecture_id] } if request.xhr?
+  end
+
+  def set_weathers
+    @weathers = WEATHERS
+  end
+
+  def set_feelings
+    @feelings = FEELINGS
+  end
+
+  def set_expectations
+    @road_condition = ROAD_CONDITION
+  end
+
   private
 
   def post_params
     params.require(:post).permit(
-      :image, :description
+      :description, :image, :prefecture_id, :city_id, :weather, :feeling, :road_condition
     ).merge(user_id: current_user.id)
   end
 
   def find_post
     @post = Post.find(params[:id])
+  end
+
+  def set_form_title_button
+    if params['action'] == 'new'
+      @form_title = '新しい投稿'
+      @form_button = '投稿する'
+    else
+      @form_title = '投稿を編集'
+      @form_button = '更新する'
+    end
   end
 
   def puts_error_message

@@ -30,8 +30,7 @@
               <%= link_to '削除', @post, method: :delete, data: { confirm: '投稿を削除してもよろしいですか？' }, class:'btn btn-outline-dark' %>
             </li>
             <li class="list-inline-item float-right mr-2">
-              <%= link_to '編集', edit_post_path(@post), class:"btn btn-outline-dark", "data-toggle": "modal", "data-target": "#editPost" %>
-              <%= render partial: 'posts/edit' %>
+              <%= link_to '編集', edit_post_path(@post), class:'btn btn-outline-dark' %>
             </li>
           <% end %>
         <% end %>
@@ -39,20 +38,21 @@
     <% end %>
   </div>
 
+
   <div class="card-footer">
-    <%= @post.description%>
+    <%= @post.description %>
     <table class="post-table">
       <tr>
-        <th>車種</th>
-        <td><%= @post.user.bike.bike_name %></td>
+        <th>天気</th>
+        <td><%= @post.weather %></td>
       </tr>
       <tr>
-        <th>メーカー</th>
-        <td><%= @post.user.bike.maker.name %></td>
+        <th>体感</th>
+        <td><%= @post.feeling %></td>
       </tr>
       <tr>
-        <th>排気量</th>
-        <td><%= @post.user.bike.cc.name %></td>
+        <th>路面状況</th>
+        <td><%= @post.road_condition %></td>
       </tr>
     </table>
   </div>

@@ -16,9 +16,7 @@
     <%= render 'header' %>
     <%= yield %>
     <%= render 'footer' %>
-    <% if user_signed_in? %>
-      <%= render partial: 'posts/new' %>
-    <% else %>
+    <% unless user_signed_in? %>
       <%= render partial: 'devise/registrations/new' %>
       <%= render partial: 'devise/sessions/new' %>
     <% end %>

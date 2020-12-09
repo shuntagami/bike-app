@@ -12,6 +12,7 @@ require("../post_preview")
 require("../avatar_preview")
 require("../relationship")
 require("../like")
+require("../posts")
 require("../flash_message")
 // require("../posts")
 

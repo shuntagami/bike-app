@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   resources :posts do
     collection do
+      get :cities_select
       get :popular
       get :feed
       get :search

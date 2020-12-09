@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_201_103_042_716) do
-  create_table 'bikes', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4', force: :cascade do |t|
+ActiveRecord::Schema.define(version: 20_201_208_082_657) do
+  create_table 'bikes', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
     t.string 'bike_name', null: false
     t.integer 'cc_id', null: false
     t.integer 'maker_id', null: false
@@ -22,7 +22,15 @@ ActiveRecord::Schema.define(version: 20_201_103_042_716) do
     t.index ['user_id'], name: 'index_bikes_on_user_id'
   end
 
-  create_table 'comments', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4', force: :cascade do |t|
+  create_table 'cities', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.bigint 'prefecture_id'
+    t.string 'name', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['prefecture_id'], name: 'index_cities_on_prefecture_id'
+  end
+
+  create_table 'comments', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
     t.text 'text', null: false
     t.bigint 'post_id'
     t.bigint 'user_id'
@@ -32,7 +40,7 @@ ActiveRecord::Schema.define(version: 20_201_103_042_716) do
     t.index ['user_id'], name: 'index_comments_on_user_id'
   end
 
-  create_table 'likes', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4', force: :cascade do |t|
+  create_table 'likes', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
     t.bigint 'user_id'
     t.bigint 'post_id'
     t.datetime 'created_at', precision: 6, null: false
@@ -42,17 +50,30 @@ ActiveRecord::Schema.define(version: 20_201_103_042_716) do
     t.index ['user_id'], name: 'index_likes_on_user_id'
   end
 
-  create_table 'posts', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4', force: :cascade do |t|
+  create_table 'posts', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
     t.text 'description', null: false
     t.string 'image', null: false
     t.bigint 'user_id'
     t.integer 'likes_count'
+    t.string 'weather', null: false
+    t.string 'feeling', null: false
+    t.string 'road_condition', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.bigint 'prefecture_id', null: false
+    t.bigint 'city_id', null: false
+    t.index ['city_id'], name: 'index_posts_on_city_id'
+    t.index ['prefecture_id'], name: 'index_posts_on_prefecture_id'
     t.index ['user_id'], name: 'index_posts_on_user_id'
   end
 
-  create_table 'relationships', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4', force: :cascade do |t|
+  create_table 'prefectures', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.string 'name', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
+
+  create_table 'relationships', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
     t.integer 'follower_id'
     t.integer 'followed_id'
     t.datetime 'created_at', precision: 6, null: false
@@ -62,7 +83,7 @@ ActiveRecord::Schema.define(version: 20_201_103_042_716) do
     t.index ['follower_id'], name: 'index_relationships_on_follower_id'
   end
 
-  create_table 'users', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4', force: :cascade do |t|
+  create_table 'users', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
     t.string 'email', default: '', null: false
     t.string 'encrypted_password', default: '', null: false
     t.string 'name', null: false
@@ -79,9 +100,12 @@ ActiveRecord::Schema.define(version: 20_201_103_042_716) do
   end
 
   add_foreign_key 'bikes', 'users'
+  add_foreign_key 'cities', 'prefectures'
   add_foreign_key 'comments', 'posts'
   add_foreign_key 'comments', 'users'
   add_foreign_key 'likes', 'posts'
   add_foreign_key 'likes', 'users'
+  add_foreign_key 'posts', 'cities'
+  add_foreign_key 'posts', 'prefectures'
   add_foreign_key 'posts', 'users'
 end
