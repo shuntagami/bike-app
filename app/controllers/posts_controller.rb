@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.includes(:user).order(id: 'DESC')
+    @posts = Post.includes(:user, :prefecture, :city).order(id: 'DESC')
     @posts = Post.page(params[:page]).per(PER)
     @posts = set_posts_date_range(@posts, params[:date_range])
   end
@@ -58,7 +58,10 @@ class PostsController < ApplicationController
   end
 
   def popular
-    @popular_posts = Post.unscoped.joins(:likes).group(:post_id).order(Arel.sql('count(likes.user_id) desc')).page(params[:page]).per(PER)
+    @popular_posts = Post.unscoped.joins(:likes)
+                         .group(:post_id)
+                         .order(Arel.sql('count(likes.user_id) desc'))
+                         .page(params[:page]).per(PER)
   end
 
   def feed
