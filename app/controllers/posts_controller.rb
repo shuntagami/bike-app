@@ -88,11 +88,23 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:description, :image, :user_id, :prefecture_id, :city_id, :weather, :feeling, :road_condition)
+    params.require(:post).permit(
+      :description, :image, :prefecture_id, :city_id, :weather, :feeling, :road_condition
+      ).merge(user_id: current_user.id)
   end
 
   def find_post
     @post = Post.find(params[:id])
+  end
+
+  def set_form_title_button
+    if params['action'] == 'new'
+      @form_title = '新しい投稿'
+      @form_button = '投稿する'
+    else
+      @form_title = '投稿を編集'
+      @form_button = '更新する'
+    end
   end
 
   def puts_error_message
