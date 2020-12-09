@@ -16,8 +16,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def destroy
     @post.destroy
@@ -90,7 +89,7 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(
       :description, :image, :prefecture_id, :city_id, :weather, :feeling, :road_condition
-      ).merge(user_id: current_user.id)
+    ).merge(user_id: current_user.id)
   end
 
   def find_post

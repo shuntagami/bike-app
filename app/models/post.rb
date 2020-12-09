@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   validates :image, presence: true
   validates :weather, presence: true
   validates :feeling, presence: true
-  validates :road_condition, presence: true 
+  validates :road_condition, presence: true
 
   # 説明の文字数制限
   validates :description, length: { maximum: 300 }
