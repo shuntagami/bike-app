@@ -3,19 +3,19 @@
 <div class="container mt-4 search-form">
   <%= form_with(scope: :post, url: search_posts_path, method: :get, local: true) do |f| %>
   <div class="row">
-    <div class="form-group col-lg-4">
+    <div class="form-group col-lg-6">
       <%= f.label :description, 'キーワード検索' %>
       <%= f.search_field :description, class: 'form-control', placeholder: '検索キーワードを入力してください', value: @search_params[:description] %>
     </div>
 
-    <div class="form-group col-lg-5">
+    <div class="form-group col-lg-6">
       <table>
         <tr>
           <td style="width: 45%;">
             <%= f.label :prefecture_id, '都道府県' %>
             <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, { include_blank: '選択してください', selected: @search_params[:prefecture_id] }, { class: "form-control" }) %>
           </td>
-          <td style="width: 55%; padding-left: 10px;">
+          <td style="width: 55%; padding-left: 20px;">
             <div id="cities_select">
               <%= f.label :city_id, '市区町村' %>
               <%= f.collection_select(:city_id, City.where(prefecture_id: @search_params[:prefecture_id]), :id, :name, { include_blank: '選択してください', selected: @search_params[:city_id] }, { class: "form-control" }) %>
@@ -26,10 +26,10 @@
     </div>
     
     <div class="d-flex justify-content-center col-4 ml-auto">
-      <%= f.submit '検索する', class: 'btn btn-primary form-control' %>
+      <%= f.submit '検索', class: 'btn btn-primary form-control' %>
     </div>
     <div class="d-flex justify-content-center col-4 mr-auto">
-      <button type="button" id="button-reset" class="btn btn-secondary form-control">リセット</button>
+      <button type="reset" class="btn btn-secondary form-control">リセット</button>
     </div>
   </div>
   <% end %>

@@ -58,7 +58,7 @@ class PostsController < ApplicationController
   end
 
   def popular
-    @popular_posts = Post.unscoped.joins(:likes)
+    @popular_posts = Post.joins(:likes)
                          .group(:post_id)
                          .order(Arel.sql('count(likes.user_id) desc'))
                          .page(params[:page]).per(PER)
