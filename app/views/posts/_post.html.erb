@@ -43,6 +43,10 @@
     <%= @post.description %>
     <table class="post-table">
       <tr>
+        <th>場所</th>
+        <td><%= @post.prefecture.name + @post.city.name %></td>
+      </tr>
+      <tr>
         <th>天気</th>
         <td><%= @post.weather %></td>
       </tr>

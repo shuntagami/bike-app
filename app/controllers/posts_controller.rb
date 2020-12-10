@@ -73,7 +73,10 @@ class PostsController < ApplicationController
 
   def search
     @search_params = post_search_params
-    @search_posts = Post.search(@search_params).page(params[:page]).per(PER).includes(:user, :prefecture, :city)
+    @search_posts = Post.search(@search_params)
+                        .page(params[:page])
+                        .per(PER)
+                        .includes(:user, :prefecture, :city)
   end
 
   def cities_select
@@ -100,6 +103,10 @@ class PostsController < ApplicationController
     ).merge(user_id: current_user.id)
   end
 
+  def post_search_params
+    params.fetch(:post, {}).permit(:description, :prefecture_id, :city_id, :weather)
+  end
+
   def find_post
     @post = Post.find(params[:id])
   end
@@ -119,10 +126,6 @@ class PostsController < ApplicationController
       post: @post,
       error_messages: @post.errors.full_messages
     }
-  end
-
-  def post_search_params
-    params.fetch(:post, {}).permit(:caption, :prefecture_id, :city_id, :weather)
   end
 
   def set_posts_date_range(posts, date_range)
