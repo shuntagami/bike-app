@@ -1,4 +1,5 @@
 module ApplicationHelper
+  WEBSITE_NAME = 'GoToTouring'.freeze
   # PostのSelectBoxを定義
   WEATHERS = %w[晴れ 曇り 小雨 雨 豪雨 雷 みぞれ 雪 霧].freeze
   FEELINGS = %w[うだる暑さ 暑い 暖かい ちょうどいい 肌寒い 凍えるほど寒い].freeze
@@ -18,6 +19,15 @@ module ApplicationHelper
 
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
+  end
+
+  def full_title(page_title = '')
+    base_title = WEBSITE_NAME
+    if page_title.empty?
+      base_title
+    else
+      page_title + ' | ' + base_title
+    end
   end
 
   def header_link_item(name, path)
