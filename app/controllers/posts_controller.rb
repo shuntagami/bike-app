@@ -31,6 +31,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    gon.post_id = @post.id
     @comment = Comment.new
     @comments = @post.comments.includes(:user).order(id: 'DESC')
     @like = Like.find_by(post_id: @post.id)
@@ -48,20 +49,20 @@ class PostsController < ApplicationController
     if @post.liked_by?(current_user)
       @like = current_user.likes.find_by(post_id: @post.id)
       @like.destroy
-      json = { post_id: @post.id, count: @post.likes.count }
     else
       @like = current_user.likes.new(post_id: @post.id)
       @like.save
-      json = { post_id: @post.id, count: @post.likes.count, like: @like }
     end
-    render json: json
+    respond_to do |format|
+      format.json
+    end
   end
 
   def popular
-    @popular_posts = Post.unscoped.joins(:likes)
-                         .group(:post_id)
-                         .order(Arel.sql('count(likes.user_id) desc'))
-                         .page(params[:page]).per(PER)
+    @popular_posts = Post.joins(:likes)
+                          .group(:post_id)
+                          .order(Arel.sql('count(likes.user_id) desc'))
+                          .page(params[:page]).per(PER)
   end
 
   def feed
@@ -69,6 +70,14 @@ class PostsController < ApplicationController
 
     @feed_posts = current_user.feed.page(params[:page]).per(PER)
     @feed_posts = @feed_posts.includes(:user)
+  end
+
+  def search
+    @search_params = post_search_params
+    @search_posts = Post.search(@search_params)
+                        .page(params[:page])
+                        .per(PER)
+                        .includes(:user, :prefecture, :city)
   end
 
   def cities_select
@@ -93,6 +102,10 @@ class PostsController < ApplicationController
     params.require(:post).permit(
       :description, :image, :prefecture_id, :city_id, :weather, :feeling, :road_condition
     ).merge(user_id: current_user.id)
+  end
+
+  def post_search_params
+    params.fetch(:post, {}).permit(:description, :prefecture_id, :city_id, :weather)
   end
 
   def find_post

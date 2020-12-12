@@ -13,9 +13,15 @@ body {
   flex-flow: column;
 }
 
+.l-header__logo {
+  font-family: "Blueberry";
+  color:#ffffff;
+  text-decoration: none;
+}
+
 /* footer */
 footer {
-  background: #ffffff;
+  background: #343a40;
   color: #fff;
   text-align: center;
   width: 100%;

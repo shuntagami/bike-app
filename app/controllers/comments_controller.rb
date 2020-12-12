@@ -2,15 +2,16 @@ class CommentsController < ApplicationController
   before_action :redirect_to_root
 
   def create
-    comment = Comment.new(comment_params)
-    if comment.save
-      redirect_to comment.post
-      # ActionCable.server.broadcast 'post_channel',
-      #                              comment: comment, user: comment.user, time: I18n.l(comment.created_at), post: post
+    @post = Post.find(params[:post_id])
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      respond_to do |format|
+        format.json
+      end
     else
-      redirect_to comment.post, flash: {
-        comment: comment,
-        error_messages: comment.errors.full_messages
+      redirect_to @comment.post, flash: {
+        comment: @comment,
+        error_messages: @comment.errors.full_messages
       }
     end
   end
