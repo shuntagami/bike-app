@@ -60,9 +60,9 @@ class PostsController < ApplicationController
 
   def popular
     @popular_posts = Post.joins(:likes)
-                          .group(:post_id)
-                          .order(Arel.sql('count(likes.user_id) desc'))
-                          .page(params[:page]).per(PER)
+                         .group(:post_id)
+                         .order(Arel.sql('count(likes.user_id) desc'))
+                         .page(params[:page]).per(PER)
   end
 
   def feed
