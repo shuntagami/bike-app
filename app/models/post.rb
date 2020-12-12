@@ -8,6 +8,8 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: :user
 
+  default_scope -> { order(created_at: :DESC) }
+
   # 空の投稿を保存できないようにする
   validates :image, presence: true
   validates :weather, presence: true

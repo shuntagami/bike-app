@@ -18,13 +18,14 @@
     <% end %>
     <div class="p-comment__list">
       <div class="p-comment__listTitle">コメント一覧</div>
-      <div id="comments">
-        <% if post.comments.any? %>
-          <%= render post.comments.includes(:user) %>  
+        <% unless post.comments.any? %>
+          <div id="comment_list">
+          <div id="p-comment__nonitem">まだコメントがありません</div>    
+          </div>
         <% else %>
-          <div id="p-comment__nonitem">まだコメントがありません</div>
+          <div id="comment_list"></div>
+          <%= render post.comments.includes(:user) %>
         <% end %>
-      </div>
     </div>
   </div>
   <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="likes-tab">

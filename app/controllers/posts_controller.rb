@@ -31,6 +31,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    gon.post_id = @post.id
     @comment = Comment.new
     @comments = @post.comments.includes(:user).order(id: 'DESC')
     @like = Like.find_by(post_id: @post.id)

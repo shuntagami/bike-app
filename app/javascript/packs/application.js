@@ -14,7 +14,7 @@ require("../relationship")
 require("../like")
 require("../posts")
 require("../flash_message")
-// require("../posts")
+require("../comment")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
