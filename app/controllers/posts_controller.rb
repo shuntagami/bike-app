@@ -49,13 +49,10 @@ class PostsController < ApplicationController
     if @post.liked_by?(current_user)
       @like = current_user.likes.find_by(post_id: @post.id)
       @like.destroy
-      # json = { post_id: @post.id, count: @post.likes.count }
     else
       @like = current_user.likes.new(post_id: @post.id)
       @like.save
-      # json = { post_id: @post.id, count: @post.likes.count, like: @like }
     end
-    # render json: json
     respond_to do |format|
       format.json
     end
@@ -63,9 +60,9 @@ class PostsController < ApplicationController
 
   def popular
     @popular_posts = Post.joins(:likes)
-                         .group(:post_id)
-                         .order(Arel.sql('count(likes.user_id) desc'))
-                         .page(params[:page]).per(PER)
+                          .group(:post_id)
+                          .order(Arel.sql('count(likes.user_id) desc'))
+                          .page(params[:page]).per(PER)
   end
 
   def feed
