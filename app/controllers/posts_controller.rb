@@ -49,13 +49,16 @@ class PostsController < ApplicationController
     if @post.liked_by?(current_user)
       @like = current_user.likes.find_by(post_id: @post.id)
       @like.destroy
-      json = { post_id: @post.id, count: @post.likes.count }
+      # json = { post_id: @post.id, count: @post.likes.count }
     else
       @like = current_user.likes.new(post_id: @post.id)
       @like.save
-      json = { post_id: @post.id, count: @post.likes.count, like: @like }
+      # json = { post_id: @post.id, count: @post.likes.count, like: @like }
     end
-    render json: json
+    # render json: json
+    respond_to do |format|
+      format.json
+    end
   end
 
   def popular
