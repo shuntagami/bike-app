@@ -3,28 +3,37 @@ require 'rails_helper'
 describe Post do
   let(:post) { build(:post) }
 
-  describe '存在性の検証' do
-    context '投稿が有効である場合' do
-      it '画像と説明があれば有効であること' do
-        expect(post).to be_valid
-      end
-      it '画像のみあれば有効であること' do
-        post.description = ''
-        expect(post).to be_valid
-      end
-    end
+  it '有効なファクトリを持つこと' do
+    expect(post).to be_valid
+  end
 
-    context '投稿が無効である場合' do
-      it '画像がないと投稿は無効であること' do
-        post.image = ''
-        post.valid?
-        expect(post).to_not be_valid
-      end
-      it 'ユーザーが紐付いていないと投稿は無効であること' do
-        post.user = nil
-        post.valid?
-        expect(post).to_not be_valid
-      end
+  it '説明、画像、ユーザー、都道府県、市区町村、天気、体感、路面の状態がある場合、有効であること' do
+    user = create(:user)
+    prefecture = create(:prefecture)
+    city = create(:city)
+    post = Post.new(
+      description: '今日はツーリング日和です',
+      image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/rspec_test.jpg')),
+      user: user,
+      prefecture: prefecture,
+      city: city,
+      weather: '晴れ',
+      feeling: 'ちょうどいい',
+      road_condition: '問題なし'
+    )
+    expect(post).to be_valid
+  end
+
+  describe '存在性の検証' do
+    it '画像がないと投稿は無効であること' do
+      post.image = ''
+      post.valid?
+      expect(post).to_not be_valid
+    end
+    it 'ユーザーが紐付いていないと投稿は無効であること' do
+      post.user = nil
+      post.valid?
+      expect(post).to_not be_valid
     end
   end
 
