@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
-  before_action :redirect_to_root, only: %i[create update destroy like]
+  before_action :redirect_to_root, only: %i[new create edit update destroy like]
   before_action :find_post, only: %i[show edit update destroy like]
+  before_action :correct_user, only: %i[edit update destroy]
+  before_action :set_form_title_button, only: %i[new edit]
   before_action :set_weathers, :set_feelings, :set_expectations, only: %i[new edit search]
 
   def new
@@ -110,6 +112,10 @@ class PostsController < ApplicationController
 
   def find_post
     @post = Post.find(params[:id])
+  end
+
+  def correct_user
+    redirect_to(root_url) unless (@post.user == current_user) || current_user.admin?
   end
 
   def set_form_title_button

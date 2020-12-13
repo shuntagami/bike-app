@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Post, type: :model do
+describe Post do
   let(:post) { create(:post) }
 
   it '有効なファクトリを持つこと' do
