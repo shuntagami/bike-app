@@ -30,6 +30,7 @@ class Post < ApplicationRecord
     description_like(search_params[:description])
       .prefecture_id_is(search_params[:prefecture_id])
       .city_id_is(search_params[:city_id])
+      .weather_is(search_params[:weather])
   }
   # descriptionが存在する場合、captionをlike検索する
   scope :description_like, ->(description) { where('description LIKE ?', "%#{description}%") if description.present? }
@@ -37,4 +38,6 @@ class Post < ApplicationRecord
   scope :prefecture_id_is, ->(prefecture_id) { where(prefecture_id: prefecture_id) if prefecture_id.present? }
   # city_idが存在する場合、city_idで検索する
   scope :city_id_is, ->(city_id) { where(city_id: city_id) if city_id.present? }
+  # weatherが存在する場合、weatherで検索する
+  scope :weather_is, ->(weather) { where(weather: weather) if weather.present? }
 end
