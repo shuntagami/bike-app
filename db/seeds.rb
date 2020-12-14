@@ -54,7 +54,7 @@ following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
 # ゲストユーザー作成
-User.create!(name: 'Guest User',
+User.create!(name: 'GuestUser',
              email: 'guest@example.com',
              password: '12345678',
              password_confirmation: '12345678',
