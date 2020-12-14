@@ -1,20 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
-  # let!(:user) do
-  #   create(:user,
-  #           name: 'TestUser',
-  #           email: 'test@example.com',
-  #           password: '12345678')
-  # end
-  let!(:admin) do
-    create(:user,
-            name: 'AdminUser',
-            email: 'admin@example.com',
-            password: '12345678',
-            admin: true)
-  end
-
   before do
     @user = create(:user, name: 'TestUser', email: 'test@example.com', password: '12345678')
     @bike = @user.create_bike(
@@ -23,6 +9,13 @@ RSpec.describe 'Users', type: :system do
       maker_id: 1,
       type_id: 1
     )
+  end
+  let!(:admin) do
+    create(:user,
+           name: 'AdminUser',
+           email: 'admin@example.com',
+           password: '12345678',
+           admin: true)
   end
 
   it 'ユーザープロフィールを編集する' do
