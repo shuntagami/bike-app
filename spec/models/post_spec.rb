@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Post do
-  let(:post) { create(:post) }
+  let(:post) { build(:post) }
 
   it '有効なファクトリを持つこと' do
     expect(post).to be_valid
