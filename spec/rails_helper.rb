@@ -33,7 +33,6 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
-
   # seeds_testファイルを読み込み
   config.before(:suite) do
     load Rails.root.join('db', 'seeds_test.rb')
@@ -76,6 +75,7 @@ RSpec.configure do |config|
     FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/tmp"])
   end
 
-  # コントローラスペックでDevise のテストヘルパーを使用する
+  # リクエストスペックとシステムスペックでDeviseのテストヘルパーを使用する
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
 end

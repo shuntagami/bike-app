@@ -17,7 +17,7 @@ FactoryBot.define do
     end
 
     trait :with_likes do
-      after(:create) do |post, evaluator|
+      after(:create) do |post, _evaluator|
         create_list(:like, 1, post: post)
       end
     end
