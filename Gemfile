@@ -74,8 +74,5 @@ gem 'kaminari'
 gem 'mini_magick'
 gem 'pry-rails'
 gem 'rails-i18n'
-gem 'react-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-group :production do
-  gem 'unicorn', '5.4.1'
-end
+
