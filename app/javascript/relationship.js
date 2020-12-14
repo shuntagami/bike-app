@@ -40,11 +40,11 @@ if (document.URL.match( /users\/(\d+)/ )) {
   // クリックごとに入れ替わるボタンのhtmlを生成
   prepareHtml = (plus_or_minus) => {
     const FOLLOWING_BUTTON = `<button class="unfollow_button">
-                                <span class="nomal">Following</span>
-                                <span class="hover">Unfollow</span>
+                                <span class="nomal">フォロー中</span>
+                                <span class="hover">フォロー解除</span>
                               </button>`;
   
-    const FOLLOW_BUTTON = `<button class="follow_button">Follow</button>`;
+    const FOLLOW_BUTTON = `<button class="follow_button">フォロー</button>`;
   
     if (plus_or_minus === "plus") {
       return FOLLOWING_BUTTON;
