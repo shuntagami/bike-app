@@ -2,3 +2,37 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M"
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        avatar: アバター
+      bike:
+        bike_name: 車種名
+        cc_id: 排気量
+        maker_id: メーカー
+        type_id: タイプ
+      post:
+        description: 説明
+        image: 画像
+        weather: 天気
+        feeling: 体感
+        road_condition: 路面状況
+        prefecture: 都道府県
+        city: 市区町村
+      comment:
+        text: コメント
+  views:
+    pagination:
+      first: 最初
+      last: 最後
+      previous: 前
+      next: 次
+      truncate: ...
+  devise:
+    sessions:
+      signed_in: ''
+      signed_out: ''
