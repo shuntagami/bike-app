@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title">Sign Up</h1>
+        <h1 class="modal-title">新規ユーザー登録</h1>
         <button type="button" class="close" data-dismiss="modal">
           <span>&times;</span>
         </button>
@@ -11,16 +11,16 @@
         <%= form_with model: resource, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
           <%= f.hidden_field :url, value: request.fullpath %>
           <div class="form-group">
-            <%= f.label :name, 'name（maxium 10）' %>
+            <%= f.label :name, 'ユーザー名（１０文字以内）' %>
             <%= f.text_field :name, autofocus: true, autocomplete: 'name', class: 'form-control', required: 'required' %>
 
-            <%= f.label :email, 'Email' %>
+            <%= f.label :email, 'メールアドレス' %>
             <%= f.email_field :email, autocomplete: 'email', class: 'form-control', required: 'required' %>
   
-            <%= f.label :password, 'Password（minimum 6）' %>
+            <%= f.label :password, 'パスワード（6文字以上）' %>
             <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control', required: 'required', minlength: '6' %>
   
-            <%= f.label :password_confirmation, 'Confirm Password' %>
+            <%= f.label :password_confirmation, '確認用パスワード' %>
             <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control', required: 'required' %>
           </div>
           <%= f.fields_for :bike, resource.build_bike do |bike| %>
@@ -34,7 +34,7 @@
             <%= bike.collection_select(:type_id, Type.all, :id, :name, {}, {class:"select-box", id:"bike-type"}) %>
           <% end %>
           <div class="mb-3">
-            <%= f.submit 'Register', class: 'btn btn-primary' %>
+            <%= f.submit '新規登録', class: 'btn btn-primary' %>
           </div>
         <% end %>
       </div>

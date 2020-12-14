@@ -25,7 +25,7 @@
           <% end %>  
         <% else %>
           <% if current_user?(@user) %>
-            <%= link_to 'Edit profile', edit_user_path(current_user), class: "btn follow_button", "data-toggle": "modal", "data-target": "#userEdit"%>
+            <%= link_to 'プロフィール編集', edit_user_path(current_user), class: "btn follow_button", "data-toggle": "modal", "data-target": "#userEdit"%>
             <%= render partial: 'users/edit' %>
           <% else %>
             <%= render 'follow_area', user: @user %>
