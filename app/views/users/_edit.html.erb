@@ -39,13 +39,13 @@
             </div>
 
             <%= f.fields_for :bike do |bike| %>
-              <%= f.label :bike_name, 'バイクの車種' %>
+              <%= f.label :bike_name, 'バイクの車種（2０文字以内）' %>
               <%= bike.text_field :bike_name, autofocus: true, autocomplete: 'name', class: 'form-control', required: 'required' %>
-              <%= f.label :cc_id, '排気量' %>
+              <%= f.label :cc_id, '排気量（選択してください）' %>
               <%= bike.collection_select(:cc_id, Cc.all, :id, :name, {}, {class:"select-box", id:"bike-cc"}) %>
-              <%= f.label :maker_id, 'メーカー' %>
+              <%= f.label :maker_id, 'メーカー（選択してください）' %>
               <%= bike.collection_select(:maker_id, Maker.all, :id, :name, {}, {class:"select-box", id:"bike-maker"}) %>
-              <%= f.label :type_id, 'タイプ' %>
+              <%= f.label :type_id, 'タイプ（選択してください）' %>
               <%= bike.collection_select(:type_id, Type.all, :id, :name, {}, {class:"select-box", id:"bike-type"}) %>
             <% end %>
 
