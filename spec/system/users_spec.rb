@@ -1,14 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
-  before do
-    @user = create(:user, name: 'TestUser', email: 'test@example.com', password: '12345678')
-    @bike = @user.create_bike(
-      bike_name: 'cb400',
-      cc_id: 1,
-      maker_id: 1,
-      type_id: 1
-    )
+  let!(:user) do
+    create(:user,
+           name: 'TestUser',
+           email: 'test@example.com',
+           password: '12345678')
   end
   let!(:admin) do
     create(:user,
@@ -33,11 +30,11 @@ RSpec.describe 'Users', type: :system do
 
     click_link 'TestUserさん'
     click_link 'マイページ'
-    expect(current_path).to eq user_path(@user)
+    expect(current_path).to eq user_path(user)
     expect(page).to have_content 'TestUser'
 
     click_link 'プロフィール編集'
-    expect(current_path).to eq user_path(@user)
+    expect(current_path).to eq user_path(user)
     expect(page).to have_content 'ユーザー名（１０文字以内）'
     expect(page).to have_content 'メールアドレス'
 
@@ -45,12 +42,12 @@ RSpec.describe 'Users', type: :system do
     fill_in 'ユーザー名', with: 'Alice'
     fill_in 'メールアドレス', with: 'alice@example.com'
     click_on '変更を保存する'
-    expect(current_path).to eq user_path(@user)
+    expect(current_path).to eq user_path(user)
 
-    @user.reload
+    user.reload
     aggregate_failures do
-      expect(@user.name).to eq 'Alice'
-      expect(@user.email).to eq 'alice@example.com'
+      expect(user.name).to eq 'Alice'
+      expect(user.email).to eq 'alice@example.com'
     end
   end
 
@@ -79,7 +76,7 @@ RSpec.describe 'Users', type: :system do
     page.accept_confirm 'このユーザーを削除しますか？' do
       delete_link.click
     end
-    expect(page).to have_content "ユーザー「#{@user.name}」は正常に削除されました"
+    expect(page).to have_content "ユーザー「#{user.name}」は正常に削除されました"
     expect(User.where(email: 'test@example.com')).to be_empty
   end
 end

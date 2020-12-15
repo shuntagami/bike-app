@@ -1,14 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Login', type: :system do
-  before do
-    @user = create(:user, name: 'TestUser', email: 'test@example.com', password: '12345678')
-    @bike = @user.create_bike(
-      bike_name: 'cb400',
-      cc_id: 1,
-      maker_id: 1,
-      type_id: 1
-    )
+  let!(:user) do
+    create(:user,
+           name: 'TestUser',
+           email: 'test@example.com',
+           password: '12345678')
   end
 
   describe '通常ユーザー' do
