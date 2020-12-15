@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="bike_image_index">
-        <%= link_to image_tag(post.image.to_s, class: 'img', alt: 'bike image'), post %>
+        <%= link_to image_tag(post.image.to_s, class: 'img', id: "image-#{post.id}", alt: 'bike_image'), post %>
         </div>
         <div class="card-footer">
           <div>
@@ -30,3 +30,4 @@
 </div>
 
 <%= paginate posts %>
+<%= render 'index_new_post_btn' %>
