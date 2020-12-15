@@ -22,7 +22,8 @@ if (document.URL.match( /posts\/(\d+)/ )) {
     
       // ajax通信に失敗したときの処理
       button.addEventListener('ajax:error', (e) => {
-        alert(e.detail[1]);
+        const errorMessage = e.detail[1]; 
+        alert(errorMessage);
       });
     });
   };
@@ -31,17 +32,19 @@ if (document.URL.match( /posts\/(\d+)/ )) {
   
   // クリックごとに入れ替わるボタンのhtmlを生成
   prepareHTML = (receivedData, plus_or_minus) => {
-    var button_class = "";
     const likes_count = receivedData.count;
-    if (plus_or_minus == "plus") {
-      button_class += "fa-heart fas fa-lg";
+    const likedButton = `<i class="fa-heart fas fa-lg" aria-hidden="true"></i>
+                         <span>${likes_count}</span>`;
+  
+    const likeButton = `<i class="fa-heart far fa-lg" aria-hidden="true"></i>
+                        <span>${likes_count}</span>`;
+    
+    if (plus_or_minus === "plus") {
+      return likedButton;
     } 
-    else if (plus_or_minus == "minus") {
-      button_class += "fa-heart far fa-lg";
+    else if (plus_or_minus === "minus") {
+      return likeButton;
     }
-    const html = `<i class="${button_class}" aria-hidden="true"></i>
-                  <span>${likes_count}</span>`;
-    return html;
   };
 }
 

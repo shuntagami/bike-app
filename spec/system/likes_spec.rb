@@ -33,30 +33,29 @@ RSpec.describe 'Likes', type: :system do
     expect(current_path).to eq "/posts/#{post.id}"
 
     # 投稿にいいね！する
-    expect(page).to have_selector '.fa-heart'
+    expect(page).to have_selector '.far'
     expect do
-      click_link '0'
-      expect(page).to have_selector '.fa-heart'
-      # expect(page).to_not have_selector '.fa-heart'
+      click_link('like_button')
+      expect(page).to have_selector '.fas'
+      expect(page).to_not have_selector '.far'
     end.to change(post.likes, :count).by(1)
 
-    # マイページに移動する→記事詳細へ移動する
+    # # # マイページに移動する→記事詳細へ移動する
     visit user_path(alice)
     expect(current_path).to eq "/users/#{alice.id}"
     expect(page).to have_content 'いいね 1件'
-    click_link 'いいね'
+    click_link 'いいね 1件'
     find('.img').click
     expect(current_path).to eq "/posts/#{post.id}"
 
-    # いいね！解除する
-    expect(page).to have_selector '.fa-heart'
+    # # # いいね！解除する
+    expect(page).to have_selector '.fas'
     expect do
-      click_link '1'
-      expect(page).to have_selector '.fa-heart'
-      # expect(page).to_not have_selector '.fa-heart'
+      click_link('like_button')
+      expect(page).to have_selector '.far'
     end.to change(post.likes, :count).by(-1)
 
-    # マイページに移動する
+    # # # マイページに移動する
     visit user_path(alice)
     expect(page).to_not have_content 'いいね 1件'
     expect(page).to have_content 'いいね 0件'
