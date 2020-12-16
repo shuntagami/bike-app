@@ -9,10 +9,11 @@
               <% else%>
               <%= link_to image_tag('no-avatar.png', class: 'user_avatar', alt: 'avatar image'), post.user, class: 'mr-2' %>
             <% end%> 
-            <%= link_to post.user.name, post.user, class: "text-black-50 text-decoration-none" %>
+            <%= link_to post.user.name, post.user %>
           </div>
-          <div class="post-time float-right">
-            <small><%= time_ago_in_words(l post.created_at) + "前" %></small>
+          <div class="post-info">
+            <small><%= set_address(post.prefecture.name, post.city.name) %></small><br>
+            <small><%= l post.created_at %></small>
           </div>
         </div>
         <div class="bike_image_index">

@@ -1,19 +1,27 @@
-// Place all the styles related to the bikes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .user_avatar {
   width: 35px;
   height: 35px;
   border-radius: 50%;
 }
 
+.card-header {
+  padding: 5px;
+  a {
+    text-decoration: none;
+    color: #666;
+  }
+}
+
 .post-cards {
   padding: 0 20px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
 }
 .card-index {
   margin: 14px 0;
+}
+
+.post-info {
+  text-align: right;
 }
 
 .bike_image_index{

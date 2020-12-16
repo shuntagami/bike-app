@@ -46,6 +46,10 @@ module ApplicationHelper
     link_to name, path, class: class_name
   end
 
+  def set_address(prefecture, city)
+    "#{prefecture} #{city}"
+  end
+
   def date_range_link_active(name, path, range)
     class_name = 'btn '
     class_name << if params[:date_range].nil? && range == 'all'
