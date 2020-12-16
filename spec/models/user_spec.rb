@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User do
+RSpec.describe User, type: :model do
   let(:user) { build(:user) }
 
   it '有効なファクトリを持つこと' do

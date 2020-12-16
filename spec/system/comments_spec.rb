@@ -22,7 +22,8 @@ RSpec.describe 'Comments', type: :system do
     click_button 'ログイン'
     expect(current_path).to eq root_path
 
-    # 記事詳細へ移動する
+    # 投稿詳細へ移動する
+    click_link '新 着 投 稿'
     expect(page).to have_link 'a', href: "/posts/#{post.id}"
     find('.img').click
     expect(current_path).to eq "/posts/#{post.id}"

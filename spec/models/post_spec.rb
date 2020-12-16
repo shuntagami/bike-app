@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Post do
+RSpec.describe Post, type: :model do
   let(:post) { build(:post) }
 
   it '有効なファクトリを持つこと' do
@@ -170,12 +170,12 @@ describe Post do
   end
 
   describe 'その他' do
-    it '記事を削除すると、関連するコメントも削除されること' do
+    it '投稿を削除すると、関連するコメントも削除されること' do
       post = create(:post, :with_comments)
       expect { post.destroy }.to change { Comment.count }.by(-1)
     end
 
-    it '記事を削除すると、関連するいいねも削除されること' do
+    it '投稿を削除すると、関連するいいねも削除されること' do
       post = create(:post, :with_likes)
       expect { post.destroy }.to change { Post.count }.by(-1)
     end

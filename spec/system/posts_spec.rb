@@ -46,6 +46,7 @@ RSpec.describe 'Posts', type: :system do
     end
 
     # 投稿を編集する
+    click_link '新 着 投 稿'
     find('.img').click
     expect(current_path).to eq "/posts/#{post.id}"
     click_link '編集'

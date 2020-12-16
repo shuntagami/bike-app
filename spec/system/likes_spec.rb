@@ -25,8 +25,8 @@ RSpec.describe 'Likes', type: :system do
     click_button 'ログイン'
     expect(current_path).to eq root_path
 
-    # 記事詳細へ移動する
-    # click_link '新着投稿'
+    # 投稿詳細へ移動する
+    click_link '新 着 投 稿'
     post = user.posts.first
     expect(page).to have_link 'a', href: "/posts/#{post.id}"
     find('.img').click

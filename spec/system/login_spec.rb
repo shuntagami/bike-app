@@ -128,7 +128,7 @@ RSpec.describe 'Login', type: :system do
     end
 
     it '投稿を削除できること', js: true do
-      # 記事詳細へ移動する
+      # 投稿詳細へ移動する
       click_link '新 着 投 稿'
       find('.img').click
       expect(current_path).to eq "/posts/#{post.id}"
@@ -140,20 +140,19 @@ RSpec.describe 'Login', type: :system do
         delete_link.click
       end
       expect(current_path).to eq root_path
-      expect(page).to have_content "投稿が削除されました"
+      expect(page).to have_content '投稿が削除されました'
       expect(current_path).to_not eq "/posts/#{post.id}"
       expect(Post.find_by(id: post.id)).to be_nil
     end
 
     it 'コメントを削除できること', js: true do
       comment = post.comments.first
-      # 記事詳細へ移動する
+      # 投稿詳細へ移動する
       click_link '新 着 投 稿'
       find('.img').click
       expect(current_path).to eq "/posts/#{post.id}"
       expect(page).to have_link '削除'
       expect(page).to have_link '削除', href: "/posts/#{post.id}/comments/#{comment.id}"
-
 
       delete_link = find_link '削除', href: "/posts/#{post.id}/comments/#{comment.id}"
       page.accept_confirm 'コメントを削除してもよろしいですか？' do

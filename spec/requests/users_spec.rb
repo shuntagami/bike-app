@@ -41,7 +41,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context '認可されていないユーザーがアクセスしたとき' do
-      it 'ユーザーを削除できず、記事一覧ページにリダイレクトされること' do
+      it 'ユーザーを削除できず、トップページにリダイレクトされること' do
         sign_in another_user
         expect { delete user_path(user) }.to change { User.count }.by(0)
         expect(response).to redirect_to '/'
