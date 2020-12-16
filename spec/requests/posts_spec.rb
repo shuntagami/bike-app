@@ -32,7 +32,7 @@ RSpec.describe 'Posts', type: :request do
       end
     end
 
-    context '認可されていないユーザーがアクセスした場合' do
+    context '認可されていないユーザーがアクセスしたとき' do
       # 投稿者とログインユーザーが異なる場合
       it '一覧ページにリダイレクトされること' do
         # ex)posts/1/editに直接URLを叩くと投稿者でないのに入れて編集できてしまうのは良くない
@@ -71,7 +71,7 @@ RSpec.describe 'Posts', type: :request do
       end
     end
 
-    context '認可されていないユーザーがアクセスした場合' do
+    context '認可されていないユーザーがアクセスしたとき' do
       it '投稿を削除できず、トップページにリダイレクトされること' do
         another_user = create(:user)
         sign_in another_user

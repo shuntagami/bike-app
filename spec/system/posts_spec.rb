@@ -8,7 +8,7 @@ RSpec.describe 'Posts', type: :system do
            password: '12345678')
   end
 
-  it '新規投稿、編集、削除をする', js: true do
+  it '新規投稿、編集、削除ができること', js: true do
     visit root_path
 
     # ログインする
@@ -16,8 +16,8 @@ RSpec.describe 'Posts', type: :system do
     expect(current_path).to eq root_path
     expect(page).to have_content '次回から自動的にログイン'
 
-    fill_in 'メールアドレス', with: 'test@example.com'
-    fill_in 'パスワード', with: '12345678'
+    fill_in 'login_email', with: 'test@example.com'
+    fill_in 'login_password', with: '12345678'
     click_button 'ログイン'
     expect(current_path).to eq root_path
 
@@ -86,13 +86,13 @@ RSpec.describe 'Posts', type: :system do
       expect(current_path).to eq root_path
       expect(page).to have_content '次回から自動的にログイン'
 
-      fill_in 'メールアドレス', with: alice.email
-      fill_in 'パスワード', with: alice.password
+      fill_in 'login_email', with: alice.email
+      fill_in 'login_password', with: alice.password
       click_button 'ログイン'
       expect(current_path).to eq root_path
     end
 
-    it 'フィードに自身の投稿が表示されるか' do
+    it 'フィードに自身の投稿が表示されること' do
       click_link 'フ ィ ー ド'
       within(:css, '.post-cards') do
         expect(page).to have_link 'a', href: "/posts/#{alice_post.id}"
@@ -105,7 +105,7 @@ RSpec.describe 'Posts', type: :system do
       end
     end
 
-    it '他のユーザーをフォローし、フィードに表示されるか' do
+    it '他のユーザーをフォローし、フィードに表示されること' do
       alice.follow(bob)
       click_link 'フ ィ ー ド'
       within(:css, '.post-cards') do
@@ -119,7 +119,7 @@ RSpec.describe 'Posts', type: :system do
       end
     end
 
-    it '他のユーザーをアンフォローし、フィードから消えるか' do
+    it '他のユーザーをアンフォローし、フィードから消えること' do
       alice.follow(bob)
       click_link 'フ ィ ー ド'
       within(:css, '.post-cards') do

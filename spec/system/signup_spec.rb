@@ -8,7 +8,7 @@ RSpec.describe 'Signup', type: :system do
            password: '12345678')
   end
 
-  it '新規ユーザーを作成し、ログインする' do
+  it '新規ユーザーを作成し、ログインできること' do
     visit root_path
 
     click_link '新規登録'
@@ -16,11 +16,11 @@ RSpec.describe 'Signup', type: :system do
     expect(page).to have_content '新規ユーザー登録'
 
     # 失敗ケース
-    fill_in 'ユーザー名（１０文字以内）', with: 'a' * 11
-    fill_in 'メールアドレス', with: 'test@example.com'
-    fill_in 'パスワード（6文字以上）', with: 'password_alice'
-    fill_in '確認用パスワード', with: 'password_bob'
-    fill_in 'user[bike_attributes][bike_name]', with: ' '
+    fill_in 'signup_name', with: 'a' * 11
+    fill_in 'signup_email', with: 'test@example.com'
+    fill_in 'signup_password', with: 'password_alice'
+    fill_in 'signup_password_confirmation', with: 'password_bob'
+    fill_in 'signup_bike_name', with: ' '
     select '--', from: 'user[bike_attributes][cc_id]'
     select '--', from: 'user[bike_attributes][maker_id]'
     select '--', from: 'user[bike_attributes][type_id]'
@@ -36,11 +36,11 @@ RSpec.describe 'Signup', type: :system do
 
     # 成功ケース
     click_link '新規登録'
-    fill_in 'ユーザー名（１０文字以内）', with: 'Alice'
-    fill_in 'メールアドレス', with: 'alice@example.com'
-    fill_in 'パスワード（6文字以上）', with: 'password_alice'
-    fill_in '確認用パスワード', with: 'password_alice'
-    fill_in 'user[bike_attributes][bike_name]', with: 'cb1000rr'
+    fill_in 'signup_name', with: 'Alice'
+    fill_in 'signup_email', with: 'alice@example.com'
+    fill_in 'signup_password', with: 'password_alice'
+    fill_in 'signup_password_confirmation', with: 'password_alice'
+    fill_in 'signup_bike_name', with: 'cb1000rr'
     select '400cc~(大型)', from: 'user[bike_attributes][cc_id]'
     select 'ホンダ', from: 'user[bike_attributes][maker_id]'
     select 'ネイキッド', from: 'user[bike_attributes][type_id]'

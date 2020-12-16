@@ -6,7 +6,7 @@ RSpec.describe 'Users', type: :request do
   let!(:admin) { create(:user, :admin) }
 
   describe '#index' do
-    context '管理者ユーザーの場合' do
+    context '管理者ユーザーのとき' do
       it '正常にアクセスできること' do
         sign_in admin
         get users_path
@@ -24,7 +24,7 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe '#destroy' do
-    context '管理者ユーザーの場合' do
+    context '管理者ユーザーのとき' do
       it 'ユーザーを正常に削除できること' do
         sign_in admin
         expect { delete user_path(user) }.to change { User.count }.by(-1)
@@ -40,7 +40,7 @@ RSpec.describe 'Users', type: :request do
       end
     end
 
-    context '認可されていないユーザーがアクセスした場合' do
+    context '認可されていないユーザーがアクセスしたとき' do
       it 'ユーザーを削除できず、記事一覧ページにリダイレクトされること' do
         sign_in another_user
         expect { delete user_path(user) }.to change { User.count }.by(0)

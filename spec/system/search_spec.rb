@@ -43,29 +43,29 @@ RSpec.describe 'Search', type: :system do
   end
 
   describe '投稿を検索する', js: true do
-    it 'キャプションで検索できること' do
-      # キャプション「晴れ」で検索する
+    it 'キーワードで検索できること' do
+      # キーワード「晴れ」で検索する
       fill_in 'キーワード検索', with: '晴れ'
       click_button '検索'
       expect(page).to have_link 'a', href: "/posts/#{post1.id}"
       expect(page).to_not have_link 'a', href: "/posts/#{post2.id}"
       expect(page).to_not have_link 'a', href: "/posts/#{post3.id}"
 
-      # キャプション「曇り」で検索する
+      # キーワード「曇り」で検索する
       fill_in 'キーワード検索', with: '曇り'
       click_button '検索'
       expect(page).to_not have_link 'a', href: "/posts/#{post1.id}"
       expect(page).to have_link 'a', href: "/posts/#{post2.id}"
       expect(page).to_not have_link 'a', href: "/posts/#{post3.id}"
 
-      # キャプション「雨」で検索する
+      # キーワード「雨」で検索する
       fill_in 'キーワード検索', with: '雨'
       click_button '検索'
       expect(page).to_not have_link 'a', href: "/posts/#{post1.id}"
       expect(page).to_not have_link 'a', href: "/posts/#{post2.id}"
       expect(page).to have_link 'a', href: "/posts/#{post3.id}"
 
-      # キャプション「今日」で検索する
+      # キーワード「今日」で検索する
       fill_in 'キーワード検索', with: '今日'
       click_button '検索'
       expect(page).to have_link 'a', href: "/posts/#{post1.id}"

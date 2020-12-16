@@ -17,8 +17,8 @@ RSpec.describe 'Comments', type: :system do
     expect(current_path).to eq root_path
     expect(page).to have_content '次回から自動的にログイン'
 
-    fill_in 'メールアドレス', with: 'test@example.com'
-    fill_in 'パスワード', with: '12345678'
+    fill_in 'login_email', with: 'test@example.com'
+    fill_in 'login_password', with: '12345678'
     click_button 'ログイン'
     expect(current_path).to eq root_path
 

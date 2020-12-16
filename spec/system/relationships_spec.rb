@@ -29,8 +29,8 @@ RSpec.describe 'Relationships', type: :system do
     expect(current_path).to eq root_path
     expect(page).to have_content '次回から自動的にログイン'
 
-    fill_in 'メールアドレス', with: 'alice@example.com'
-    fill_in 'パスワード', with: 'password_alice'
+    fill_in 'login_email', with: 'alice@example.com'
+    fill_in 'login_password', with: 'password_alice'
     click_button 'ログイン'
     expect(current_path).to eq root_path
 

@@ -15,7 +15,7 @@ RSpec.describe 'Users', type: :system do
            admin: true)
   end
 
-  it 'ユーザープロフィールを編集する' do
+  it 'ユーザープロフィールを編集できること' do
     visit root_path
 
     # ログインする
@@ -23,8 +23,8 @@ RSpec.describe 'Users', type: :system do
     expect(current_path).to eq root_path
     expect(page).to have_content '次回から自動的にログイン'
 
-    fill_in 'メールアドレス', with: 'test@example.com'
-    fill_in 'パスワード', with: '12345678'
+    fill_in 'login_email', with: 'test@example.com'
+    fill_in 'login_password', with: '12345678'
     click_button 'ログイン'
     expect(current_path).to eq root_path
 
@@ -51,7 +51,7 @@ RSpec.describe 'Users', type: :system do
     end
   end
 
-  it '管理者ユーザーが別のユーザーを削除する', js: true do
+  it '管理者ユーザーが別のユーザーを削除できること', js: true do
     visit root_path
 
     # ログインする
@@ -59,8 +59,8 @@ RSpec.describe 'Users', type: :system do
     expect(current_path).to eq root_path
     expect(page).to have_content '次回から自動的にログイン'
 
-    fill_in 'メールアドレス', with: 'admin@example.com'
-    fill_in 'パスワード', with: '12345678'
+    fill_in 'login_email', with: 'admin@example.com'
+    fill_in 'login_password', with: '12345678'
     click_button 'ログイン'
     expect(current_path).to eq root_path
     expect(page).to have_content 'AdminUserさん'
