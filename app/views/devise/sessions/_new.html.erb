@@ -12,10 +12,10 @@
           <%= f.hidden_field :url, value: request.fullpath %>
           <div class="form-group">
             <%= f.label :email, 'メールアドレス' %>
-            <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control', required: 'required' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control', id: 'login_email', required: 'required' %>
 
             <%= f.label :password, 'パスワード' %>
-            <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control', required: 'required', minlength: '8' %>
+            <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control', id: 'login_password', required: 'required', minlength: '8' %>
           </div>
 
           <% if devise_mapping.rememberable? -%>

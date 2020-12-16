@@ -34,15 +34,15 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 # Docker上でchromeをheadless modeで動かす
-# Capybara.register_driver :selenium_chrome_headless do |app|
-#   options = ::Selenium::WebDriver::Chrome::Options.new
-#   options.add_argument('--no-sandbox')
-#   options.add_argument('--headless')
-#   options.add_argument('--disable-gpu')
-#   options.add_argument('--disable-dev-shm-usage')
-#   options.add_argument('--window-size=1400,1000')
-#   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
-# end
+Capybara.register_driver :selenium_chrome_headless do |app|
+  options = ::Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--no-sandbox')
+  options.add_argument('--headless')
+  options.add_argument('--disable-gpu')
+  options.add_argument('--disable-dev-shm-usage')
+  options.add_argument('--window-size=1400,1000')
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
 
 RSpec.configure do |config|
   # seeds_testファイルを読み込み
@@ -87,18 +87,21 @@ RSpec.configure do |config|
     FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/tmp"])
   end
 
+  # 強制的にCapybara::DSLを読み込む
+  config.include Capybara::DSL
+
   # リクエストスペックとシステムスペックでDeviseのテストヘルパーを使用する
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :system
 
   # Docker上でchromeをheadless modeで動かす
-  # config.before(:each) do |example|
-  #   if example.metadata[:type] == :system
-  #     if example.metadata[:js]
-  #       driven_by :selenium_chrome_headless
-  #     else
-  #       driven_by :rack_test
-  #     end
-  #   end
-  # end
+  config.before(:each) do |example|
+    if example.metadata[:type] == :system
+      if example.metadata[:js]
+        driven_by :selenium_chrome_headless
+      else
+        driven_by :rack_test
+      end
+    end
+  end
 end
