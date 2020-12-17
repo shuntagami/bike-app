@@ -20,7 +20,7 @@ CSV.foreach('db/csv/prefectures_cities.csv') do |row|
 end
 
 # ゲストユーザー作成
-User.create!(name: 'GuestUser',
+User.create!(name: 'ゲストユーザー',
              email: 'guest@example.com',
              password: '12345678',
              password_confirmation: '12345678',
@@ -30,7 +30,8 @@ User.create!(name: 'GuestUser',
 
 # ユーザー作成
 10.times do |n|
-  name  = "テスト太郎#{n + 1}"
+  gimei = Gimei.male
+  name  = gimei.first.katakana
   email = "sample-#{n + 1}@example.com"
   password = 'password'
 
@@ -50,7 +51,7 @@ users.each_with_index do |user, i|
 end
 
 # 管理ユーザー作成
-User.create!(name: 'Admin User',
+User.create!(name: '管理人',
              email: 'admin@example.com',
              password: '12345678',
              password_confirmation: '12345678',
