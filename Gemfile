@@ -32,7 +32,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'rspec-rails', '~> 4.0.0'
 end
 
@@ -53,6 +52,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  gem 'chromedriver-helper'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'rspec_junit_formatter'
@@ -65,8 +65,10 @@ gem 'aws-sdk-s3', require: false
 gem 'carrierwave'
 gem 'devise'
 gem 'dotenv-rails'
+gem 'faker'
 gem 'fog-aws'
 gem 'font-awesome-sass', '~> 5.4.1'
+gem 'gimei'
 gem 'gon'
 gem 'image_processing', '~> 1.2'
 gem 'jquery-rails'
@@ -74,8 +76,4 @@ gem 'kaminari'
 gem 'mini_magick'
 gem 'pry-rails'
 gem 'rails-i18n'
-gem 'react-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-group :production do
-  gem 'unicorn', '5.4.1'
-end

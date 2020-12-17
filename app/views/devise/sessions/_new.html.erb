@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title">Log In</h1>
+        <h1 class="modal-title">ログイン</h1>
         <button type="button" class="close" data-dismiss="modal">
           <span>&times;</span>
         </button>
@@ -11,11 +11,11 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <%= f.hidden_field :url, value: request.fullpath %>
           <div class="form-group">
-            <%= f.label :email, 'Email' %>
-            <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control', required: 'required' %>
+            <%= f.label :email, 'メールアドレス' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control', id: 'login_email', required: 'required' %>
 
-            <%= f.label :password, 'Password' %>
-            <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control', required: 'required', minlength: '8' %>
+            <%= f.label :password, 'パスワード' %>
+            <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control', id: 'login_password', required: 'required', minlength: '8' %>
           </div>
 
           <% if devise_mapping.rememberable? -%>
@@ -24,14 +24,14 @@
               <%= f.label :remember_me %>
             </div>
           <% end -%>   
-          <%= f.submit "Log in", class: 'btn btn-primary' %>
+          <%= f.submit "ログイン", class: 'btn btn-primary' %>
         <% end %>
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |g| %>
           <%= g.hidden_field :email, value: 'guest@example.com' %>
           <%= g.hidden_field :password, value: '12345678' %>
           <div class="mt-3">
-            <%= g.submit 'Log in as guest', class: 'btn btn-warning' %>
+            <%= g.submit 'かんたんログイン', class: 'btn btn-warning' %>
           </div>
         <% end %> 
       </div>

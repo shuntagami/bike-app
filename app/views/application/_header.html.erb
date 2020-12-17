@@ -18,24 +18,26 @@
         <li class="nav-item">
           <%= header_link_item(icon('fas', 'edit') + ' 新規投稿', new_post_path) %>
         </li>
+      <% end %>
         <li class="nav-item">
           <%= header_link_item(icon('fas', 'search') + ' 検索', search_posts_path) %>
         </li>
+      <% if user_signed_in? %>
         <li class="nav-item dropdown">
           <%= link_to icon('fas', 'user') + " #{current_user.name}さん", '#', class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to icon('fas', 'user') + ' マイページ', user_path(current_user), class: 'dropdown-item' %>
-            <%= link_to icon('fas', 'sign-out-alt') + ' ログアウト', destroy_user_session_path, class: 'dropdown-item', method: :delete %>
+            <%= link_to icon('fas', 'sign-out-alt') + ' ログアウト', logout_path, class: 'dropdown-item', method: :delete %>
           </div>
         </li>
       <% else %>
         
 
         <li class="nav-item">
-          <%= link_to icon('fas', 'user-plus') + '新規登録', new_user_registration_path, class: "nav-link", "data-toggle": "modal", "data-target": "#signUpModal"%>
+          <%= link_to icon('fas', 'user-plus') + '新規登録', '#', class: "nav-link", "data-toggle": "modal", "data-target": "#signUpModal"%>
         </li>
         <li class="nav-item">
-          <%= link_to icon('fas', 'sign-in-alt') + ' ログイン', new_user_session_path, class: "nav-link", "data-toggle": "modal", "data-target": "#logInModal" %>
+          <%= link_to icon('fas', 'sign-in-alt') + ' ログイン', '#', class: "nav-link", "data-toggle": "modal", "data-target": "#logInModal" %>
         </li>
       <% end %>
     </ul>

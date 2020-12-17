@@ -70,9 +70,9 @@ class User < ApplicationRecord
 
   # フィードを返す
   def feed
-    following_ids = "SELECT follower_id FROM relationships
-                     WHERE followed_id = :user_id"
-    Post.where("user_id IN (#{following_ids})
+    followed_ids = "SELECT followed_id FROM relationships
+                     WHERE follower_id = :user_id"
+    Post.where("user_id IN (#{followed_ids})
                      OR user_id = :user_id", user_id: id)
   end
 

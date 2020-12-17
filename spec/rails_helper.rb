@@ -6,6 +6,8 @@ require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'capybara/rspec'
+include ApplicationHelper
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -20,7 +22,7 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -30,8 +32,24 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+# Docker上でchromeをheadless modeで動かす
+Capybara.register_driver :selenium_chrome_headless do |app|
+  options = ::Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--no-sandbox')
+  options.add_argument('--headless')
+  options.add_argument('--disable-gpu')
+  options.add_argument('--disable-dev-shm-usage')
+  options.add_argument('--window-size=1400,1000')
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+
 RSpec.configure do |config|
-  config.include FactoryBot::Syntax::Methods
+  # seeds_testファイルを読み込み
+  config.before(:suite) do
+    load Rails.root.join('db', 'seeds_test.rb')
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -63,6 +81,27 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # コントローラスペックでDevise のテストヘルパーを使用する
+  # RSpecによる画像をテスト後に削除する
+  config.after(:all) do
+    FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads_#{Rails.env}/"])
+    FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/tmp"])
+  end
+
+  # 強制的にCapybara::DSLを読み込む
+  config.include Capybara::DSL
+
+  # リクエストスペックとシステムスペックでDeviseのテストヘルパーを使用する
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
+
+  # Docker上でchromeをheadless modeで動かす
+  config.before(:each) do |example|
+    if example.metadata[:type] == :system
+      if example.metadata[:js]
+        driven_by :selenium_chrome_headless
+      else
+        driven_by :rack_test
+      end
+    end
+  end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User do
+RSpec.describe User, type: :model do
   let(:user) { build(:user) }
 
   it '有効なファクトリを持つこと' do
@@ -23,6 +23,26 @@ describe User do
       user.valid?
       expect(user).to_not be_valid
     end
+    it 'バイクの車種がない場合、無効であること' do
+      user.bike.bike_name = ''
+      user.valid?
+      expect(user).to_not be_valid
+    end
+    it 'バイクの排気量が選択されてない場合、無効であること' do
+      user.bike.cc_id = 0
+      user.valid?
+      expect(user).to_not be_valid
+    end
+    it 'バイクのメーカーが選択されてない場合、無効であること' do
+      user.bike.maker_id = 0
+      user.valid?
+      expect(user).to_not be_valid
+    end
+    it 'バイクのタイプが選択されてない場合、無効であること' do
+      user.bike.type_id = 0
+      user.valid?
+      expect(user).to_not be_valid
+    end
   end
 
   describe '文字数の検証' do
@@ -32,6 +52,14 @@ describe User do
     end
     it '名前が11文字以上の場合、無効であること' do
       user.name = 'a' * 11
+      expect(user).to_not be_valid
+    end
+    it 'バイクの車種が20文字以内の場合、有効であること' do
+      user.bike.bike_name = 'a' * 20
+      expect(user).to be_valid
+    end
+    it 'バイクの車種が21文字以上の場合、無効であること' do
+      user.bike.bike_name = 'a' * 21
       expect(user).to_not be_valid
     end
     it 'メールアドレスが255文字以内の場合、有効であること' do
@@ -121,7 +149,7 @@ describe User do
     end
 
     it 'ユーザーを削除すると、関連するバイクも削除されること' do
-      user = create(:user, :with_bike)
+      user = create(:user)
       expect { user.destroy }.to change { Bike.count }.by(-1)
     end
 

@@ -3,6 +3,9 @@ FactoryBot.define do
     name { 'TestUser' }
     sequence(:email) { |n| "test#{n}@example.com" }
     password { 'password' }
+    after(:build) do |user|
+      user.bike = build(:bike, user: user)
+    end
   end
 
   trait :invalid do
@@ -14,21 +17,15 @@ FactoryBot.define do
   trait :admin do
     name { 'AdminUser' }
     email { 'admin@example.com' }
-    password { '123456' }
+    password { '12345678' }
     admin { true }
   end
 
   trait :guest do
     name { 'GuestUser' }
     email { 'guest@example.com' }
-    password { '123456' }
+    password { '12345678' }
     guest { true }
-  end
-
-  trait :with_bike do
-    after(:create) do |user|
-      create_list(:bike, 1, user: user)
-    end
   end
 
   trait :with_posts do

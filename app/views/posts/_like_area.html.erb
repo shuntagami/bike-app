@@ -1,4 +1,4 @@
-<%= link_to like_posts_path(@post.id), class: "like_button", method: :post, remote: true do%>
+<%= link_to like_posts_path(@post.id), id: "like_button", method: :post, remote: true do%>
   <% if @post.liked_by?(current_user) %>
     <i class="fa-heart fas fa-lg"></i>
   <% else %>
