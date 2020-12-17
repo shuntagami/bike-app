@@ -61,10 +61,9 @@ class PostsController < ApplicationController
   end
 
   def popular
-    @popular_posts = Post.joins(:likes)
-                         .group(:post_id)
-                         .order(Arel.sql('count(likes.user_id) desc'))
-                         .page(params[:page]).per(PER)
+    @popular_posts = Post.unscoped.joins(:likes).group(:post_id).order(Arel.sql('count(likes.user_id) desc')).page(params[:page]).per(PER)
+    @popular_posts = @popular_posts.includes(:user, :prefecture, :city)
+    @popular_posts = set_posts_date_range(@popular_posts, params[:date_range])
   end
 
   def feed
