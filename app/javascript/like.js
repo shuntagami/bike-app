@@ -17,7 +17,7 @@ if (document.URL.match( /posts\/(\d+)/ )) {
         button.innerHTML = null;
         button.insertAdjacentHTML('afterbegin', insertHTML);
         likesCountArea.innerHTML = null;
-        likesCountArea.insertAdjacentHTML('afterbegin', `いいね${receivedData.count}件`);
+        likesCountArea.insertAdjacentHTML('afterbegin', `いいね${receivedData.count} 件`);
       });
     
       // ajax通信に失敗したときの処理

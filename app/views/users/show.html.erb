@@ -43,7 +43,7 @@
       <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">
         <div class="user-status">
           <span class="status-name">投稿</span>
-          <div class="status-value"><%= "#{@user.posts.count}件" %></div>
+          <div class="status-value"><%= "#{@user.posts.length}件" %></div>
         </div>
       </a>
     </li>
@@ -52,7 +52,7 @@
         <div class="user-status">
           <span class="status-name">フォロー</span>
           <div class="status-value" id="follow_area_<%= @user.id %>">
-            <%= "#{@user.following.count}人" %>
+            <%= "#{@user.following.length}人" %>
           </div>
         </div>
       </a>
@@ -62,7 +62,7 @@
         <div class="user-status">
           <span class="status-name">フォロワー</span>
           <div class="status-value" id="followers_area_<%= @user.id %>">
-            <%= "#{@user.followers.count}人" %>
+            <%= "#{@user.followers.length}人" %>
           </div>
         </div>
       </a>
@@ -71,7 +71,7 @@
       <a class="nav-link" id="likes-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">
         <div class="user-status">
           <span class="status-name">いいね</span>
-          <div class="status-value"><%= "#{@likes.count}件" %></div>
+          <div class="status-value"><%= "#{@likes.length}件" %></div>
         </div>
       </a>
     </li>

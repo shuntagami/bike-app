@@ -27,15 +27,15 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.includes(:user, :prefecture, :city).order(id: 'DESC')
     @posts = Post.page(params[:page]).per(PER)
+    @posts = @posts.includes(:user, :comments, :prefecture, :city)
     @posts = set_posts_date_range(@posts, params[:date_range])
   end
 
   def show
     gon.post_id = @post.id
     @comment = Comment.new
-    @comments = @post.comments.includes(:user).order(id: 'DESC')
+    @comments = @post.comments.includes(:user)
     @like = Like.find_by(post_id: @post.id)
   end
 
@@ -62,7 +62,7 @@ class PostsController < ApplicationController
 
   def popular
     @popular_posts = Post.unscoped.joins(:likes).group(:post_id).order(Arel.sql('count(likes.user_id) desc')).page(params[:page]).per(PER)
-    @popular_posts = @popular_posts.includes(:user, :prefecture, :city)
+    @popular_posts = @popular_posts.includes(:user, :comments, :prefecture, :city)
     @popular_posts = set_posts_date_range(@popular_posts, params[:date_range])
   end
 
@@ -70,7 +70,7 @@ class PostsController < ApplicationController
     return unless user_signed_in?
 
     @feed_posts = current_user.feed.page(params[:page]).per(PER)
-    @feed_posts = @feed_posts.includes(:user)
+    @feed_posts = @feed_posts.includes(:user, :comments, :prefecture, :city)
   end
 
   def search
