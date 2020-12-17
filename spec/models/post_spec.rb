@@ -18,7 +18,7 @@ RSpec.describe Post, type: :model do
       prefecture: prefecture,
       city: city,
       weather: '晴れ',
-      feeling: 'ちょうどいい',
+      feeling: 'メッシュジャケットで快適',
       road_condition: '問題なし'
     )
     expect(post).to be_valid
@@ -98,7 +98,7 @@ RSpec.describe Post, type: :model do
         prefecture: @city.prefecture,
         city: @city,
         weather: '晴れ',
-        feeling: 'ちょうどいい',
+        feeling: 'メッシュジャケットで快適',
         road_condition: '問題なし'
       )
 

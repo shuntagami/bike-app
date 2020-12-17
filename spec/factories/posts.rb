@@ -6,7 +6,7 @@ FactoryBot.define do
     prefecture_id { 1 }
     city_id { 1 }
     weather { '晴れ' }
-    feeling { 'ちょうどいい' }
+    feeling { 'メッシュジャケットで快適' }
     road_condition { '問題なし' }
     created_at { Faker::Time.between(from: DateTime.now - 2, to: DateTime.now) }
 

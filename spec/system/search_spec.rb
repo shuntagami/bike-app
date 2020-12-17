@@ -14,7 +14,7 @@ RSpec.describe 'Search', type: :system do
            prefecture_id: 1,  # 北海道
            city_id: 1,        # 札幌市中央区
            weather: '晴れ',
-           feeling: 'ちょうどいい',
+           feeling: 'メッシュジャケットで快適',
            road_condition: '問題なし')
   end
   let!(:post2) do
@@ -23,7 +23,7 @@ RSpec.describe 'Search', type: :system do
            prefecture_id: 13, # 東京都
            city_id: 667,      # 渋谷区
            weather: '曇り',
-           feeling: 'ちょうどいい',
+           feeling: 'メッシュジャケットで快適',
            road_condition: '問題なし')
   end
   let!(:post3) do
@@ -32,7 +32,7 @@ RSpec.describe 'Search', type: :system do
            prefecture_id: 47, # 沖縄県
            city_id: 1856,     # 那覇市
            weather: '雨',
-           feeling: 'ちょうどいい',
+           feeling: 'メッシュジャケットで快適',
            road_condition: '問題なし')
   end
 

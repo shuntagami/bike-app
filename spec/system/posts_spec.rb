@@ -31,7 +31,7 @@ RSpec.describe 'Posts', type: :system do
     select '東京都', from: '都道府県'
     select '渋谷区', from: '市区町村'
     select '晴れ', from: '天気'
-    select 'ちょうどいい', from: '体感'
+    select 'メッシュジャケットで快適', from: '体感'
     select '問題なし', from: '路面の状態'
     click_button '投稿する'
 
@@ -39,7 +39,7 @@ RSpec.describe 'Posts', type: :system do
     aggregate_failures do
       expect(post.description).to eq '紅葉が見頃でした！'
       expect(post.weather).to eq '晴れ'
-      expect(post.feeling).to eq 'ちょうどいい'
+      expect(post.feeling).to eq 'メッシュジャケットで快適'
       expect(post.road_condition).to eq '問題なし'
       expect(current_path).to eq root_path
       expect(page).to have_link 'a', href: "/posts/#{post.id}"

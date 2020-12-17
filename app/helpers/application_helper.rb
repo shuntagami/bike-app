@@ -1,9 +1,9 @@
 module ApplicationHelper
   WEBSITE_NAME = 'GoToTouring'.freeze
   # PostのSelectBoxを定義
-  WEATHERS = %w[晴れ 曇り 小雨　雨　豪雨　雪　霧].freeze
-  FEELINGS = %w[暑い　メッシュジャケットで快適　メッシュジャケットでやや寒い　冬用ジャケットで快適　冬用ジャケットでやや寒い　最大限の防寒対策必須].freeze
-  ROAD_CONDITION = %w[問題なし 落ち葉に注意　砂利に注意　一部凍結しているが走行可能　凍結している（要注意）].freeze
+  WEATHERS = %w[晴れ 曇り 小雨 雨 豪雨 雪 霧].freeze
+  FEELINGS = %w[暑い メッシュジャケットで快適 メッシュジャケットでやや寒い 冬用ジャケットで快適 冬用ジャケットでやや寒い 最大限の防寒対策必須].freeze
+  ROAD_CONDITION = %w[問題なし 落ち葉に注意 砂利に注意 一部凍結しているが走行可能 凍結している（要注意）].freeze
 
   def resource_name
     :user
