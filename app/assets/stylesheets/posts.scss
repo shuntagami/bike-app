@@ -1,3 +1,10 @@
+$cPureWhite: #fff;
+$cLightWhite: #f5f5f5;
+$cYellow: #EDBC6C;
+$cGray: #666;
+$cBlack: black; 
+
+
 .user_avatar {
   width: 35px;
   height: 35px;
@@ -8,7 +15,7 @@
   padding: 5px;
   a {
     text-decoration: none;
-    color: #666;
+    color: $cGray;
   }
 }
 
@@ -40,25 +47,6 @@
   width: 100%;
 }
 
-
-.bike-contents {
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  min-width: 500px;
-}
-
-
-// .indispensable {
-//   background: #ea352d;
-//   margin-left: 8px;
-//   padding: 3px;
-//   border-radius: 2px;
-//   color: #ffffff;
-//   font-weight: bold;
-// }
-
 .weight-bold-text {
   font-weight: bold;
   min-width: 170px;
@@ -68,7 +56,7 @@
 .select-box {
   height: 30px;
   width: 50%;
-  background-color: #f5f5f5;
+  background-color: $cLightWhite;
   padding-left: 20px;
 }
 
@@ -80,46 +68,13 @@
   padding: 2vh 0;
 }
 
-.click-upload {
-  margin: 15px 0;
-  min-width: 250px;
-}
-
-
-.bikes-text {
-  width: 100%;
-  padding: 16px 16px 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  resize: none;
-}
-
-.bikes-detail {
-  display: flex;
-}
-
-.bikes-detail>.form {
-  width: 300px;
-
-}
-
 .select-box {
   margin: 2vh 0;
   height: 30px;
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: $cLightWhite;
   padding-left: 20px;
 }
-
-// .post-btn {
-//   background: #ea352d;
-//   border: 1px solid #ea352d;
-//   color: #fff;
-//   width: 100%;
-//   height: 50px;
-//   font-size: 14px;
-// }
 
 .post-table{
   border-collapse: separate;
@@ -139,8 +94,15 @@
   }
 }
 
+.col-right, .post-right {
+  margin-top: 1rem;
+  @include md {
+    margin-top: 0;
+  }
+}
+
 .add_image {
-  border: black 4px dashed;
+  border: $cBlack 4px dashed;
   width: 100%;
   margin-top: 10px;
   height: 380px;
@@ -165,21 +127,21 @@
 }
 
 #img_field {
-  color: #666;
+  color: $cGray;
   position: relative;
   padding: 0;
   cursor: pointer;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  background-color: #fff;
+  background-color: $cPureWhite;
   overflow: hidden;
   box-sizing: border-box;
   transition: 0.3s ease-out;
   &:hover {
-    background-color: #EDBC6C;
+    background-color: $cYellow;
     & i{
-      color: #fff;
+      color: $cPureWhite;
     }
   }
   img {

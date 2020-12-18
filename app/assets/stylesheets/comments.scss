@@ -1,5 +1,9 @@
+$cLightGray: #dfdfdf;
+$cGray: #999;
+$cDarkGray: #777;
+
 .p-comment__listTitle {
-  border-bottom: 2px solid #dfdfdf;
+  border-bottom: 2px solid $cLightGray;
   padding-bottom: 5px;
 }
 
@@ -10,12 +14,12 @@
 
 .p-comment__item {
   padding: 18px;
-  border-bottom: 2px dotted #dfdfdf;
+  border-bottom: 2px dotted $cLightGray;
 }
 
 #p-comment__nonitem {
   padding: 40px;
-  color: #999;
+  color: $cGray;
 }
 
 .p-comment__bottomLine {
@@ -26,7 +30,7 @@
     font-size: 14px;
     margin: 0 5px;
     > a {
-      color: #777;
+      color: $cDarkGray;
     }
   }
 }

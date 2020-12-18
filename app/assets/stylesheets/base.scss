@@ -2,12 +2,16 @@
 @mixin md { @media (min-width: 768px) { @content; } }
 @mixin lg { @media (min-width: 992px) { @content; } }
 
+$cPureWhite: #ffffff;
+$cWhite: #fafafa;
+$cGray: #343a40;
+
 body {
   position: relative;
   min-height: 100vh;
   padding-bottom: 120px;/*←footerの高さ*/
   box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
-  background: #fafafa;
+  background: $cWhite;
   margin: 0;
   display: flex;
   flex-flow: column;
@@ -15,18 +19,17 @@ body {
 
 .l-header__logo {
   font-family: "Blueberry";
-  color:#ffffff;
+  color: $cPureWhite;
   text-decoration: none;
 }
 
 /* footer */
 footer {
-  background: #343a40;
-  color: #fff;
+  background: $cGray;
   text-align: center;
   width: 100%;
 
- position: absolute;/*←絶対位置*/
+  position: absolute;/*←絶対位置*/
     bottom: 0; /*下に固定*/
   p {
     font-size: 0.9rem;
@@ -55,73 +58,6 @@ footer {
     max-width: 440px;
     padding: 0 30px;
   }
-}
-
-/* InfiniteScroll */
-.loadmore-btn-wrapper {
-  margin: 0 5px 15px 5px;
-  .btn {
-    color: rgba(0, 0, 0, 0.5);
-    font-weight: 700;
-    background-color: rgba(0, 0, 0, 0.1);
-    border: none;
-  }
-  .loadmore-btn {
-    font-size: 1rem;
-
-    border-radius: 0.6rem;
-    height: 43px;
-    width: 50%;
-  }
-}
-.loader-ellips {
-  font-size: 22px;
-  position: relative;
-  width: 4em;
-  height: 1em;
-  margin: 10px auto;
-}
-
-.loader-ellips__dot {
-  display: block;
-  width: 1em;
-  height: 1em;
-  border-radius: 0.5em;
-  background: #555;
-  position: absolute;
-  animation-duration: 0.5s;
-  animation-timing-function: ease;
-  animation-iteration-count: infinite;
-}
-
-.loader-ellips__dot:nth-child(1),
-.loader-ellips__dot:nth-child(2) {
-  left: 0;
-}
-.loader-ellips__dot:nth-child(3) { left: 1.5em; }
-.loader-ellips__dot:nth-child(4) { left: 3em; }
-
-@keyframes reveal {
-  from { transform: scale(0.001); }
-  to { transform: scale(1); }
-}
-
-@keyframes slide {
-  to { transform: translateX(1.5em) }
-}
-
-.loader-ellips__dot:nth-child(1) {
-  animation-name: reveal;
-}
-
-.loader-ellips__dot:nth-child(2),
-.loader-ellips__dot:nth-child(3) {
-  animation-name: slide;
-}
-
-.loader-ellips__dot:nth-child(4) {
-  animation-name: reveal;
-  animation-direction: reverse;
 }
 
 .date_range {

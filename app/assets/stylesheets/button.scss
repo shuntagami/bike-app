@@ -1,7 +1,9 @@
 $cWhite: white;
 $cBlue: #1DA1F2;
-$cRed: #b22222;
+$cRed: red;
+$cDarkRed: #b22222;
 $cYellow: #ffa666;
+$cGray: #777777; 
 
 .follow_button {
   color: $cBlue;
@@ -13,7 +15,6 @@ $cYellow: #ffa666;
   margin: 10px auto;
   cursor: pointer;
   transition: all 0.3s;
-  
 
   &:focus {
     outline:0;
@@ -43,7 +44,7 @@ $cYellow: #ffa666;
   
   &:hover {
     color: $cWhite;
-    background-color: $cRed;
+    background-color: $cDarkRed;
     box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
   }
   .hover {
@@ -61,10 +62,10 @@ $cYellow: #ffa666;
 
 
 #like_button {
-  color: #777777;
+  color: $cGray;
   text-decoration: none;
   &:hover {
-    color: #777777;
+    color: $cGray;
     text-decoration: none;
   }
   &:focus {
@@ -72,17 +73,17 @@ $cYellow: #ffa666;
   }
 }
 
-// .far {
+.far {
   
-//   color: #777777;
-//   &:hover {
-//     color:red;
-//   }
-// }
+  color: $cGray;
+  &:hover {
+    color: $cRed;
+  }
+}
 
-// .fas {
-//   color: red;
-// }
+.fa-heart.fas {
+  color: $cRed;
+}
 
 
 /* 新規投稿ボタン */
