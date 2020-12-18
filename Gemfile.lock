@@ -261,7 +261,6 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (4.2.2)
     regexp_parser (1.8.2)
     request_store (1.5.0)
       rack (>= 1.4)
@@ -405,7 +404,6 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 6.0.0)
   rails-i18n
-  redis (~> 4.0)
   rspec-rails (~> 4.0.0)
   rspec_junit_formatter
   rubocop
@@ -417,7 +415,6 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
-  tzinfo-data
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
