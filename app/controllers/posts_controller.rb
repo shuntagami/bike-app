@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: %i[show edit update destroy like]
   before_action :correct_user, only: %i[edit update destroy]
   before_action :set_form_title_button, only: %i[new edit]
-  before_action :set_weathers, :set_feelings, :set_expectations, only: %i[new edit search]
+  before_action :set_weathers, :set_feelings, :set_road_conditions, only: %i[new edit search]
 
   def new
     @post = Post.new
@@ -49,11 +49,9 @@ class PostsController < ApplicationController
 
   def like
     if @post.liked_by?(current_user)
-      @like = current_user.likes.find_by(post_id: @post.id)
-      @like.destroy
+      current_user.likes.find_by(post_id: @post.id).destroy
     else
-      @like = current_user.likes.new(post_id: @post.id)
-      @like.save
+      current_user.likes.new(post_id: @post.id).save
     end
     respond_to do |format|
       format.json
@@ -93,7 +91,7 @@ class PostsController < ApplicationController
     @feelings = FEELINGS
   end
 
-  def set_expectations
+  def set_road_conditions
     @road_condition = ROAD_CONDITION
   end
 
@@ -118,13 +116,8 @@ class PostsController < ApplicationController
   end
 
   def set_form_title_button
-    if params['action'] == 'new'
-      @form_title = '新しい投稿'
-      @form_button = '投稿する'
-    else
-      @form_title = '投稿を編集'
-      @form_button = '更新する'
-    end
+    @form_title = params['action'] == 'new' ? '新しい投稿' : '投稿を編集'
+    @form_button = params['action'] == 'new' ? '投稿する' : '更新する'
   end
 
   def puts_error_message
