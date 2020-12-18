@@ -1,12 +1,5 @@
 module Users
   class SessionsController < Devise::SessionsController
-    # def new_guest
-    #   user = User.guest
-    #   sign_in user
-    #   redirect_to root_path
-    #   flash[:success] = 'ゲストユーザーとしてログインしました。'
-    # end
-
     def create
       auth_options = { scope: resource_name, recall: "#{controller_path}#failed" }
       self.resource = warden.authenticate!(auth_options)
