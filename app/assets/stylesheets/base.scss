@@ -2,12 +2,16 @@
 @mixin md { @media (min-width: 768px) { @content; } }
 @mixin lg { @media (min-width: 992px) { @content; } }
 
+$cPureWhite: #ffffff;
+$cWhite: #fafafa;
+$cGray: #343a40;
+
 body {
   position: relative;
   min-height: 100vh;
   padding-bottom: 120px;/*←footerの高さ*/
   box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
-  background: #fafafa;
+  background: $cWhite;
   margin: 0;
   display: flex;
   flex-flow: column;
@@ -15,18 +19,17 @@ body {
 
 .l-header__logo {
   font-family: "Blueberry";
-  color:#ffffff;
+  color: $cPureWhite;
   text-decoration: none;
 }
 
 /* footer */
 footer {
-  background: #343a40;
-  color: #fff;
+  background: $cGray;
   text-align: center;
   width: 100%;
 
- position: absolute;/*←絶対位置*/
+  position: absolute;/*←絶対位置*/
     bottom: 0; /*下に固定*/
   p {
     font-size: 0.9rem;

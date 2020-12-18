@@ -1,3 +1,7 @@
+$cLightGray: #999;
+$cGray: #666;
+$cDarkGray: #495057;
+
 #avatar_field {
   display: inline;
   cursor: pointer;
@@ -29,22 +33,21 @@
 }
 
 .user-card {
-  // background-color: rgba(0,0,0,0);
   padding: 20px;
   margin: 14px 0;
   min-height: 280px;
   .user-name {
     margin: 15px auto 10px auto;
     text-decoration: none;
-    color: #666;
+    color: $cGray;
     font-size: 1.2rem;
     font-weight: 600;
   }
 }
 
 .nav-link {
-  color: #999;
+  color: $cLightGray;
   &:hover {
-    color: #495057;
+    color: $cDarkGray;
   }
 }
