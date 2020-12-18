@@ -28,14 +28,14 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).per(PER)
-    @posts = @posts.includes(:user, :comments, :prefecture, :city)
+    @posts = @posts.preload(:user, :comments, :prefecture, :city)
     @posts = set_posts_date_range(@posts, params[:date_range])
   end
 
   def show
     gon.post_id = @post.id
     @comment = Comment.new
-    @comments = @post.comments.includes(:user)
+    @comments = @post.comments.preload(:user)
     @like = Like.find_by(post_id: @post.id)
   end
 
@@ -62,7 +62,7 @@ class PostsController < ApplicationController
 
   def popular
     @popular_posts = Post.unscoped.joins(:likes).group(:post_id).order(Arel.sql('count(likes.user_id) desc')).page(params[:page]).per(PER)
-    @popular_posts = @popular_posts.includes(:user, :comments, :prefecture, :city)
+    @popular_posts = @popular_posts.preload(:user, :comments, :prefecture, :city)
     @popular_posts = set_posts_date_range(@popular_posts, params[:date_range])
   end
 
@@ -70,7 +70,7 @@ class PostsController < ApplicationController
     return unless user_signed_in?
 
     @feed_posts = current_user.feed.page(params[:page]).per(PER)
-    @feed_posts = @feed_posts.includes(:user, :comments, :prefecture, :city)
+    @feed_posts = @feed_posts.preload(:user, :comments, :prefecture, :city)
   end
 
   def search
@@ -78,7 +78,7 @@ class PostsController < ApplicationController
     @search_posts = Post.search(@search_params)
                         .page(params[:page])
                         .per(PER)
-                        .includes(:user, :prefecture, :city)
+                        .preload(:user, :comments, :prefecture, :city)
   end
 
   def cities_select

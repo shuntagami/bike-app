@@ -24,7 +24,7 @@
           </div>
         <% else %>
           <div id="comment_list"></div>
-          <%= render post.comments.includes(:user) %>
+          <%= render post.comments.preload(:user) %>
         <% end %>
     </div>
   </div>
