@@ -1,86 +1,95 @@
-# README
+# アプリ概要
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[GoToTouring](http://touringtaro.work/)<br>
 
-Things you may want to cover:
+ライダーのための、ツーリングの機会損失を減らすことを目的としたアプリケーションです。<br>
+具体的な状況としては「ツーリングに行ったはいいものの、路面が凍っていて引き返すことになった」、「夏だからと油断したら寒すぎて引き返すことになった」というようなことを防ぐために他のユーザーの投稿を見て事前に防ぐことができます。また、「自分のバイクを自慢したい」といった多くのライダーのニーズを満たすことや、や都道府県ごとの投稿検索機能を使って新たなツーリングスポットするといった使い方をすることもできます。
 
-* Ruby version
+# 使用技術・言語
 
-* System dependencies
+- フロントエンド(javascript, HTML/CSS, Sass, Bootstrap)
+- バックエンド(Ruby2.6.5, Ruby on Rails6.0)
+- テスト(RSpec, FactoryBot, Capybara)
+- Webサーバ(nginx)
+- applicationサーバ(puma)
+- データベース(MySQL)
+- コンテナ(Docker, docker-compose)
+- AWS(VPC, EC2, Route53, ELB, ACM, ECS, ECR, SSM, KMS, S3, CloudWatch, CLI)
+- インフラコード管理(terraform)
+- 開発環境(MacOS, VScode, vim, Git, GitHub, CircleCI, zsh)
 
-* Configuration
+# インフラ構成
+![environment](./public/images/bike_app_Env.png)
 
-* Database creation
+# 機能要件
 
-* Database initialization
+### ユーザ機能
 
-* How to run the test suite
+- ユーザ情報 登録・編集・削除
+- ユーザ認証機能(Devise)
+- テストユーザログイン機能
+- 管理ユーザ機能
+- フォロー、フォロワー機能(ajax)
 
-* Services (job queues, cache servers, search engines, etc.)
+### ツーリングスポット投稿機能
 
-* Deployment instructions
+- 新規投稿、編集、削除
+- いいね機能(ajax)
+- コメント機能(ajax)
 
-* ...
+### 検索機能
 
+- 都道府県、市区町村、キーワードから検索
 
-## users テーブル
+### UI
 
-| Column    | Type    | Options     |
-| --------  | ------  | ----------- |
-| name      | string  | null: false |
-| email     | string  | null: false |
-| password  | string  | null: false |
+- グローバルメニュー(ハンバーガーメニュー)
+- グローバルサーチ
+- ページネーション(kaminari) (トップページ)
 
- 
-### Association
+# 非機能要件
 
-- has_many :posts
-- has_many :comments
-- has_many :likes
-
-
-## posts テーブル
- 
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| user        | references | null: false, foreign_key: true |
-| name        | string     | null: false                    |
-| description | text       | null: false                    |
-| image       | string     | null: false                    |
-| cc_id       | integer    | null: false                    |  
-| maker_id    | integer    | null: false                    |
-| type_id     | integer    | null: false                    |
-
-### Association
-
-- belongs_to :user
-- has_many :likes
-- has_many :comments
+- レスポンシブ対応
+- エラーハンドリング
+- HTTPS 接続
+- データベースの定期バックアップ(bash + S3)
+- モデル/コントローラの単体テスト
+- 統合テスト
 
 
-## comments テーブル
-
-| Column   | Type       | Options                        |
-| -------- | ---------- | ------------------------------ |
-| user     | references | null: false, foreign_key: true |
-| post     | references | null: false, foreign_key: true |
-| comment  | text       | null: false                    |
-
-### Association
-
-- belongs_to :user
-- belongs_to :post
 
 
-## likes テーブル
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| post   | references | null: false, foreign_key: true |
 
-### Association
 
-- belongs_to :user
-- belongs_to :post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
