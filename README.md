@@ -24,6 +24,9 @@
 # インフラ構成
 ![environment](./public/images/bike_app_Env.png)
 
+# テーブル設計
+![sample](https://user-images.githubusercontent.com/69618840/102996481-8e38cd00-4566-11eb-8a65-38efd3c45a63.png)
+
 # 機能要件
 
 ### ユーザ機能
