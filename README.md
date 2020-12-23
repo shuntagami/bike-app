@@ -5,6 +5,20 @@
 ライダーのための、ツーリングの機会損失を減らすことを目的としたアプリケーションです。<br>
 具体的な状況としては「ツーリングに行ったはいいものの、路面が凍っていて引き返すことになった」、「夏だからと油断したら寒すぎて引き返すことになった」というようなことを防ぐために他のユーザーの投稿を見て事前に防ぐことができます。また、「自分のバイクを自慢したい」といった多くのライダーのニーズを満たすことや、や都道府県ごとの投稿検索機能を使って新たなツーリングスポットするといった使い方をすることもできます。
 
+## 画面遷移図
+
+### トップページ
+![sample](https://user-images.githubusercontent.com/69618840/102978259-96cddb00-4547-11eb-81be-7839e4939fc1.jpeg)
+
+### ログイン画面
+https://user-images.githubusercontent.com/69618840/102978507-f88e4500-4547-11eb-90cd-eb501e77e1ec.jpeg
+
+### ユーザー詳細画面
+https://user-images.githubusercontent.com/69618840/102978385-c250c580-4547-11eb-96ae-8a0e4b5309df.jpeg
+
+### ユーザー編集画面
+https://github.com/shuntagami/bike-app/issues/33
+
 # 使用技術・言語
 
 - フロントエンド(javascript, HTML/CSS, Sass, Bootstrap)
