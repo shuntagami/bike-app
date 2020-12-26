@@ -13,6 +13,7 @@ RUN apk add --no-cache -t .build-dependencies \
   libxslt-dev \
   && apk add --no-cache \
   zsh \
+  vim \
   file \
   imagemagick \
   libpq \
