@@ -11,7 +11,6 @@ services:
       - db
     environment:
       RAILS_ENV: $DOCKER_RAILS_ENV
-      DB_DATABASE: bike_app_production
       DB_HOST: db
       DB_USER: $DB_USER
       DB_PASSWORD: $DB_PASSWORD
