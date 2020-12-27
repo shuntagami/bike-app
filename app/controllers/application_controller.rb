@@ -3,8 +3,10 @@ class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  skip_forgery_protection
+
   # ページネーション[1ページ表示数]
-  PER = 6
+  PER = 9
 
   private
 
