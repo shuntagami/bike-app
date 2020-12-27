@@ -26,7 +26,7 @@ RUN apk add --no-cache -t .build-dependencies \
   tzdata \
   yarn \
   && gem install bundler:2.0.2 \
-  && bundle install -j$(getconf _NPROCESSORS_ONLN) --deployment --without test development \
+  && bundle install \
   && apk del --purge .build-dependencies
 
 # アプリケーションコードのコピー
