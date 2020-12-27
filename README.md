@@ -22,7 +22,7 @@
 - 開発環境(MacOS, VScode, vim, Git, GitHub, CircleCI, zsh)
 
 # インフラ構成
-![environment](./public/images/bike_app_Env.png)
+![sample](https://user-images.githubusercontent.com/69618840/103174607-e04f5a80-48a6-11eb-84a1-04f9412439fd.png)
 
 # テーブル設計
 ![sample](https://user-images.githubusercontent.com/69618840/102996481-8e38cd00-4566-11eb-8a65-38efd3c45a63.png)
