@@ -33,9 +33,10 @@ RUN apk add --no-cache -t .build-dependencies \
 COPY . /app
 
 # アセットのプリコンパイル
-RUN bundle exec rails assets:precompile \
+# アセットのプリコンパイル
+RUN SECRET_KEY_BASE=placeholder bundle exec rails assets:precompile \
   && yarn cache clean \
-  && rm -rf tmp/cache
+  && rm -rf node_modules tmp/cache
 
 ENV RAILS_SERVE_STATIC_FILES="true"
 ENTRYPOINT ["/sbin/tini", "--"]
