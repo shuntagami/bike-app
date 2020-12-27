@@ -32,6 +32,7 @@
 yarn-debug.log*
 .yarn-integrity
 
+.env
 .DS_Store
 # docker-compose.yml
 # Dockerfile.dev
