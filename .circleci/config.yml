@@ -3,44 +3,65 @@ orbs:
   aws-ecr: circleci/aws-ecr@6.7.0
   aws-ecs: circleci/aws-ecs@1.1.0
 
-jobs:
-  build:
-    docker:
-      - image: circleci/ruby:2.6.5-node-browsers
-        environment:
-          - BUNDLER_VERSION: 2.1.4
-          - RAILS_ENV: 'test'
-      - image: circleci/mysql:5.7
-        environment:
-          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          - MYSQL_ROOT_HOST: '%'
+references:
+  defaults: &defaults
     working_directory: ~/repo
+
+  ruby_docker_image: &ruby_docker_image
+    image: circleci/ruby:2.6.5-node-browsers
+    environment:
+      BUNDLER_VERSION: 2.1.4
+      RAILS_ENV: test
+      MYSQL_HOST: 127.0.0.1
+      MYSQL_USERNAME: 'root'
+      MYSQL_PASSWORD: ''
+      MYSQL_PORT: 3306
+  # Download and cache dependencies
+  restore_gem_cache: &restore_gem_cache
+    restore_cache:
+      keys:
+        - v1-dependencies-{{ checksum "Gemfile.lock" }}
+        - v1-dependencies-
+
+jobs:
+  checkout_code:
+    <<: *defaults
+    docker:
+      - *ruby_docker_image
     steps:
       - checkout
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies-
-      - run:
-          name: install dependencies
-          command: |
-            gem install bundler -v 2.1.4
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/project
+
+  test:
+    <<: *defaults
+    docker:
+      - *ruby_docker_image
+      - image: circleci/mysql:5.7.30
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+    steps:
+      - checkout
+      - *restore_gem_cache
+      - run: gem install bundler -v 2.1.4
+      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-      # database.ymlとdatabase.yml.ciを入れ替える
-      - run: mv config/database.yml.ci config/database.yml 
-      # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+      - run: yarn install --check-files
+
+      - run: mv config/database.yml.ci config/database.yml
+      - run: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+      - run: bundle exec rake db:create db:schema:load --trace
 
       # rubocopを走らせる
       - run:
-          name: Rubocop
+          name: Run RuboCop
           command: bundle exec rubocop
+          
       # run tests!
       - run:
           name: run tests
@@ -54,7 +75,7 @@ jobs:
               --out /tmp/test-results/rspec.xml \
               --format progress \
               $TEST_FILES
-      # collect reports
+
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
@@ -62,10 +83,20 @@ jobs:
           destination: test-results
 
 workflows:
+  version: 2.1
+  test_code:
+    jobs:
+      - checkout_code
+      - test:
+          requires:
+            - checkout_code
   # Nginxのデプロイ
   nginx-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
+          filters:
+            branches:
+              only: master
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
@@ -74,21 +105,20 @@ workflows:
           dockerfile: ./docker/nginx/Dockerfile
           repo: nginx
           tag: latest
-          filters:
-            branches:
-              only: master
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
           family: 'webapp-service' # ECSのタスク定義名
-          cluster-name: '${ECS_ARN}'  #ECSのクラスターのARN
+          cluster-name: '${ECS_ARN}'
           service-name: 'webapp-service'  #サービス名
           container-image-name-updates: "container=nginx,tag=latest"
-
   # Railsのデプロイ
   rails-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
+          filters:
+            branches:
+              only: master
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
@@ -97,9 +127,6 @@ workflows:
           dockerfile: ./docker/rails/Dockerfile
           repo: rails
           tag: latest
-          filters:
-            branches:
-              only: master
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
