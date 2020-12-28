@@ -18,7 +18,7 @@
 - データベース(MySQL5.7.3)
 - コンテナ(Docker, docker-compose)
 - AWS(VPC, EC2, Route53, ELB, ACM, ECS, ECR, RDS, SSM, KMS, S3, CloudWatchLogs, Kinesis Fire Hose, CLI)
-- インフラコード管理(terraform0.14.3)
+- インフラコード管理(terraform0.14.3) https://github.com/shuntagami/Terraform_test
 - 開発環境(MacOS, VScode, vim, Git, GitHub, CircleCI, zsh)
 
 # インフラ構成
@@ -96,9 +96,8 @@
 https://github.com/shuntagami/dotfiles
 
 ## 難しい技術へのチャレンジ
-開発環境の差異を減らす目的でdockerを導入しました。その後、dockerを導入したメリットを生かすためにコンテナオーケストレーションサービス(ECS)の導入や、CircleCIによる自動テスト、自動デプロイにもチャレンジしました。特にdocker, AWSの学習は「システム全体の理解」に繋がることが非常に楽しかったこともあり、インフラをコード化するところまで実装できました。（以下のリポジトリです）<br>
-https://github.com/shuntagami/Terraform_test
-
+開発環境の差異を減らす目的でdockerを導入しました。その後、dockerを導入したメリットを生かすためにコンテナオーケストレーションサービス(ECS)の導入や、CircleCIによる自動テスト、自動デプロイにもチャレンジしました。railsの開発環境、本番環境による挙動の違いによる発生したエラーが多く、解決にも苦労したため、その過程を記事に残しました。<br>
+<a href="https://qiita.com/shuntagami23/items/264cc5e13006907c8ee9">albのヘルスチェックエラーを解決した話</a>
 
 # 今後の課題
 
