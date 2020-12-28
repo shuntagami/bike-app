@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (flashMessage !== null) {
     // style属性opacityをセット
     flashMessage.style.opacity = 1;
-    // 表示から1.5秒後に上記で定義したフェードアウトさせる関数を実行
-    setTimeout(fadeOutFlashMessage, 1500);
+    // 表示から5秒後に上記で定義したフェードアウトさせる関数を実行
+    setTimeout(fadeOutFlashMessage, 5000);
   };
 });
