@@ -7,6 +7,16 @@ services:
     command: bundle exec puma -C config/puma.rb 
     ports:
       - '3000:3000'
+    links:
+      - db
+    environment:
+      RAILS_ENV: $DOCKER_RAILS_ENV
+      DB_HOST: db
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      aws_access_key_id: $AWS_ACCESS_KEY_ID
+      aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
+      RAILS_SERVE_STATIC_FILES:
     volumes:
       - .:/app
       - /var/tmp

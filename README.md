@@ -16,10 +16,10 @@
 - Webサーバ(nginx)
 - applicationサーバ(puma)
 - データベース(MySQL5.7.3)
-- コンテナ(Docker, docker-compose)
-- AWS(VPC, EC2, Route53, ELB, ACM, ECS, ECR, RDS, SSM, KMS, S3, CloudWatchLogs, Kinesis Fire Hose, CLI)
+- コンテナ(Docker20.10, docker-compose1.27.4)
+- AWS(VPC, EC2, Route53, ELB, ACM, ECS, ECR, RDS, SSM, KMS, S3, CloudWatchLogs, Kinesis Fire Hose, aws-cli2.1.14)
 - インフラコード管理(terraform0.14.3) https://github.com/shuntagami/Terraform_test
-- 開発環境(MacOS, VScode, vim, Git, GitHub, CircleCI, zsh)
+- 開発環境(MacOS, Homebrew, iTerm, VScode, vim, Git, GitHub, CircleCI, zsh)
 
 # インフラ構成
 ![sample](https://user-images.githubusercontent.com/69618840/103174607-e04f5a80-48a6-11eb-84a1-04f9412439fd.png)
