@@ -6,16 +6,16 @@ default: &default
 development:
   <<: *default
   username: root
-  password: password
-  host: db
+  # password: password
+  # host: db
   socket: /tmp/mysql.sock
   database: bike_app_development
 
 test:
   <<: *default
   username: root
-  password: password
-  host: db
+  # password: password
+  # host: db
   socket: /tmp/mysql.sock
   database: bike_app_test
 
