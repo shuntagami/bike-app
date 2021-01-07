@@ -1,6 +1,7 @@
 module Users
   class SessionsController < Devise::SessionsController
     def create
+      # デフォルトではログイン失敗時に"#{controller_path}#new"に飛んでしまうのを上書き
       auth_options = { scope: resource_name, recall: "#{controller_path}#failed" }
       self.resource = warden.authenticate!(auth_options)
       sign_in(resource_name, resource)

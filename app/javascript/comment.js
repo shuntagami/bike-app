@@ -1,4 +1,4 @@
-if (document.URL.match( /posts\/(\d+)/ )) {  
+if (document.URL.match( /posts\/(\d+)/ )) {
   function comment() {
     const submit = document.getElementById("submit");
     submit.addEventListener("click", (e) => {
