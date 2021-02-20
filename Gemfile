@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.0'
+gem 'rails', '~> 6.1.2.1'
 # Use mysql as the database for Active Record
 gem 'mysql2', '0.5.3'
 # Use Puma as the app server
@@ -34,7 +34,7 @@ group :development, :test do
 
   # ----- 以下追加 -----
   gem 'factory_bot_rails'
-  gem 'rspec-rails', '~> 4.0.0'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -72,10 +72,10 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'faker'
 gem 'fog-aws'
-gem 'font-awesome-sass', '~> 5.4.1'
+gem 'font-awesome-sass'
 gem 'gimei'
 gem 'gon'
-gem 'image_processing', '~> 1.2'
+gem 'image_processing'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'mini_magick'
